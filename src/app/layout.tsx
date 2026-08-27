@@ -36,7 +36,13 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${fraunces.variable}`}>
+    // Browser extensions (QuillBot, Grammarly, password managers) inject attributes
+    // onto <html> before React hydrates; suppressHydrationWarning ignores that diff.
+    <html
+      lang="en"
+      className={`${inter.variable} ${fraunces.variable}`}
+      suppressHydrationWarning
+    >
       <body className="font-sans">
         <a
           href="#main"

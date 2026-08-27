@@ -9,7 +9,7 @@ export default function Footer() {
       <div className="h-px w-full bg-gradient-to-r from-transparent via-gold-500/60 to-transparent" />
       <div className="container-page grid gap-12 py-16 md:grid-cols-4">
         <div className="md:col-span-1">
-          <Logo size={512} className="h-auto w-48" />
+          <Logo variant="full" size={800} className="h-auto w-40" />
           <p className="mt-5 max-w-xs text-sm leading-relaxed text-brand-200">
             {site.description}
           </p>

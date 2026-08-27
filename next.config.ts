@@ -5,6 +5,10 @@ const nextConfig: NextConfig = {
   turbopack: {
     root: __dirname,
   },
+  images: {
+    // Next 16 only honours quality values that are allowlisted here.
+    qualities: [75, 90],
+  },
 };
 
 export default nextConfig;

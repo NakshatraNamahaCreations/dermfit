@@ -31,12 +31,14 @@ export default function Header() {
           className="flex items-center gap-3"
           aria-label={`${site.name} ${site.byline} — home`}
         >
-          <Logo size={112} decorative className="h-14 w-14 sm:h-16 sm:w-16" />
+          <span className="inline-flex shrink-0 rounded-xl ring-1 ring-gold-500/25">
+            <Logo size={176} decorative className="h-12 w-12 rounded-xl sm:h-13 sm:w-13" />
+          </span>
           <span className="flex flex-col leading-none">
-            <span className="font-display text-xl font-semibold tracking-[0.18em] text-gold-gradient">
+            <span className="font-display text-[1.4rem] font-semibold leading-none tracking-[0.2em] text-gold-gradient">
               DERMFIT
             </span>
-            <span className="mt-1 text-[0.6rem] font-medium uppercase tracking-[0.2em] text-brand-300">
+            <span className="mt-1.5 text-[0.58rem] font-medium uppercase tracking-[0.22em] text-brand-300">
               {site.tagline}
             </span>
           </span>
