@@ -1,8 +1,10 @@
 export const site = {
   name: "Dermfit",
-  tagline: "Skin & Hair Clinic",
+  tagline: "Skin · Hair · Aesthetics",
+  byline: "by Dr Sourab Hegde",
+  kind: "Dermatology Clinic",
   description:
-    "Dermfit is a modern dermatology clinic offering evidence-based skin, hair and aesthetic treatments delivered by board-certified dermatologists.",
+    "Dermfit is a dermatology clinic led by Dr Sourab Hegde, offering evidence-based skin, hair and aesthetic treatments.",
   phone: "+91 98765 43210",
   phoneHref: "tel:+919876543210",
   email: "hello@dermfit.com",

@@ -1,12 +1,27 @@
-export default function Logo({ className = "" }: { className?: string }) {
+import Image from "next/image";
+import { site } from "@/data/site";
+
+/**
+ * The clinic logo, used unmodified. public/logo.png is a byte-for-byte copy of
+ * the supplied "dermfit logo-1.png" — renamed only so the URL has no space.
+ */
+export default function Logo({
+  className = "",
+  size = 56,
+  decorative = false,
+}: {
+  className?: string;
+  size?: number;
+  decorative?: boolean;
+}) {
   return (
-    <svg viewBox="0 0 40 40" className={className} role="img" aria-label="Dermfit">
-      <rect width="40" height="40" rx="12" className="fill-brand-700" />
-      <path
-        d="M13 27V13h5.4c4.3 0 7.1 2.7 7.1 7s-2.8 7-7.1 7H13Z"
-        className="fill-white"
-      />
-      <circle cx="27.5" cy="14" r="2.6" className="fill-sand-300" />
-    </svg>
+    <Image
+      src="/logo.png"
+      alt={decorative ? "" : `${site.name} ${site.byline} — ${site.kind}`}
+      width={size}
+      height={size}
+      priority
+      className={className}
+    />
   );
 }

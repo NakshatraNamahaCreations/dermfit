@@ -7,7 +7,7 @@ import { initialBookingState } from "@/app/contact/booking-state";
 import { services } from "@/data/services";
 
 const fieldBase =
-  "mt-1.5 w-full rounded-xl border bg-surface px-4 py-3 text-sm text-brand-950 placeholder:text-muted/70 transition-colors focus:border-brand-500";
+  "mt-1.5 w-full rounded-xl border bg-surface px-4 py-3 text-sm text-brand-950 placeholder:text-muted/70 transition-colors focus:border-gold-500";
 
 function SubmitButton() {
   const { pending } = useFormStatus();
@@ -15,7 +15,7 @@ function SubmitButton() {
     <button
       type="submit"
       disabled={pending}
-      className="w-full rounded-full bg-brand-700 px-7 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-brand-800 disabled:cursor-not-allowed disabled:opacity-60"
+      className="btn btn-gold w-full disabled:cursor-not-allowed disabled:opacity-60"
     >
       {pending ? "Sending…" : "Request an appointment"}
     </button>
@@ -27,12 +27,13 @@ export default function BookingForm() {
 
   if (state.status === "success") {
     return (
-      <div className="rounded-card border border-brand-200 bg-brand-50 p-8 text-center">
-        <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-brand-700">
+      <div className="rounded-card border border-gold-200 bg-gold-50 p-8 text-center">
+        <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-brand-900">
           <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
             <path
               d="m6 11.5 3.5 3.5L16 8"
-              stroke="white"
+              stroke="currentColor"
+              className="text-gold-300"
               strokeWidth="2"
               strokeLinecap="round"
               strokeLinejoin="round"

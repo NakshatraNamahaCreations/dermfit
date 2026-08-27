@@ -43,7 +43,7 @@ export default function AboutPage() {
           <dl className="grid grid-cols-2 gap-px overflow-hidden rounded-card border border-line bg-line">
             {stats.map((s) => (
               <div key={s.label} className="bg-surface p-6">
-                <dd className="font-display text-3xl font-semibold text-brand-800">
+                <dd className="font-display text-3xl font-semibold text-brand-900">
                   {s.value}
                 </dd>
                 <dt className="mt-1 text-xs uppercase tracking-[0.1em] text-muted">
@@ -64,13 +64,13 @@ export default function AboutPage() {
         <div className="mt-12 grid gap-5 md:grid-cols-3">
           {doctors.map((d) => (
             <article key={d.name} className="rounded-card border border-line bg-canvas p-7">
-              <div className="flex h-14 w-14 items-center justify-center rounded-full bg-brand-700 font-display text-lg font-semibold text-white">
+              <div className="flex h-14 w-14 items-center justify-center rounded-full bg-brand-900 font-display text-lg font-semibold text-gold-200">
                 {d.initials}
               </div>
               <h3 className="mt-5 font-display text-lg font-semibold text-brand-950">
                 {d.name}
               </h3>
-              <p className="mt-1 text-sm font-medium text-brand-700">{d.role}</p>
+              <p className="mt-1 text-sm font-medium text-gold-700">{d.role}</p>
               <p className="mt-0.5 text-xs text-muted">{d.credentials}</p>
               <p className="mt-4 text-sm leading-relaxed text-muted">{d.bio}</p>
             </article>

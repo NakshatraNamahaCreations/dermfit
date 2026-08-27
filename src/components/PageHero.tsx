@@ -15,7 +15,7 @@ export default function PageHero({
     <section className="relative overflow-hidden border-b border-line bg-surface">
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -right-32 -top-32 h-96 w-96 rounded-full bg-brand-100/60 blur-3xl"
+        className="pointer-events-none absolute -right-32 -top-32 h-96 w-96 rounded-full bg-gold-100/60 blur-3xl"
       />
       <div className="container-page relative py-16 sm:py-20">
         <p className="eyebrow">{eyebrow}</p>

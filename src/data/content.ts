@@ -1,10 +1,11 @@
 export const doctors = [
   {
-    name: "Dr. Ananya Rao",
-    initials: "AR",
+    name: "Dr. Sourab Hegde",
+    initials: "SH",
     role: "Consultant Dermatologist · Founder",
-    credentials: "MBBS, MD (Dermatology), FRGUHS",
-    bio: "Twelve years in clinical dermatology with a focus on pigmentary disorders and acne scarring. Trained in laser medicine at NSCB Medical College.",
+    credentials: "MBBS, MD (Dermatology)",
+    // PLACEHOLDER BIO — replace with Dr Hegde's actual credentials and background.
+    bio: "Founder of Dermfit, practising across clinical dermatology, trichology and aesthetics with a focus on diagnosis-led treatment planning.",
   },
   {
     name: "Dr. Kabir Menon",

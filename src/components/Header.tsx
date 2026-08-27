@@ -20,20 +20,23 @@ export default function Header() {
 
   return (
     <header
-      className={`sticky top-0 z-50 transition-colors ${
-        scrolled
-          ? "border-b border-line bg-surface/90 backdrop-blur"
-          : "border-b border-transparent bg-canvas"
+      className={`sticky top-0 z-50 bg-brand-950 transition-shadow ${
+        scrolled ? "shadow-lg shadow-brand-950/25" : ""
       }`}
     >
-      <div className="container-page flex h-18 items-center justify-between gap-6 py-4">
-        <Link href="/" className="flex items-center gap-2.5" aria-label={`${site.name} home`}>
-          <Logo className="h-9 w-9" />
+      <div className="h-px w-full bg-gradient-to-r from-transparent via-gold-500/60 to-transparent" />
+      <div className="container-page flex items-center justify-between gap-6 py-3.5">
+        <Link
+          href="/"
+          className="flex items-center gap-3"
+          aria-label={`${site.name} ${site.byline} — home`}
+        >
+          <Logo size={112} decorative className="h-14 w-14 sm:h-16 sm:w-16" />
           <span className="flex flex-col leading-none">
-            <span className="font-display text-xl font-semibold tracking-tight text-brand-900">
-              {site.name}
+            <span className="font-display text-xl font-semibold tracking-[0.18em] text-gold-gradient">
+              DERMFIT
             </span>
-            <span className="mt-0.5 text-[0.65rem] font-medium uppercase tracking-[0.16em] text-muted">
+            <span className="mt-1 text-[0.6rem] font-medium uppercase tracking-[0.2em] text-brand-300">
               {site.tagline}
             </span>
           </span>
@@ -50,8 +53,8 @@ export default function Header() {
                 aria-current={active ? "page" : undefined}
                 className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
                   active
-                    ? "bg-brand-100 text-brand-800"
-                    : "text-muted hover:bg-brand-50 hover:text-brand-800"
+                    ? "bg-white/10 text-gold-300"
+                    : "text-brand-200 hover:bg-white/5 hover:text-white"
                 }`}
               >
                 {item.label}
@@ -60,16 +63,16 @@ export default function Header() {
           })}
         </nav>
 
-        <div className="hidden items-center gap-3 md:flex">
+        <div className="hidden items-center gap-4 md:flex">
           <a
             href={site.phoneHref}
-            className="text-sm font-medium text-brand-800 hover:underline"
+            className="text-sm font-medium text-brand-200 transition-colors hover:text-white"
           >
             {site.phone}
           </a>
           <Link
             href="/contact"
-            className="rounded-full bg-brand-700 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-brand-800"
+            className="rounded-full bg-gradient-to-br from-gold-300 to-gold-600 px-5 py-2.5 text-sm font-semibold text-brand-950 transition-opacity hover:opacity-90"
           >
             Book a consult
           </Link>
@@ -80,7 +83,7 @@ export default function Header() {
           onClick={() => setOpen((v) => !v)}
           aria-expanded={open}
           aria-controls="mobile-nav"
-          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-line text-brand-900 md:hidden"
+          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/20 text-gold-200 md:hidden"
         >
           <span className="sr-only">{open ? "Close menu" : "Open menu"}</span>
           <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
@@ -94,14 +97,14 @@ export default function Header() {
       </div>
 
       {open && (
-        <div id="mobile-nav" className="border-t border-line bg-surface md:hidden">
+        <div id="mobile-nav" className="border-t border-white/10 md:hidden">
           <div className="container-page flex flex-col gap-1 py-4">
             {nav.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
                 onClick={() => setOpen(false)}
-                className="rounded-lg px-3 py-2.5 text-base font-medium text-brand-900 hover:bg-brand-50"
+                className="rounded-lg px-3 py-2.5 text-base font-medium text-brand-100 hover:bg-white/5"
               >
                 {item.label}
               </Link>
@@ -109,11 +112,11 @@ export default function Header() {
             <Link
               href="/contact"
               onClick={() => setOpen(false)}
-              className="mt-2 rounded-full bg-brand-700 px-5 py-3 text-center text-sm font-semibold text-white"
+              className="mt-2 rounded-full bg-gradient-to-br from-gold-300 to-gold-600 px-5 py-3 text-center text-sm font-semibold text-brand-950"
             >
               Book a consult
             </Link>
-            <a href={site.phoneHref} className="py-2 text-center text-sm text-muted">
+            <a href={site.phoneHref} className="py-2 text-center text-sm text-brand-300">
               {site.phone}
             </a>
           </div>

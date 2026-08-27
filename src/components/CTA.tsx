@@ -5,17 +5,17 @@ export default function CTA() {
   return (
     <section className="py-16 sm:py-24">
       <div className="container-page">
-        <div className="relative overflow-hidden rounded-card bg-brand-900 px-8 py-14 text-center sm:px-16">
+        <div className="relative overflow-hidden rounded-card bg-brand-950 px-8 py-14 text-center sm:px-16">
           <div
             aria-hidden="true"
-            className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-brand-700/50 blur-3xl"
+            className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-brand-700/40 blur-3xl"
           />
           <div
             aria-hidden="true"
-            className="pointer-events-none absolute -bottom-28 -left-20 h-72 w-72 rounded-full bg-sand-500/20 blur-3xl"
+            className="pointer-events-none absolute -bottom-28 -left-20 h-72 w-72 rounded-full bg-gold-500/20 blur-3xl"
           />
           <div className="relative">
-            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-brand-300">
+            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-gold-400">
               Next available slot this week
             </p>
             <h2 className="mx-auto mt-4 max-w-2xl font-display text-3xl font-semibold tracking-tight text-white sm:text-4xl">
@@ -28,13 +28,13 @@ export default function CTA() {
             <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
               <Link
                 href="/contact"
-                className="w-full rounded-full bg-white px-7 py-3.5 text-sm font-semibold text-brand-900 transition-colors hover:bg-brand-50 sm:w-auto"
+                className="btn btn-gold w-full sm:w-auto"
               >
                 Book a consultation
               </Link>
               <a
                 href={site.phoneHref}
-                className="w-full rounded-full border border-brand-600 px-7 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-brand-800 sm:w-auto"
+                className="btn btn-ghost-light w-full sm:w-auto"
               >
                 Call {site.phone}
               </a>

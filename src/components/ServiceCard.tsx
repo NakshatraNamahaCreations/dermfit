@@ -5,9 +5,9 @@ export default function ServiceCard({ service }: { service: Service }) {
   return (
     <Link
       href={`/services/${service.slug}`}
-      className="group flex flex-col rounded-card border border-line bg-surface p-6 transition-all hover:-translate-y-0.5 hover:border-brand-300 hover:shadow-lg hover:shadow-brand-900/5"
+      className="group flex flex-col rounded-card border border-line bg-surface p-6 transition-all hover:-translate-y-0.5 hover:border-gold-300 hover:shadow-lg hover:shadow-brand-950/10"
     >
-      <span className="w-fit rounded-full bg-brand-50 px-2.5 py-1 text-[0.7rem] font-semibold uppercase tracking-[0.1em] text-brand-700">
+      <span className="w-fit rounded-full bg-gold-50 px-2.5 py-1 text-[0.7rem] font-semibold uppercase tracking-[0.1em] text-gold-700">
         {service.category}
       </span>
       <h3 className="mt-4 font-display text-xl font-semibold text-brand-950">
@@ -18,7 +18,7 @@ export default function ServiceCard({ service }: { service: Service }) {
         <span>
           {service.duration} · {service.sessions}
         </span>
-        <span className="inline-flex items-center gap-1 font-semibold text-brand-700">
+        <span className="inline-flex items-center gap-1 font-semibold text-gold-700">
           Details
           <svg
             width="12"

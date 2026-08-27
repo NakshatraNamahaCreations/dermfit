@@ -23,8 +23,8 @@ export default function ServiceFilter() {
             aria-pressed={active === c}
             className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
               active === c
-                ? "bg-brand-700 text-white"
-                : "border border-line bg-surface text-muted hover:border-brand-300 hover:text-brand-800"
+                ? "bg-brand-900 text-gold-200"
+                : "border border-line bg-surface text-muted hover:border-gold-300 hover:text-brand-900"
             }`}
           >
             {c}

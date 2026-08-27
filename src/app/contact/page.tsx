@@ -31,7 +31,7 @@ export default function ContactPage() {
               <div className="mt-5 space-y-2 text-sm">
                 <p>
                   <span className="text-muted">Phone · </span>
-                  <a href={site.phoneHref} className="font-medium text-brand-700 hover:underline">
+                  <a href={site.phoneHref} className="font-medium text-gold-700 hover:underline">
                     {site.phone}
                   </a>
                 </p>
@@ -39,7 +39,7 @@ export default function ContactPage() {
                   <span className="text-muted">Email · </span>
                   <a
                     href={`mailto:${site.email}`}
-                    className="font-medium text-brand-700 hover:underline"
+                    className="font-medium text-gold-700 hover:underline"
                   >
                     {site.email}
                   </a>
@@ -50,7 +50,7 @@ export default function ContactPage() {
                     href={site.whatsapp}
                     target="_blank"
                     rel="noreferrer noopener"
-                    className="font-medium text-brand-700 hover:underline"
+                    className="font-medium text-gold-700 hover:underline"
                   >
                     Message the front desk
                   </a>
@@ -72,9 +72,9 @@ export default function ContactPage() {
               </dl>
             </div>
 
-            <div className="overflow-hidden rounded-card border border-line bg-brand-50">
-              <div className="flex h-48 items-center justify-center bg-[radial-gradient(circle_at_30%_30%,var(--color-brand-100),var(--color-brand-50))]">
-                <p className="px-6 text-center text-sm text-brand-800">
+            <div className="overflow-hidden rounded-card border border-line bg-gold-50">
+              <div className="flex h-48 items-center justify-center bg-[radial-gradient(circle_at_30%_30%,var(--color-gold-100),var(--color-gold-50))]">
+                <p className="px-6 text-center text-sm text-gold-800">
                   Map placeholder — drop in a Google Maps embed for{" "}
                   <span className="font-medium">{site.address.line2}</span>.
                 </p>

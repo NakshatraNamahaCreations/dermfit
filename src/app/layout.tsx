@@ -20,14 +20,15 @@ const fraunces = Fraunces({
 export const metadata: Metadata = {
   metadataBase: new URL("https://dermfit.example.com"),
   title: {
-    default: `${site.name} — ${site.tagline}`,
+    default: `${site.name} ${site.byline} — ${site.tagline}`,
     template: `%s · ${site.name}`,
   },
   description: site.description,
   openGraph: {
-    title: `${site.name} — ${site.tagline}`,
+    title: `${site.name} ${site.byline} — ${site.tagline}`,
     description: site.description,
     type: "website",
+    images: [{ url: "/logo.png", width: 4689, height: 4689 }],
   },
 };
 
@@ -39,7 +40,7 @@ export default function RootLayout({
       <body className="font-sans">
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-brand-700 focus:px-4 focus:py-2 focus:text-sm focus:text-white"
+          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-gold-400 focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-brand-950"
         >
           Skip to content
         </a>

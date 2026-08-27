@@ -31,7 +31,7 @@ export default async function ServicePage({ params }: Props) {
       <section className="border-b border-line bg-surface">
         <div className="container-page py-14 sm:py-20">
           <nav aria-label="Breadcrumb" className="text-sm text-muted">
-            <Link href="/services" className="hover:text-brand-700 hover:underline">
+            <Link href="/services" className="hover:text-gold-700 hover:underline">
               Treatments
             </Link>
             <span className="mx-2 text-line">/</span>
@@ -40,7 +40,7 @@ export default async function ServicePage({ params }: Props) {
 
           <div className="mt-6 grid gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-start">
             <div>
-              <span className="rounded-full bg-brand-50 px-2.5 py-1 text-[0.7rem] font-semibold uppercase tracking-[0.1em] text-brand-700">
+              <span className="rounded-full bg-gold-50 px-2.5 py-1 text-[0.7rem] font-semibold uppercase tracking-[0.1em] text-gold-700">
                 {service.category}
               </span>
               <h1 className="mt-4 font-display text-4xl font-semibold leading-tight tracking-tight text-brand-950 sm:text-5xl">
@@ -67,7 +67,7 @@ export default async function ServicePage({ params }: Props) {
               <div className="col-span-2 bg-surface p-5">
                 <Link
                   href="/contact"
-                  className="block rounded-full bg-brand-700 px-6 py-3 text-center text-sm font-semibold text-white transition-colors hover:bg-brand-800"
+                  className="btn btn-gold block w-full"
                 >
                   Book a consultation
                 </Link>
@@ -94,7 +94,7 @@ export default async function ServicePage({ params }: Props) {
                   key={p.step}
                   className="flex gap-4 rounded-card border border-line bg-surface p-5"
                 >
-                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-brand-100 text-sm font-semibold text-brand-800">
+                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-brand-900 text-sm font-semibold text-gold-200">
                     {i + 1}
                   </span>
                   <div>
@@ -119,7 +119,7 @@ export default async function ServicePage({ params }: Props) {
                     viewBox="0 0 18 18"
                     fill="none"
                     aria-hidden="true"
-                    className="mt-0.5 shrink-0 text-brand-600"
+                    className="mt-0.5 shrink-0 text-gold-600"
                   >
                     <circle cx="9" cy="9" r="8" stroke="currentColor" strokeWidth="1.3" />
                     <path

@@ -14,13 +14,13 @@ export default function NotFound() {
       <div className="mt-8 flex flex-col gap-3 sm:flex-row">
         <Link
           href="/"
-          className="rounded-full bg-brand-700 px-7 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-brand-800"
+          className="btn btn-gold"
         >
           Back to home
         </Link>
         <Link
           href="/services"
-          className="rounded-full border border-brand-200 bg-surface px-7 py-3.5 text-sm font-semibold text-brand-800 transition-colors hover:border-brand-400"
+          className="btn btn-outline"
         >
           View treatments
         </Link>

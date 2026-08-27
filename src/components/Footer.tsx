@@ -5,14 +5,12 @@ import Logo from "./Logo";
 
 export default function Footer() {
   return (
-    <footer className="mt-24 border-t border-line bg-brand-950 text-brand-100">
+    <footer className="mt-24 bg-brand-950 text-brand-100">
+      <div className="h-px w-full bg-gradient-to-r from-transparent via-gold-500/60 to-transparent" />
       <div className="container-page grid gap-12 py-16 md:grid-cols-4">
         <div className="md:col-span-1">
-          <div className="flex items-center gap-2.5">
-            <Logo className="h-9 w-9" />
-            <span className="font-display text-xl font-semibold text-white">{site.name}</span>
-          </div>
-          <p className="mt-4 max-w-xs text-sm leading-relaxed text-brand-200">
+          <Logo size={512} className="h-auto w-48" />
+          <p className="mt-5 max-w-xs text-sm leading-relaxed text-brand-200">
             {site.description}
           </p>
           <div className="mt-5 flex gap-3">
@@ -22,7 +20,7 @@ export default function Footer() {
                 href={s.href}
                 target="_blank"
                 rel="noreferrer noopener"
-                className="rounded-full border border-brand-800 px-3 py-1.5 text-xs font-medium text-brand-100 transition-colors hover:border-brand-400 hover:text-white"
+                className="rounded-full border border-white/15 px-3 py-1.5 text-xs font-medium text-brand-200 transition-colors hover:border-gold-500 hover:text-gold-200"
               >
                 {s.label}
               </a>
@@ -31,7 +29,7 @@ export default function Footer() {
         </div>
 
         <div>
-          <h3 className="text-xs font-semibold uppercase tracking-[0.14em] text-brand-400">
+          <h3 className="text-xs font-semibold uppercase tracking-[0.14em] text-gold-400">
             Pages
           </h3>
           <ul className="mt-4 space-y-2.5 text-sm">
@@ -46,7 +44,7 @@ export default function Footer() {
         </div>
 
         <div>
-          <h3 className="text-xs font-semibold uppercase tracking-[0.14em] text-brand-400">
+          <h3 className="text-xs font-semibold uppercase tracking-[0.14em] text-gold-400">
             Treatments
           </h3>
           <ul className="mt-4 space-y-2.5 text-sm">
@@ -61,7 +59,7 @@ export default function Footer() {
         </div>
 
         <div>
-          <h3 className="text-xs font-semibold uppercase tracking-[0.14em] text-brand-400">
+          <h3 className="text-xs font-semibold uppercase tracking-[0.14em] text-gold-400">
             Visit
           </h3>
           <address className="mt-4 space-y-1 text-sm not-italic text-brand-200">
@@ -91,10 +89,10 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="border-t border-brand-900">
-        <div className="container-page flex flex-col gap-2 py-6 text-xs text-brand-400 sm:flex-row sm:items-center sm:justify-between">
+      <div className="border-t border-white/10">
+        <div className="container-page flex flex-col gap-2 py-6 text-xs text-brand-300 sm:flex-row sm:items-center sm:justify-between">
           <p>
-            © {new Date().getFullYear()} {site.name} {site.tagline}. All rights reserved.
+            © {new Date().getFullYear()} {site.name} {site.kind}. All rights reserved.
           </p>
           <p>
             Information on this site is educational and is not a substitute for a medical
