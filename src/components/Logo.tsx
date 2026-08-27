@@ -2,33 +2,31 @@ import Image from "next/image";
 import { site } from "@/data/site";
 
 /**
- * The clinic logo. The artwork is never redrawn or recoloured — `mark` and
- * `full` are just two framings of the supplied file, produced by crop-logo.py.
- * The untouched original stays at public/logo.png.
+ * The clinic logo - the complete supplied artwork, used as-is everywhere.
  *
- *  mark — the DF monogram alone; stays legible down to ~40px (header, icons)
- *  full — the complete lockup with the wordmark; needs ~180px+ (footer)
+ * public/logo.png is a byte-for-byte copy of "dermfit logo-1.png" (identical
+ * MD5); it is renamed only so the URL carries no space. Nothing is cropped,
+ * recoloured or redrawn. Display size is the only thing that varies.
  */
 export default function Logo({
-  variant = "mark",
   className = "",
-  size = 176,
+  size = 320,
+  sizes = "320px",
   decorative = false,
 }: {
-  variant?: "mark" | "full";
   className?: string;
   size?: number;
+  sizes?: string;
   decorative?: boolean;
 }) {
-  const full = variant === "full";
   return (
     <Image
-      src={full ? "/logo-full.png" : "/logo-mark.png"}
-      alt={decorative ? "" : `${site.name} ${site.byline} — ${site.kind}`}
+      src="/logo.png"
+      alt={decorative ? "" : `${site.name} ${site.byline} - ${site.kind}`}
       width={size}
-      height={full ? Math.round(size * (940 / 800)) : size}
+      height={size}
       quality={90}
-      sizes={full ? "180px" : "56px"}
+      sizes={sizes}
       priority
       className={className}
     />

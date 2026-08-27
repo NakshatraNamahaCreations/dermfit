@@ -25,23 +25,20 @@ export default function Header() {
       }`}
     >
       <div className="h-px w-full bg-gradient-to-r from-transparent via-gold-500/60 to-transparent" />
-      <div className="container-page flex items-center justify-between gap-6 py-3.5">
+      <div className="container-page flex items-center justify-between gap-6 py-2">
         <Link
           href="/"
           className="flex items-center gap-3"
           aria-label={`${site.name} ${site.byline} — home`}
         >
-          <span className="inline-flex shrink-0 rounded-xl ring-1 ring-gold-500/25">
-            <Logo size={176} decorative className="h-12 w-12 rounded-xl sm:h-13 sm:w-13" />
-          </span>
-          <span className="flex flex-col leading-none">
-            <span className="font-display text-[1.4rem] font-semibold leading-none tracking-[0.2em] text-gold-gradient">
-              DERMFIT
-            </span>
-            <span className="mt-1.5 text-[0.58rem] font-medium uppercase tracking-[0.22em] text-brand-300">
-              {site.tagline}
-            </span>
-          </span>
+          {/* The logo file has ~23% empty navy below the artwork. The bar shares that
+              exact navy, so the gap is invisible - the negative margin just stops it
+              from padding out the header. The image itself is untouched. */}
+          <Logo
+            size={320}
+            sizes="(min-width: 640px) 120px, 96px"
+            className="-mb-5 h-24 w-24 sm:-mb-6 sm:h-30 sm:w-30"
+          />
         </Link>
 
         <nav className="hidden items-center gap-1 md:flex" aria-label="Main">
