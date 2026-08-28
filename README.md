@@ -103,8 +103,14 @@ Two things in that file need the clinic's review:
 
 ## Botanical statement section
 
-The aloe section layers one photograph twice so the leaves sit both behind and
-in front of the word. `make-aloe-layers.py` produces both from the source photo:
+The aloe section is a scroll-driven sequence. The section is `280vh` tall with a
+sticky viewport-height frame, so scrolling through it scrubs a timeline: the aloe
+rises from below, holds with the word interleaved through it, drops back down,
+and the treatment photograph rises to replace it. Timings live in the `aloeY` /
+`faceY` expressions in `NourishSection.tsx`.
+
+It layers one photograph twice so the leaves sit both behind and in front of the
+word. `make-aloe-layers.py` produces both from the source photo:
 
 ```bash
 python make-aloe-layers.py
