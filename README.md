@@ -40,6 +40,20 @@ src/
 
 Almost all copy lives in `src/data/`. Adding a treatment to `services.ts` automatically creates its detail page, its card on `/services` and `/`, its footer link, and an option in the booking form's dropdown — no routing changes needed.
 
+## Hero slider
+
+The home page opens with a carousel defined in `src/data/slides.ts`. Each entry
+has an eyebrow, a two-part headline, body lines and two buttons.
+
+Banner artwork should be **2:1, with the subject on the right and open space on
+the left** — the copy sits over that space. Drop a file in `public/` and point a
+slide's `image` at it (e.g. `"/b2.png"`). A slide with `image: null` renders the
+navy brand panel instead, so the carousel works with as few or as many photos as
+you have. Slides 2 and 3 currently use that panel; give them images to swap.
+
+Autoplay is 6s, pauses on hover/focus, and is disabled for visitors who have
+"reduce motion" turned on. Arrow keys, dot buttons and touch swipe all work.
+
 ## Design tokens
 
 The palette and fonts are defined once as Tailwind v4 `@theme` variables in `src/app/globals.css` (`brand-*` teal, `sand-*` accent, plus `ink` / `muted` / `line` / `surface` / `canvas`). Change the hex values there to rebrand the whole site.

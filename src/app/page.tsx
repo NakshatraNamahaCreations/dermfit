@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Section, SectionHeading } from "@/components/Section";
 import ServiceCard from "@/components/ServiceCard";
 import CTA from "@/components/CTA";
+import HeroSlider from "@/components/HeroSlider";
 import FAQ from "@/components/FAQ";
 import { services } from "@/data/services";
 import { differentiators, stats, testimonials } from "@/data/content";
@@ -10,45 +11,25 @@ import { site } from "@/data/site";
 export default function Home() {
   return (
     <>
-      {/* Hero */}
-      <section className="relative overflow-hidden">
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute -right-40 -top-40 h-[32rem] w-[32rem] rounded-full bg-gold-100/60 blur-3xl"
-        />
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute -left-32 top-40 h-96 w-96 rounded-full bg-gold-100/80 blur-3xl"
-        />
-        <div className="container-page relative grid gap-14 py-16 sm:py-24 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+      <HeroSlider />
+
+      {/* Stats strip + what a first visit looks like */}
+      <Section className="pt-14 sm:pt-16">
+        <div className="grid gap-12 lg:grid-cols-[1fr_1fr] lg:items-center">
           <div>
             <p className="inline-flex items-center gap-2 rounded-full border border-gold-200 bg-gold-50 px-3.5 py-1.5 text-xs font-medium text-gold-700">
               <span className="h-1.5 w-1.5 rounded-full bg-gold-500" />
               Dermatology clinic · Dr Sourab Hegde · Bengaluru
             </p>
-            <h1 className="mt-6 font-display text-4xl font-semibold leading-[1.08] tracking-tight text-brand-950 sm:text-5xl lg:text-6xl">
+            <h2 className="mt-6 font-display text-3xl font-semibold leading-tight tracking-tight text-brand-950 sm:text-4xl">
               Skin and hair care that starts with the right diagnosis
-            </h1>
-            <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted">
+            </h2>
+            <p className="mt-5 max-w-xl text-base leading-relaxed text-muted">
               Dermfit is a clinical dermatology practice. We diagnose before we treat, tell you
               honestly what will and will not improve, and price every plan in writing.
             </p>
-            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-              <Link
-                href="/contact"
-                className="btn btn-gold"
-              >
-                Book a consultation
-              </Link>
-              <Link
-                href="/services"
-                className="btn btn-outline"
-              >
-                Explore treatments
-              </Link>
-            </div>
 
-            <dl className="mt-12 grid grid-cols-2 gap-6 border-t border-line pt-8 sm:grid-cols-4">
+            <dl className="mt-10 grid grid-cols-2 gap-6 border-t border-line pt-8 sm:grid-cols-4">
               {stats.map((s) => (
                 <div key={s.label}>
                   <dt className="sr-only">{s.label}</dt>
@@ -61,50 +42,48 @@ export default function Home() {
             </dl>
           </div>
 
-          <div className="relative">
-            <div className="rounded-card border border-line bg-surface p-8 shadow-xl shadow-brand-900/5">
-              <p className="eyebrow">What a first visit looks like</p>
-              <ol className="mt-6 space-y-6">
-                {[
-                  {
-                    t: "Examination & imaging",
-                    d: "Dermoscopy, trichoscopy or Wood's lamp — whatever your concern needs.",
-                  },
-                  {
-                    t: "Explanation",
-                    d: "What is actually happening in your skin, in plain language.",
-                  },
-                  {
-                    t: "A written plan",
-                    d: "Options, session counts, timelines and per-session cost.",
-                  },
-                  {
-                    t: "No pressure to book",
-                    d: "Take the plan away. It is yours whether you treat here or not.",
-                  },
-                ].map((item, i) => (
-                  <li key={item.t} className="flex gap-4">
-                    <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-brand-900 text-xs font-semibold text-gold-200">
-                      {i + 1}
-                    </span>
-                    <div>
-                      <p className="font-medium text-brand-950">{item.t}</p>
-                      <p className="mt-1 text-sm leading-relaxed text-muted">{item.d}</p>
-                    </div>
-                  </li>
-                ))}
-              </ol>
-              <div className="mt-7 rounded-xl bg-canvas p-4 text-sm text-muted">
-                Consultation fee is adjusted against your first treatment.{" "}
-                <a href={site.phoneHref} className="font-medium text-gold-700 hover:underline">
-                  Call us
-                </a>{" "}
-                to check availability.
-              </div>
+          <div className="rounded-card border border-line bg-surface p-8 shadow-xl shadow-brand-950/5">
+            <p className="eyebrow">What a first visit looks like</p>
+            <ol className="mt-6 space-y-6">
+              {[
+                {
+                  t: "Examination & imaging",
+                  d: "Dermoscopy, trichoscopy or a lamp assessment — whatever your concern needs.",
+                },
+                {
+                  t: "Explanation",
+                  d: "What is actually happening in your skin, in plain language.",
+                },
+                {
+                  t: "A written plan",
+                  d: "Options, session counts, timelines and per-session cost.",
+                },
+                {
+                  t: "No pressure to book",
+                  d: "Take the plan away. It is yours whether you treat here or not.",
+                },
+              ].map((item, i) => (
+                <li key={item.t} className="flex gap-4">
+                  <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-brand-900 text-xs font-semibold text-gold-200">
+                    {i + 1}
+                  </span>
+                  <div>
+                    <p className="font-medium text-brand-950">{item.t}</p>
+                    <p className="mt-1 text-sm leading-relaxed text-muted">{item.d}</p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+            <div className="mt-7 rounded-xl bg-canvas p-4 text-sm text-muted">
+              Consultation fee is adjusted against your first treatment.{" "}
+              <a href={site.phoneHref} className="font-medium text-gold-700 hover:underline">
+                Call us
+              </a>{" "}
+              to check availability.
             </div>
           </div>
         </div>
-      </section>
+      </Section>
 
       {/* Services */}
       <Section className="bg-surface">
