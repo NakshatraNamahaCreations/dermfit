@@ -55,9 +55,9 @@ export default function HeroSlider() {
         if (Math.abs(dx) > 45) (dx > 0 ? prev : next)();
         touchStartX.current = null;
       }}
-      className="relative isolate min-h-[40rem] overflow-hidden bg-brand-950 lg:min-h-[46rem] focus-visible:outline-none"
+      className="relative isolate min-h-[42rem] overflow-hidden bg-brand-950 focus-visible:outline-none lg:min-h-[48rem]"
     >
-      {/* Backdrops — cross-fade underneath the copy */}
+      {/* Cross-fading backdrops */}
       {slides.map((slide, i) => (
         <div
           key={slide.id}
@@ -74,81 +74,89 @@ export default function HeroSlider() {
               priority={i === 0}
               sizes="100vw"
               quality={90}
-              className="object-cover object-[68%_center]"
+              className="object-cover object-[70%_center]"
             />
           ) : (
             <>
               <div className="absolute inset-0 bg-brand-950" />
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_72%_38%,var(--color-brand-800),transparent_60%)]" />
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_74%_40%,var(--color-brand-800),transparent_60%)]" />
               <div className="absolute -right-20 top-1/4 h-96 w-96 rounded-full bg-gold-500/15 blur-3xl" />
             </>
           )}
         </div>
       ))}
 
-      {/* Scrims: darken left for the headline, and the foot for the trust strip */}
+      {/* Vignette: heavy left for the headline, heavy foot for the strip */}
       <div
         aria-hidden="true"
-        className="absolute inset-0 bg-gradient-to-r from-brand-950/95 via-brand-950/70 to-brand-950/25"
+        className="absolute inset-0 bg-gradient-to-r from-brand-950/92 via-brand-950/55 to-brand-950/15"
       />
       <div
         aria-hidden="true"
-        className="absolute inset-x-0 bottom-0 h-56 bg-gradient-to-t from-brand-950/95 to-transparent"
+        className="absolute inset-x-0 bottom-0 h-64 bg-gradient-to-t from-brand-950/95 via-brand-950/55 to-transparent"
       />
 
-      <div className="container-page relative flex min-h-[40rem] flex-col justify-center pb-40 pt-16 lg:min-h-[46rem] lg:pb-44">
-        <div className="lg:flex lg:items-center lg:justify-between lg:gap-10">
-          <div className="max-w-3xl">
-            <p className="flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.22em] text-gold-400">
-              <span className="h-px w-8 bg-gold-500/70" />
-              {active.eyebrow}
-            </p>
-
-            <h1 className="mt-6 font-display font-semibold uppercase leading-[0.92] tracking-tight text-white">
-              <span className="block text-[2.75rem] sm:text-6xl lg:text-[5rem]">
+      {/* Headline block */}
+      <div className="container-page relative flex min-h-[42rem] flex-col justify-center pb-44 pt-14 lg:min-h-[48rem] lg:pb-48">
+        <div className="lg:flex lg:items-center lg:justify-between lg:gap-12">
+          <div className="max-w-2xl">
+            <h1 className="font-light uppercase leading-[0.86] tracking-[-0.02em] text-cream">
+              <span className="block text-[4.5rem] sm:text-[7rem] lg:text-[9.5rem]">
                 {active.title}
               </span>
-              <span className="mt-1 block text-[2.75rem] text-gold-gradient sm:text-6xl lg:text-[5rem]">
+              <span className="block text-[4.5rem] sm:text-[7rem] lg:text-[9.5rem]">
                 {active.titleAccent}
               </span>
             </h1>
 
-            <div className="mt-7 space-y-1 text-sm font-medium uppercase tracking-[0.14em] text-brand-200 sm:text-base">
+            <div className="mt-9 space-y-0.5 text-lg font-semibold uppercase tracking-[0.02em] text-cream sm:text-xl">
               {active.lines.map((line) => (
                 <p key={line}>{line}</p>
               ))}
             </div>
 
-            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-              <Link href={active.primary.href} className="btn btn-gold">
-                {active.primary.label}
-              </Link>
-              <Link href={active.secondary.href} className="btn btn-ghost-light">
-                {active.secondary.label}
-              </Link>
-            </div>
+            <Link
+              href={active.cta.href}
+              className="group mt-9 inline-flex items-center gap-3 rounded-full border border-cream/45 px-7 py-3.5 text-sm font-medium text-cream transition-colors hover:border-cream hover:bg-cream/10"
+            >
+              {active.cta.label}
+              <svg
+                width="15"
+                height="15"
+                viewBox="0 0 12 12"
+                fill="none"
+                aria-hidden="true"
+                className="transition-transform group-hover:translate-x-0.5"
+              >
+                <path
+                  d="M2 6h8M6.5 2.5 10 6l-3.5 3.5"
+                  stroke="currentColor"
+                  strokeWidth="1.4"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </Link>
           </div>
 
-          {/* Floating feature card, like the reference layout */}
+          {/* Product-style card floating right */}
           {active.card && (
             <Link
               href={active.card.href}
-              className="group mt-10 hidden w-72 shrink-0 rounded-2xl border border-white/15 bg-white/10 p-6 backdrop-blur-md transition-colors hover:border-gold-400/60 hover:bg-white/15 lg:mt-0 lg:block"
+              className="group mt-10 hidden w-64 shrink-0 rounded-2xl border border-cream/15 bg-brand-950/55 p-5 backdrop-blur-md transition-colors hover:border-gold-400/60 hover:bg-brand-950/70 lg:mt-0 lg:block"
             >
-              <span className="text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-gold-300">
+              <span className="text-[0.62rem] font-semibold uppercase tracking-[0.18em] text-gold-300">
                 {active.card.tag}
               </span>
-              <h2 className="mt-3 font-display text-lg font-semibold leading-snug text-white">
+              <h2 className="mt-2 text-sm font-semibold uppercase leading-snug tracking-[0.08em] text-cream">
                 {active.card.title}
               </h2>
-              <p className="mt-2.5 text-sm leading-relaxed text-brand-100/85">
-                {active.card.body}
-              </p>
-              <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-gold-300">
+              <p className="mt-2.5 text-xs leading-relaxed text-cream/70">{active.card.body}</p>
+              <span className="mt-4 inline-flex items-center gap-1.5 text-xs font-semibold text-gold-300">
                 {active.card.cta}
                 <svg
-                  width="13"
-                  height="13"
+                  width="12"
+                  height="12"
                   viewBox="0 0 12 12"
                   fill="none"
                   aria-hidden="true"
@@ -168,14 +176,14 @@ export default function HeroSlider() {
         </div>
       </div>
 
-      {/* Trust strip + stat */}
-      <div className="absolute inset-x-0 bottom-0 z-10 border-t border-white/10">
-        <div className="container-page flex items-center justify-between gap-6 py-5">
-          <ul className="flex flex-wrap items-center gap-x-8 gap-y-3">
+      {/* Foot: icon features left, stat right */}
+      <div className="container-page absolute inset-x-0 bottom-0 z-10 pb-9">
+        <div className="flex items-end justify-between gap-6">
+          <ul className="flex flex-wrap items-start gap-x-9 gap-y-4 sm:gap-x-12">
             {heroFeatures.map((f) => (
-              <li key={f.label} className="flex items-center gap-3">
-                <HeroIcon name={f.icon} className="h-5 w-5 shrink-0 text-gold-400" />
-                <span className="whitespace-pre-line text-[0.72rem] font-medium uppercase leading-tight tracking-[0.1em] text-brand-200">
+              <li key={f.label} className="flex flex-col gap-2.5">
+                <HeroIcon name={f.icon} className="h-6 w-6 text-cream/85" />
+                <span className="whitespace-pre-line text-[0.7rem] font-medium leading-tight text-cream/85">
                   {f.label}
                 </span>
               </li>
@@ -183,10 +191,8 @@ export default function HeroSlider() {
           </ul>
 
           <div className="hidden shrink-0 text-right sm:block">
-            <p className="font-display text-2xl font-semibold text-white">{heroStat.value}</p>
-            <p className="text-[0.68rem] uppercase tracking-[0.14em] text-brand-300">
-              {heroStat.label}
-            </p>
+            <p className="text-3xl font-semibold text-cream lg:text-4xl">{heroStat.value}</p>
+            <p className="mt-0.5 text-[0.72rem] text-cream/70">{heroStat.label}</p>
           </div>
         </div>
       </div>
@@ -198,25 +204,25 @@ export default function HeroSlider() {
             type="button"
             onClick={prev}
             aria-label="Previous slide"
-            className="absolute left-3 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white backdrop-blur transition-colors hover:border-gold-400/70 hover:bg-white/20 sm:left-6"
+            className="absolute left-3 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-cream/25 bg-brand-950/30 text-cream backdrop-blur transition-colors hover:border-cream/70 hover:bg-brand-950/60 sm:left-5"
           >
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
-              <path d="M11 3.5 5.5 9l5.5 5.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+            <svg width="16" height="16" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+              <path d="M11 3.5 5.5 9l5.5 5.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </button>
           <button
             type="button"
             onClick={next}
             aria-label="Next slide"
-            className="absolute right-3 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white backdrop-blur transition-colors hover:border-gold-400/70 hover:bg-white/20 sm:right-6"
+            className="absolute right-3 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-cream/25 bg-brand-950/30 text-cream backdrop-blur transition-colors hover:border-cream/70 hover:bg-brand-950/60 sm:right-5"
           >
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
-              <path d="m7 3.5 5.5 5.5L7 14.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+            <svg width="16" height="16" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+              <path d="m7 3.5 5.5 5.5L7 14.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </button>
 
-          <div className="container-page pointer-events-none absolute inset-x-0 bottom-24 z-10">
-            <div className="pointer-events-auto flex gap-2.5">
+          <div className="container-page pointer-events-none absolute inset-x-0 bottom-32 z-10">
+            <div className="pointer-events-auto flex gap-2">
               {slides.map((slide, i) => (
                 <button
                   key={slide.id}
@@ -224,8 +230,8 @@ export default function HeroSlider() {
                   onClick={() => go(i)}
                   aria-label={`Go to slide ${i + 1}`}
                   aria-current={i === index}
-                  className={`h-2 rounded-full transition-all ${
-                    i === index ? "w-9 bg-gold-500" : "w-2 bg-white/35 hover:bg-white/60"
+                  className={`h-1.5 rounded-full transition-all ${
+                    i === index ? "w-8 bg-cream" : "w-1.5 bg-cream/35 hover:bg-cream/60"
                   }`}
                 />
               ))}
