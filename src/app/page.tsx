@@ -4,6 +4,7 @@ import DivisionGrid from "@/components/DivisionGrid";
 import CTA from "@/components/CTA";
 import HeroSlider from "@/components/HeroSlider";
 import AboutShowcase from "@/components/AboutShowcase";
+import NourishSection from "@/components/NourishSection";
 import FAQ from "@/components/FAQ";
 import { differentiators, testimonials } from "@/data/content";
 import { site } from "@/data/site";
@@ -14,6 +15,8 @@ export default function Home() {
       <HeroSlider />
 
       <AboutShowcase />
+
+      <NourishSection />
 
       {/* What a first visit looks like */}
       <Section>
