@@ -16,7 +16,7 @@ export default function AboutShowcase() {
         {/* Floating cards */}
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-12 lg:items-start">
           <div className="rounded-[1.75rem] bg-surface p-6 shadow-sm lg:col-span-3">
-            <p className="font-display text-4xl font-semibold text-brand-950">12+</p>
+            <p className="text-4xl font-bold tracking-[-0.02em] text-brand-950">12+</p>
             <p className="mt-1.5 text-xs leading-relaxed text-muted">
               Years of clinical
               <br />
@@ -27,7 +27,7 @@ export default function AboutShowcase() {
           <div className="hidden lg:col-span-4 lg:block" aria-hidden="true" />
 
           <div className="flex items-center gap-4 rounded-[1.75rem] bg-surface p-6 shadow-sm lg:col-span-5">
-            <span className="shrink-0 self-start rounded-2xl bg-brand-950 px-3.5 py-2 font-display text-lg font-semibold text-gold-300">
+            <span className="shrink-0 self-start rounded-2xl bg-brand-950 px-3.5 py-2 text-lg font-bold text-gold-300">
               #01
             </span>
             <div>
@@ -45,10 +45,10 @@ export default function AboutShowcase() {
         {/* Headline split around the image */}
         <div className="mt-10 grid items-center gap-6 lg:mt-14 lg:grid-cols-[1fr_auto_1fr] lg:gap-8">
           <div className="order-1 text-center lg:text-right">
-            <p className="font-display text-5xl font-normal leading-[1.02] tracking-tight text-gold-500 sm:text-6xl lg:text-[4.5rem]">
+            <p className="text-5xl font-normal leading-[1.02] tracking-[-0.03em] text-gold-500 sm:text-6xl lg:text-[4.5rem]">
               Skilled
             </p>
-            <p className="mt-1 font-display text-5xl font-semibold leading-[1.02] tracking-tight text-brand-950 sm:text-6xl lg:text-[4.5rem]">
+            <p className="mt-1 text-5xl font-bold leading-[1.02] tracking-[-0.03em] text-brand-950 sm:text-6xl lg:text-[4.5rem]">
               Skin
               <span className="lg:block"> Experts</span>
             </p>
@@ -68,10 +68,10 @@ export default function AboutShowcase() {
           </div>
 
           <div className="order-3 text-center lg:text-left">
-            <p className="font-display text-5xl font-normal leading-[1.02] tracking-tight text-gold-500 sm:text-6xl lg:text-[4.5rem]">
+            <p className="text-5xl font-normal leading-[1.02] tracking-[-0.03em] text-gold-500 sm:text-6xl lg:text-[4.5rem]">
               Results-
             </p>
-            <p className="mt-1 font-display text-5xl font-semibold leading-[1.02] tracking-tight text-brand-950 sm:text-6xl lg:text-[4.5rem]">
+            <p className="mt-1 text-5xl font-bold leading-[1.02] tracking-[-0.03em] text-brand-950 sm:text-6xl lg:text-[4.5rem]">
               Driven
             </p>
           </div>
