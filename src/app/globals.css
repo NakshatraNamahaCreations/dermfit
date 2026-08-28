@@ -145,6 +145,16 @@
     color: var(--color-gold-200);
   }
 
+  /* Slow drift for the About section artwork. The reduced-motion block at the
+     foot of this file neutralises it for anyone who asks for that. */
+  .animate-float {
+    animation: dermfit-float 7s ease-in-out infinite;
+  }
+
+  .animate-float-slow {
+    animation: dermfit-float 11s ease-in-out infinite;
+  }
+
   .rule-gold {
     background: linear-gradient(
       90deg,
@@ -166,5 +176,15 @@
   *::after {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+@keyframes dermfit-float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-14px) rotate(-0.6deg);
   }
 }

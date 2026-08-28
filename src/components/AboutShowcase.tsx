@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import Reveal from "./Reveal";
 
 /**
  * Editorial "about" section: a display headline split either side of a centred
@@ -15,7 +16,8 @@ export default function AboutShowcase() {
       <div className="container-page">
         {/* Floating cards */}
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-12 lg:items-start">
-          <div className="rounded-[1.75rem] bg-surface p-6 shadow-sm lg:col-span-3">
+          <Reveal className="lg:col-span-3">
+          <div className="rounded-[1.75rem] bg-surface p-6 shadow-sm">
             <p className="text-4xl font-bold tracking-[-0.02em] text-brand-950">12+</p>
             <p className="mt-1.5 text-xs leading-relaxed text-muted">
               Years of clinical
@@ -23,10 +25,12 @@ export default function AboutShowcase() {
               dermatology practice
             </p>
           </div>
+          </Reveal>
 
           <div className="hidden lg:col-span-4 lg:block" aria-hidden="true" />
 
-          <div className="flex items-center gap-4 rounded-[1.75rem] bg-surface p-6 shadow-sm lg:col-span-5">
+          <Reveal delay={120} className="lg:col-span-5">
+          <div className="flex items-center gap-4 rounded-[1.75rem] bg-surface p-6 shadow-sm">
             <span className="shrink-0 self-start rounded-2xl bg-brand-950 px-3.5 py-2 text-lg font-bold text-gold-300">
               #01
             </span>
@@ -40,11 +44,12 @@ export default function AboutShowcase() {
               </p>
             </div>
           </div>
+          </Reveal>
         </div>
 
         {/* Headline split around the image */}
         <div className="mt-10 grid items-center gap-6 lg:mt-14 lg:grid-cols-[1fr_auto_1fr] lg:gap-8">
-          <div className="order-1 text-center lg:text-right">
+          <Reveal from="left" delay={200} className="order-1 text-center lg:text-right">
             <p className="text-5xl font-normal leading-[1.02] tracking-[-0.03em] text-gold-500 sm:text-6xl lg:text-[4.5rem]">
               Skilled
             </p>
@@ -52,33 +57,37 @@ export default function AboutShowcase() {
               Skin
               <span className="lg:block"> Experts</span>
             </p>
-          </div>
+          </Reveal>
 
-          {/* The artwork carries its own angled card shape and shadow. */}
-          <div className="order-2 mx-auto w-full max-w-[19rem] lg:w-[19rem]">
-            <Image
-              src="/about-portrait.png"
-              alt="A patient applying a serum after treatment at Dermfit"
-              width={760}
-              height={1173}
-              sizes="(min-width: 1024px) 304px, 304px"
-              quality={90}
-              className="h-auto w-full drop-shadow-[0_18px_40px_rgb(1_18_45_/_0.18)]"
-            />
-          </div>
+          {/* The artwork carries its own angled card shape and shadow. Reveal
+              handles the entrance; the inner element does the continuous drift,
+              so the two transforms never fight each other. */}
+          <Reveal delay={80} className="order-2 mx-auto w-full max-w-[19rem] lg:w-[19rem]">
+            <div className="animate-float">
+              <Image
+                src="/about-portrait.png"
+                alt="A patient applying a serum after treatment at Dermfit"
+                width={760}
+                height={1173}
+                sizes="(min-width: 1024px) 304px, 304px"
+                quality={90}
+                className="h-auto w-full drop-shadow-[0_18px_40px_rgb(1_18_45_/_0.18)]"
+              />
+            </div>
+          </Reveal>
 
-          <div className="order-3 text-center lg:text-left">
+          <Reveal from="right" delay={200} className="order-3 text-center lg:text-left">
             <p className="text-5xl font-normal leading-[1.02] tracking-[-0.03em] text-gold-500 sm:text-6xl lg:text-[4.5rem]">
               Results-
             </p>
             <p className="mt-1 text-5xl font-bold leading-[1.02] tracking-[-0.03em] text-brand-950 sm:text-6xl lg:text-[4.5rem]">
               Driven
             </p>
-          </div>
+          </Reveal>
         </div>
 
         {/* Lead-in */}
-        <div className="mx-auto mt-12 max-w-2xl text-center">
+        <Reveal delay={280} className="mx-auto mt-12 max-w-2xl text-center">
           <p className="text-base leading-relaxed text-muted">
             Dermfit is a clinical dermatology practice led by Dr Sourab Hegde. Every
             procedure is performed by a qualified dermatologist, every plan is written down
@@ -99,7 +108,7 @@ export default function AboutShowcase() {
               />
             </svg>
           </Link>
-        </div>
+        </Reveal>
       </div>
     </section>
   );
