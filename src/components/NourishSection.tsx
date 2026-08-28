@@ -1,7 +1,9 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import { divisions, treatmentCount } from "@/data/catalogue";
 
 /**
  * Scroll-driven statement section.
@@ -77,22 +79,25 @@ export default function NourishSection({
   const faceY = (1 - ease(seg(p, 0.48, 0.86))) * 125;
 
   const lettersIn = ready && p > 0.03;
+  // The service copy belongs to the foliage beat: it fades in once the leaves
+  // are in place and clears again before the portrait rises into that space.
+  const copy = ease(seg(p, 0.12, 0.32)) * (1 - ease(seg(p, 0.44, 0.58)));
 
   return (
     <section ref={ref} aria-label={word} className="relative h-[280vh] bg-[#f3f1ea]">
       <div className="sticky top-0 h-screen overflow-hidden">
         {/* The word, pale, behind everything */}
-        <div className="absolute inset-x-0 top-[26%] px-6">
+        <div className="absolute inset-x-0 top-[20%] px-6">
           <h2 className="text-center">
             <span className="sr-only">{word}</span>
             <span
               aria-hidden="true"
-              className="flex justify-center font-display font-normal uppercase leading-none tracking-[0.04em] text-forest/20"
+              className="flex justify-center font-display font-normal uppercase leading-none tracking-[0.04em] text-forest/25"
             >
               {word.split("").map((letter, i) => (
                 <span
                   key={i}
-                  className={`inline-block text-[3.25rem] transition-all duration-[900ms] ease-out sm:text-[6rem] lg:text-[9rem] ${
+                  className={`inline-block text-[3.5rem] transition-all duration-[900ms] ease-out sm:text-[7rem] lg:text-[10.5rem] ${
                     lettersIn ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
                   }`}
                   style={{ transitionDelay: `${i * 70}ms` }}
@@ -117,6 +122,47 @@ export default function NourishSection({
             {caption[1]}
           </p>
           <span aria-hidden="true" className="mt-4 block h-px w-14 bg-forest/30" />
+        </div>
+
+        {/* What the section is actually about */}
+        <div
+          className="absolute inset-x-0 top-[52%] px-6 transition-opacity duration-500"
+          style={{ opacity: copy }}
+          aria-hidden={copy < 0.05}
+        >
+          <div className="container-page text-center">
+            <p className="mx-auto max-w-2xl text-lg leading-relaxed text-forest sm:text-xl">
+              Clinical dermatology, aesthetics, trichology, lasers and regenerative
+              care — {treatmentCount} treatments under one roof.
+            </p>
+            <ul className="mx-auto mt-7 flex max-w-3xl flex-wrap justify-center gap-2">
+              {divisions.map((d) => (
+                <li key={d.slug}>
+                  <Link
+                    href="/services#catalogue"
+                    className="inline-block rounded-full border border-forest/20 px-4 py-2 text-xs font-medium text-forest/85 transition-colors hover:border-forest/50 hover:bg-forest/5"
+                  >
+                    {d.title}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <Link
+              href="/services#catalogue"
+              className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-forest hover:underline"
+            >
+              Explore the full catalogue
+              <svg width="13" height="13" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                <path
+                  d="M2 6h8M6.5 2.5 10 6l-3.5 3.5"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </Link>
+          </div>
         </div>
 
         {/* Object slot 1 — foliage entering from either side */}
