@@ -3,7 +3,6 @@ import CTA from "@/components/CTA";
 import HeroSlider from "@/components/HeroSlider";
 import AboutShowcase from "@/components/AboutShowcase";
 import NourishSection from "@/components/NourishSection";
-import ServiceOrbit from "@/components/ServiceOrbit";
 import WhyChooseUs from "@/components/WhyChooseUs";
 import FAQ from "@/components/FAQ";
 import { testimonials } from "@/data/content";
@@ -19,8 +18,6 @@ export default function Home() {
       <WhyChooseUs />
 
       <NourishSection />
-
-      <ServiceOrbit />
 
       {/* What a first visit looks like */}
       <Section>
