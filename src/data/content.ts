@@ -1,4 +1,16 @@
-export const doctors = [
+export type Doctor = {
+  name: string;
+  initials: string;
+  role: string;
+  credentials: string;
+  bio: string;
+  /** Portrait, ideally 3:4. Drop a file in public/ and set it here (e.g.
+   *  "/dr-hegde.jpg"). Without one the card falls back to a navy panel with
+   *  the doctor's initials — never a stock model standing in for a real person. */
+  photo?: string;
+};
+
+export const doctors: Doctor[] = [
   {
     name: "Dr. Sourab Hegde",
     initials: "SH",

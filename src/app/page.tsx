@@ -3,9 +3,10 @@ import { Section, SectionHeading } from "@/components/Section";
 import ServiceCard from "@/components/ServiceCard";
 import CTA from "@/components/CTA";
 import HeroSlider from "@/components/HeroSlider";
+import AboutShowcase from "@/components/AboutShowcase";
 import FAQ from "@/components/FAQ";
 import { services } from "@/data/services";
-import { differentiators, stats, testimonials } from "@/data/content";
+import { differentiators, testimonials } from "@/data/content";
 import { site } from "@/data/site";
 
 export default function Home() {
@@ -13,8 +14,10 @@ export default function Home() {
     <>
       <HeroSlider />
 
-      {/* Stats strip + what a first visit looks like */}
-      <Section className="pt-14 sm:pt-16">
+      <AboutShowcase />
+
+      {/* What a first visit looks like */}
+      <Section>
         <div className="grid gap-12 lg:grid-cols-[1fr_1fr] lg:items-center">
           <div>
             <p className="inline-flex items-center gap-2 rounded-full border border-gold-200 bg-gold-50 px-3.5 py-1.5 text-xs font-medium text-gold-700">
@@ -29,17 +32,7 @@ export default function Home() {
               honestly what will and will not improve, and price every plan in writing.
             </p>
 
-            <dl className="mt-10 grid grid-cols-2 gap-6 border-t border-line pt-8 sm:grid-cols-4">
-              {stats.map((s) => (
-                <div key={s.label}>
-                  <dt className="sr-only">{s.label}</dt>
-                  <dd className="font-display text-3xl font-semibold text-brand-900">
-                    {s.value}
-                  </dd>
-                  <p className="mt-1 text-xs uppercase tracking-[0.1em] text-muted">{s.label}</p>
-                </div>
-              ))}
-            </dl>
+
           </div>
 
           <div className="rounded-card border border-line bg-surface p-8 shadow-xl shadow-brand-950/5">
