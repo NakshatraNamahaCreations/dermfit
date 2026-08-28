@@ -103,25 +103,22 @@ Two things in that file need the clinic's review:
 
 ## Botanical statement section
 
-The aloe section is a scroll-driven sequence. The section is `280vh` tall with a
-sticky viewport-height frame, so scrolling through it scrubs a timeline: the aloe
-rises from below, holds with the word interleaved through it, drops back down,
-and the treatment photograph rises to replace it. Timings live in the `aloeY` /
-`faceY` expressions in `NourishSection.tsx`.
+A scroll-driven sequence. The section is `280vh` tall with a sticky
+viewport-height frame, so scrolling scrubs a timeline: a large pale word sits on
+a plain ground while objects pass in front of it — the aloe rises from below and
+holds, drops back down, then the treatment photograph rises to replace it.
+Timings are the `aloeY` / `faceY` expressions in `NourishSection.tsx`.
 
-It layers one photograph twice so the leaves sit both behind and in front of the
-word. `make-aloe-layers.py` produces both from the source photo:
+Objects are contained rather than full-bleed, so the word stays readable behind
+them. `public/aloe-front.png` is the plant on transparency, trimmed to its own
+bounds; regenerate it from a source photo with:
 
 ```bash
-python make-aloe-layers.py
+ALOE_SRC="path/to/photo.png" python make-aloe-layers.py
 ```
 
-- `public/aloe-back.jpg` — the untouched plate, behind the type
-- `public/aloe-front.png` — the plant alone on transparency, over the type
-
-Separation is by greenness, so it only works on a plant shot against a neutral
-wall. The two layers must keep identical positioning and move together; drifting
-them apart would reveal the plant twice.
+Separation is by greenness, so it only works for a plant shot against a neutral
+wall.
 
 ## Design tokens
 

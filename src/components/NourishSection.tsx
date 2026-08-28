@@ -4,26 +4,23 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 /**
- * Scroll-driven botanical sequence.
+ * Scroll-driven statement section.
  *
- * The section is deliberately tall; its inner frame is sticky, so scrolling
- * through it scrubs a timeline rather than simply moving past it:
+ * A large pale word sits on a plain ground; objects pass in front of it as you
+ * scroll. The section is deliberately tall and its inner frame is sticky, so
+ * scrolling scrubs a timeline rather than simply moving past it:
  *
- *   1. the aloe rises from below the frame
- *   2. it holds, with the word interleaved between its two layers
- *   3. it drops back down out of frame
- *   4. the treatment photograph rises from below to take its place
+ *   1. the aloe rises from below and holds in front of the word
+ *   2. it drops back down out of frame
+ *   3. the treatment photograph rises from below to take its place
  *
- * The aloe is one photograph layered twice (make-aloe-layers.py): the plate
- * behind the word and a transparent cut-out over it, which is what lets the
- * leaves cross the letters. Both layers share a single offset - moving them
- * independently would show the plant twice.
+ * Objects are contained, not full-bleed - the word stays readable behind them.
  */
 
 const clamp = (n: number, lo: number, hi: number) => Math.min(hi, Math.max(lo, n));
 /** Normalised progress through one slice of the timeline. */
 const seg = (p: number, a: number, b: number) => clamp((p - a) / (b - a), 0, 1);
-/** Ease so the arrivals settle rather than stop dead. */
+/** Ease so arrivals settle rather than stop dead. */
 const ease = (t: number) => 1 - Math.pow(1 - t, 3);
 
 export default function NourishSection({
@@ -42,7 +39,7 @@ export default function NourishSection({
     if (!el) return;
 
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      // Hold the sequence at the point where the aloe is composed with the word.
+      // Hold at the point where the aloe is composed with the word.
       const id = requestAnimationFrame(() => {
         setP(0.35);
         setReady(true);
@@ -71,48 +68,28 @@ export default function NourishSection({
     };
   }, []);
 
-  // Aloe: in over 0-0.30, holds, then back down over 0.46-0.68.
-  const aloeY = (1 - ease(seg(p, 0, 0.3))) * 105 + ease(seg(p, 0.46, 0.68)) * 105;
-  // Face: starts rising while the aloe is still on its way down, so the frame
-  // never sits empty between the two.
-  const faceY = (1 - ease(seg(p, 0.48, 0.86))) * 105;
+  // Percentages are of each object's own height, and the frame clips, so 125
+  // parks it fully out of sight below.
+  const aloeY = (1 - ease(seg(p, 0, 0.3))) * 125 + ease(seg(p, 0.46, 0.68)) * 125;
+  const faceY = (1 - ease(seg(p, 0.48, 0.86))) * 125;
 
-  const aloeStyle = { transform: `translate3d(0, ${aloeY}%, 0)` };
-  const faceStyle = { transform: `translate3d(0, ${faceY}%, 0)` };
-  const plate = "object-cover object-bottom";
-
-  // The word settles in with the aloe and stays for the whole sequence.
-  const lettersIn = ready && p > 0.04;
+  const lettersIn = ready && p > 0.03;
 
   return (
-    <section
-      ref={ref}
-      aria-label={word}
-      className="relative h-[280vh] bg-[#f1ede7]"
-    >
+    <section ref={ref} aria-label={word} className="relative h-[280vh] bg-[#f3f1ea]">
       <div className="sticky top-0 h-screen overflow-hidden">
-        {/* 4. Treatment photograph, arriving last and sitting furthest back */}
-        <div aria-hidden="true" className="absolute inset-0 will-change-transform" style={faceStyle}>
-          <Image src="/ritual-face.jpg" alt="" fill sizes="100vw" className="object-cover object-center" />
-        </div>
-
-        {/* 1. Aloe plate, behind the word */}
-        <div aria-hidden="true" className="absolute inset-0 will-change-transform" style={aloeStyle}>
-          <Image src="/aloe-back.jpg" alt="" fill sizes="100vw" className={plate} />
-        </div>
-
-        {/* 2. The word */}
-        <div className="absolute inset-x-0 top-[18%] px-6 sm:top-[20%]">
+        {/* The word, pale, behind everything */}
+        <div className="absolute inset-x-0 top-[26%] px-6">
           <h2 className="text-center">
             <span className="sr-only">{word}</span>
             <span
               aria-hidden="true"
-              className="flex justify-center font-display font-normal uppercase leading-none tracking-[0.02em] text-forest"
+              className="flex justify-center font-display font-normal uppercase leading-none tracking-[0.04em] text-forest/20"
             >
               {word.split("").map((letter, i) => (
                 <span
                   key={i}
-                  className={`inline-block text-[3rem] transition-all duration-[900ms] ease-out sm:text-[5.5rem] lg:text-[8.5rem] ${
+                  className={`inline-block text-[3.25rem] transition-all duration-[900ms] ease-out sm:text-[6rem] lg:text-[9rem] ${
                     lettersIn ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
                   }`}
                   style={{ transitionDelay: `${i * 70}ms` }}
@@ -122,29 +99,54 @@ export default function NourishSection({
               ))}
             </span>
           </h2>
+        </div>
 
+        {/* Caption */}
+        <div
+          className={`container-page absolute inset-x-0 top-[12%] transition-all duration-1000 ease-out ${
+            lettersIn ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
+          }`}
+          style={{ transitionDelay: `${word.length * 70 + 120}ms` }}
+        >
+          <p className="text-[0.7rem] font-medium uppercase leading-[1.9] tracking-[0.24em] text-forest/80 sm:text-xs">
+            {caption[0]}
+            <br />
+            {caption[1]}
+          </p>
+          <span aria-hidden="true" className="mt-4 block h-px w-14 bg-forest/30" />
+        </div>
+
+        {/* Object slot 1 — the aloe, on transparency */}
+        <div className="pointer-events-none absolute inset-x-0 bottom-[6%] flex justify-center">
           <div
-            className={`container-page mt-8 transition-all duration-1000 ease-out sm:mt-12 ${
-              lettersIn ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
-            }`}
-            style={{ transitionDelay: `${word.length * 70 + 120}ms` }}
+            className="w-[min(74vw,34rem)] will-change-transform"
+            style={{ transform: `translate3d(0, ${aloeY}%, 0)` }}
           >
-            <p className="text-[0.7rem] font-medium uppercase leading-[1.9] tracking-[0.24em] text-forest/85 sm:text-xs">
-              {caption[0]}
-              <br />
-              {caption[1]}
-            </p>
-            <span aria-hidden="true" className="mt-4 block h-px w-14 bg-forest/35" />
+            <Image
+              src="/aloe-front.png"
+              alt=""
+              width={1360}
+              height={1024}
+              sizes="(min-width: 1024px) 544px, 74vw"
+              className="h-auto w-full drop-shadow-[0_24px_48px_rgb(30_47_33_/_0.22)]"
+            />
           </div>
         </div>
 
-        {/* 3. Aloe cut-out, over the word - this is what crosses the letters */}
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 will-change-transform"
-          style={aloeStyle}
-        >
-          <Image src="/aloe-front.png" alt="" fill sizes="100vw" className={plate} />
+        {/* Object slot 2 — the treatment photograph, as a card */}
+        <div className="pointer-events-none absolute inset-x-0 bottom-[6%] flex justify-center">
+          <div
+            className="relative h-[46vh] w-[min(58vw,20rem)] overflow-hidden rounded-[1.75rem] shadow-2xl shadow-forest/25 will-change-transform sm:h-[52vh]"
+            style={{ transform: `translate3d(0, ${faceY}%, 0)` }}
+          >
+            <Image
+              src="/ritual-face.jpg"
+              alt=""
+              fill
+              sizes="(min-width: 1024px) 320px, 58vw"
+              className="object-cover object-center"
+            />
+          </div>
         </div>
       </div>
     </section>
