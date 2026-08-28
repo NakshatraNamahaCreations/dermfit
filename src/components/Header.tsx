@@ -18,27 +18,28 @@ export default function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // On the home page the header rides on top of the banner until you scroll.
+  // Its height is fixed so the hero can pull itself up by exactly that much.
+  const overlay = pathname === "/" && !scrolled && !open;
+
   return (
     <header
-      className={`sticky top-0 z-50 bg-brand-950 transition-shadow ${
-        scrolled ? "shadow-lg shadow-brand-950/25" : ""
+      className={`sticky top-0 z-50 transition-colors duration-300 ${
+        overlay ? "bg-transparent" : "bg-brand-950 shadow-lg shadow-brand-950/25"
       }`}
     >
-      <div className="h-px w-full bg-gradient-to-r from-transparent via-gold-500/60 to-transparent" />
-      <div className="container-page flex items-center justify-between gap-6 py-2">
+      <div className="container-page flex h-32 items-center justify-between gap-6 lg:h-36">
         <Link
           href="/"
           className="flex items-center gap-3"
           aria-label={`${site.name} ${site.byline} — home`}
         >
-          {/* The full lockup carries four lines of small type, so it needs real size
-              to stay legible. The file also has ~23% empty navy below the artwork;
-              the bar is that same navy, so the gap reads as nothing - the negative
-              margin only stops it from padding the header out. Image untouched. */}
+          {/* Sized to fill the fixed bar height. The full lockup carries four lines
+              of small type, so it needs all the room the bar can give it. */}
           <Logo
-            size={432}
-            sizes="(min-width: 640px) 144px, 112px"
-            className="-mb-6 h-28 w-28 sm:-mb-8 sm:h-36 sm:w-36"
+            height={384}
+            sizes="(min-width: 1024px) 96px, 82px"
+            className="h-24 w-auto lg:h-28"
           />
         </Link>
 
@@ -97,7 +98,7 @@ export default function Header() {
       </div>
 
       {open && (
-        <div id="mobile-nav" className="border-t border-white/10 md:hidden">
+        <div id="mobile-nav" className="border-t border-white/10 bg-brand-950 md:hidden">
           <div className="container-page flex flex-col gap-1 py-4">
             {nav.map((item) => (
               <Link

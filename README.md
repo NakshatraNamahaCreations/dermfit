@@ -60,6 +60,21 @@ bottom of the banner; they are static, not per-slide. Icons live in
 Autoplay is 7s, pauses on hover/focus, and is off for visitors who have "reduce
 motion" enabled. Arrow keys, dot buttons and touch swipe all work.
 
+## Logo
+
+`public/logo.png` is the supplied artwork, byte-identical to the original file.
+`public/logo-transparent.png` is what the site actually renders: the same lockup
+with the flat navy backdrop turned into alpha and the empty margin trimmed, so it
+can sit over the banner photography. Regenerate it with:
+
+```bash
+python make-logo-transparent.py
+```
+
+Nothing is cropped or recoloured — every element of the lockup is kept. The
+favicons in `src/app/` stay on the navy square, which reads better in a browser
+tab.
+
 ## Design tokens
 
 The palette and fonts are defined once as Tailwind v4 `@theme` variables in `src/app/globals.css`: `brand-*` is the navy sampled from the logo (`brand-950` is its exact background, `#01122D`) and `gold-*` spans the logo's gold gradient, plus `ink` / `muted` / `line` / `surface` / `canvas`. Shared `.btn`, `.btn-gold`, `.btn-outline` and `.btn-ghost-light` classes live in the same file. Change the hex values there to rebrand the whole site.

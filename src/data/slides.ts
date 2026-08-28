@@ -47,21 +47,6 @@ export const slides: Slide[] = [
     },
     image: "/hero-2.jpg",
   },
-  {
-    id: "written-plan",
-    title: "KNOW",
-    titleAccent: "FIRST",
-    lines: ["Clear costs.", "No pressure."],
-    cta: { label: "Why Dermfit", href: "/about" },
-    card: {
-      tag: "Every consultation",
-      title: "A Written Plan",
-      body: "Options, timelines and per-session cost, yours to take away.",
-      href: "/contact",
-      cta: "Book a consult",
-    },
-    image: null,
-  },
 ];
 
 /** Static strip along the bottom of the banner — not per-slide. */

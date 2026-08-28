@@ -55,7 +55,7 @@ export default function HeroSlider() {
         if (Math.abs(dx) > 45) (dx > 0 ? prev : next)();
         touchStartX.current = null;
       }}
-      className="relative isolate min-h-[42rem] overflow-hidden bg-brand-950 focus-visible:outline-none lg:min-h-[48rem]"
+      className="relative isolate -mt-32 min-h-[42rem] overflow-hidden bg-brand-950 focus-visible:outline-none lg:-mt-36 lg:min-h-[48rem]"
     >
       {/* Cross-fading backdrops */}
       {slides.map((slide, i) => (
@@ -97,7 +97,7 @@ export default function HeroSlider() {
       />
 
       {/* Headline block */}
-      <div className="container-page relative flex min-h-[42rem] flex-col justify-center pb-44 pt-14 lg:min-h-[48rem] lg:pb-48">
+      <div className="container-page relative flex min-h-[42rem] flex-col justify-center pb-44 pt-32 lg:min-h-[48rem] lg:pb-48 lg:pt-36">
         <div className="lg:flex lg:items-center lg:justify-between lg:gap-12">
           <div className="max-w-2xl">
             <h1 className="font-light uppercase leading-[0.86] tracking-[-0.02em] text-cream">
