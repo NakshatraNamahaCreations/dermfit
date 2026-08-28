@@ -80,12 +80,15 @@
   }
 
   /* The gold in the logo is a gradient, not a flat colour — this matches it. */
+  /* The exact gold gradient sampled off the logo artwork: its highlight,
+     mid-tone and shadow. Used for display type that should read as the mark. */
   .text-gold-gradient {
     background: linear-gradient(
-      135deg,
-      var(--color-gold-200),
-      var(--color-gold-400) 45%,
-      var(--color-gold-600)
+      160deg,
+      #f4d097 0%,
+      #e3b869 28%,
+      #c3903a 62%,
+      #8a6320 100%
     );
     -webkit-background-clip: text;
     background-clip: text;

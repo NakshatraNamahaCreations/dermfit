@@ -104,7 +104,8 @@ export default function HeroSlider() {
               <span className="block text-[4.5rem] sm:text-[7rem] lg:text-[9.5rem]">
                 {active.title}
               </span>
-              <span className="block text-[4.5rem] sm:text-[7rem] lg:text-[9.5rem]">
+              {/* Second line carries the logo's gold gradient. */}
+              <span className="block text-gold-gradient text-[4.5rem] sm:text-[7rem] lg:text-[9.5rem]">
                 {active.titleAccent}
               </span>
             </h1>
