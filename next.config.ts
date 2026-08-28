@@ -7,7 +7,7 @@ const nextConfig: NextConfig = {
   },
   images: {
     // Next 16 only honours quality values that are allowlisted here.
-    qualities: [75, 90],
+    qualities: [75, 90, 100],
   },
 };
 

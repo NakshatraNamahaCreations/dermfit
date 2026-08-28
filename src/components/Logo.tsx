@@ -25,7 +25,7 @@ export default function Logo({
       alt={decorative ? "" : `${site.name} ${site.byline} - ${site.kind}`}
       width={size}
       height={size}
-      quality={90}
+      quality={100}
       sizes={sizes}
       priority
       className={className}

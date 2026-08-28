@@ -31,13 +31,14 @@ export default function Header() {
           className="flex items-center gap-3"
           aria-label={`${site.name} ${site.byline} — home`}
         >
-          {/* The logo file has ~23% empty navy below the artwork. The bar shares that
-              exact navy, so the gap is invisible - the negative margin just stops it
-              from padding out the header. The image itself is untouched. */}
+          {/* The full lockup carries four lines of small type, so it needs real size
+              to stay legible. The file also has ~23% empty navy below the artwork;
+              the bar is that same navy, so the gap reads as nothing - the negative
+              margin only stops it from padding the header out. Image untouched. */}
           <Logo
-            size={320}
-            sizes="(min-width: 640px) 120px, 96px"
-            className="-mb-5 h-24 w-24 sm:-mb-6 sm:h-30 sm:w-30"
+            size={432}
+            sizes="(min-width: 640px) 144px, 112px"
+            className="-mb-6 h-28 w-28 sm:-mb-8 sm:h-36 sm:w-36"
           />
         </Link>
 
