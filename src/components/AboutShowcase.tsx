@@ -1,23 +1,15 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
-import { doctors } from "@/data/content";
 
 /**
  * Editorial "about" section: a display headline split either side of a centred
- * portrait, with stat and trust cards floating above it and arrows to move
- * through the consultants.
+ * image, with a stat card and a numbered trust card floating above it.
+ *
+ * The image is public/about-portrait.png — the supplied artwork with its white
+ * page cut away by make-about-cutout.py, so its angled card shape reads
+ * directly against the cream background.
  */
 export default function AboutShowcase() {
-  const [i, setI] = useState(0);
-  const count = doctors.length;
-  const doctor = doctors[i];
-
-  const prev = () => setI((n) => (n - 1 + count) % count);
-  const next = () => setI((n) => (n + 1) % count);
-
   return (
     <section className="overflow-hidden bg-gold-50 py-20 sm:py-24">
       <div className="container-page">
@@ -50,9 +42,8 @@ export default function AboutShowcase() {
           </div>
         </div>
 
-        {/* Headline split around the portrait */}
-        <div className="mt-12 grid items-center gap-8 lg:mt-16 lg:grid-cols-[1fr_auto_1fr] lg:gap-10">
-          {/* Left words */}
+        {/* Headline split around the image */}
+        <div className="mt-10 grid items-center gap-6 lg:mt-14 lg:grid-cols-[1fr_auto_1fr] lg:gap-8">
           <div className="order-1 text-center lg:text-right">
             <p className="font-display text-5xl font-normal leading-[1.02] tracking-tight text-gold-500 sm:text-6xl lg:text-[4.5rem]">
               Skilled
@@ -63,61 +54,19 @@ export default function AboutShowcase() {
             </p>
           </div>
 
-          {/* Portrait */}
-          <div className="order-2 mx-auto w-full max-w-xs lg:w-72">
-            <div className="relative aspect-[3/4] overflow-hidden rounded-[2rem] bg-brand-900 shadow-xl shadow-brand-950/15">
-              {doctor.photo ? (
-                <Image
-                  src={doctor.photo}
-                  alt={`${doctor.name}, ${doctor.role}`}
-                  fill
-                  sizes="(min-width: 1024px) 288px, 320px"
-                  className="object-cover"
-                />
-              ) : (
-                <div className="absolute inset-0">
-                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_35%,var(--color-brand-800),var(--color-brand-950))]" />
-                  <span className="absolute inset-0 flex items-center justify-center font-display text-7xl font-semibold text-gold-gradient">
-                    {doctor.initials}
-                  </span>
-                </div>
-              )}
-
-              {/* Name plate */}
-              <div className="absolute inset-x-3 bottom-3 rounded-2xl bg-brand-950/70 px-4 py-3 backdrop-blur-md">
-                <p className="text-sm font-semibold text-cream">{doctor.name}</p>
-                <p className="mt-0.5 text-[0.7rem] text-cream/70">{doctor.role}</p>
-              </div>
-            </div>
-
-            {/* Arrows */}
-            {count > 1 && (
-              <div className="mt-6 flex items-center justify-center gap-3">
-                <button
-                  type="button"
-                  onClick={prev}
-                  aria-label="Previous consultant"
-                  className="flex h-11 w-11 items-center justify-center rounded-full border border-brand-200 bg-surface text-brand-900 transition-colors hover:border-gold-400 hover:text-gold-700"
-                >
-                  <svg width="16" height="16" viewBox="0 0 18 18" fill="none" aria-hidden="true">
-                    <path d="M11 3.5 5.5 9l5.5 5.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </button>
-                <button
-                  type="button"
-                  onClick={next}
-                  aria-label="Next consultant"
-                  className="flex h-11 w-11 items-center justify-center rounded-full border border-brand-200 bg-surface text-brand-900 transition-colors hover:border-gold-400 hover:text-gold-700"
-                >
-                  <svg width="16" height="16" viewBox="0 0 18 18" fill="none" aria-hidden="true">
-                    <path d="m7 3.5 5.5 5.5L7 14.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </button>
-              </div>
-            )}
+          {/* The artwork carries its own angled card shape and shadow. */}
+          <div className="order-2 mx-auto w-full max-w-[19rem] lg:w-[19rem]">
+            <Image
+              src="/about-portrait.png"
+              alt="A patient applying a serum after treatment at Dermfit"
+              width={760}
+              height={1173}
+              sizes="(min-width: 1024px) 304px, 304px"
+              quality={90}
+              className="h-auto w-full drop-shadow-[0_18px_40px_rgb(1_18_45_/_0.18)]"
+            />
           </div>
 
-          {/* Right words */}
           <div className="order-3 text-center lg:text-left">
             <p className="font-display text-5xl font-normal leading-[1.02] tracking-tight text-gold-500 sm:text-6xl lg:text-[4.5rem]">
               Results-
@@ -128,16 +77,26 @@ export default function AboutShowcase() {
           </div>
         </div>
 
-        {/* Bio + link */}
+        {/* Lead-in */}
         <div className="mx-auto mt-12 max-w-2xl text-center">
-          <p className="text-base leading-relaxed text-muted">{doctor.bio}</p>
+          <p className="text-base leading-relaxed text-muted">
+            Dermfit is a clinical dermatology practice led by Dr Sourab Hegde. Every
+            procedure is performed by a qualified dermatologist, every plan is written down
+            with its costs, and nothing is treated until it has been properly diagnosed.
+          </p>
           <Link
             href="/about"
             className="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-gold-700 hover:underline"
           >
             More about the clinic
             <svg width="13" height="13" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-              <path d="M2 6h8M6.5 2.5 10 6l-3.5 3.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              <path
+                d="M2 6h8M6.5 2.5 10 6l-3.5 3.5"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
             </svg>
           </Link>
         </div>

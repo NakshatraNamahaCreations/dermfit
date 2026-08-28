@@ -75,6 +75,19 @@ Nothing is cropped or recoloured — every element of the lockup is kept. The
 favicons in `src/app/` stay on the navy square, which reads better in a browser
 tab.
 
+## About section image
+
+`public/about-portrait.png` is the supplied artwork with its flat white page
+removed, so the angled photo-card shape sits directly on the cream section
+background. Regenerate from a new source with:
+
+```bash
+python make-about-cutout.py
+```
+
+It flood-fills the white inward from the borders only, so white *inside* the
+photograph is preserved.
+
 ## Design tokens
 
 The palette and fonts are defined once as Tailwind v4 `@theme` variables in `src/app/globals.css`: `brand-*` is the navy sampled from the logo (`brand-950` is its exact background, `#01122D`) and `gold-*` spans the logo's gold gradient, plus `ink` / `muted` / `line` / `surface` / `canvas`. Shared `.btn`, `.btn-gold`, `.btn-outline` and `.btn-ghost-light` classes live in the same file. Change the hex values there to rebrand the whole site.
