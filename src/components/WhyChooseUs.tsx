@@ -12,20 +12,20 @@ const SEAL_TEXT = "DIAGNOSIS FIRST · DERMATOLOGIST-PERFORMED · WRITTEN PLANS �
 export default function WhyChooseUs() {
   return (
     <section className="py-16 sm:py-20">
-      <div className="container-page">
+      <div className="mx-auto w-full max-w-[92rem] px-5">
         <div className="grid gap-5 lg:grid-cols-2">
           {/* The case for the clinic */}
           <Reveal from="left">
             <div className="relative flex h-full flex-col overflow-hidden rounded-[1.75rem] bg-surface ring-1 ring-line sm:flex-row">
               {/* Image column, full panel height. The source is landscape, so the
                   crop is biased left to keep the aloe as well as the subject. */}
-              <div className="relative h-56 shrink-0 sm:h-auto sm:w-[42%]">
+              <div className="relative h-64 shrink-0 sm:h-auto sm:w-[46%]">
                 <Image
                   src="/why-choose.jpg"
                   alt="Aloe beside a patient during a facial treatment at Dermfit"
                   fill
-                  sizes="(min-width: 1024px) 20vw, (min-width: 640px) 42vw, 100vw"
-                  className="object-cover object-[36%_center]"
+                  sizes="(min-width: 1024px) 22vw, (min-width: 640px) 46vw, 100vw"
+                  className="object-cover object-center"
                 />
               </div>
 
