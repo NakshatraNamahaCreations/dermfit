@@ -56,7 +56,7 @@ Autoplay is 6s, pauses on hover/focus, and is disabled for visitors who have
 
 ## Design tokens
 
-The palette and fonts are defined once as Tailwind v4 `@theme` variables in `src/app/globals.css` (`brand-*` teal, `sand-*` accent, plus `ink` / `muted` / `line` / `surface` / `canvas`). Change the hex values there to rebrand the whole site.
+The palette and fonts are defined once as Tailwind v4 `@theme` variables in `src/app/globals.css`: `brand-*` is the navy sampled from the logo (`brand-950` is its exact background, `#01122D`) and `gold-*` spans the logo's gold gradient, plus `ink` / `muted` / `line` / `surface` / `canvas`. Shared `.btn`, `.btn-gold`, `.btn-outline` and `.btn-ghost-light` classes live in the same file. Change the hex values there to rebrand the whole site.
 
 ## Before going live
 
