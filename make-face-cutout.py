@@ -26,8 +26,9 @@ OUT = os.environ.get("FACE_OUT", "public/ritual-face.png")
 INLIER = 22.0     # residual within which a pixel is treated as backdrop when refitting
 GROW = 30.0       # residual the region growth is allowed to travel through
 SAT_MAX = 80      # second signal: backdrop measures ~50-66, skin ~90-125
-SOFT_LO = 12.0    # residual at or below which a pixel is fully transparent
-SOFT_HI = 30.0    # residual at or above which it is fully opaque
+SOFT_LO = 18.0    # residual at or below which a boundary pixel is transparent
+SOFT_HI = 54.0    # residual at or above which it is fully opaque
+EDGE_BAND = 10    # how far the soft ramp reaches in from the silhouette
 MAX_WIDTH = 1200
 # The subject is cropped by the bottom of the frame, and the backdrop shadow in
 # the bottom corners is colourimetrically identical to shadowed skin — no
@@ -101,8 +102,14 @@ backdrop = ~subject
 # Soft edge follows the photograph's own antialiasing — but only in a narrow
 # band against the subject. Applied across the whole backdrop it leaves a haze
 # wherever the backdrop drifts furthest from the model, i.e. the frame corners.
+# The subject casts a shadow on the wall that measures identically to skin —
+# same colour, same chromaticity, same channel ratios — so no pixel rule can
+# delete it. What it must not do is end on a hard line and read as a border, so
+# the ramp is widened: whatever survives beside the silhouette fades out.
 soft = np.clip((residual - SOFT_LO) / (SOFT_HI - SOFT_LO), 0.0, 1.0)
-band = ndimage.binary_dilation(subject, structure=np.ones((3, 3)), iterations=3) & backdrop
+band = ndimage.binary_dilation(
+    subject, structure=np.ones((3, 3)), iterations=EDGE_BAND
+) & backdrop
 alpha = np.where(backdrop, np.where(band, soft, 0.0), 1.0)
 
 keep = int(h * (1 - BOTTOM_CROP))
@@ -121,7 +128,7 @@ alpha = alpha * side_ramp[None, :]
 img = img.crop((0, 0, w, keep))
 
 mask = Image.fromarray((alpha * 255).astype(np.uint8), "L")
-mask = mask.filter(ImageFilter.GaussianBlur(radius=0.8))
+mask = mask.filter(ImageFilter.GaussianBlur(radius=2.5))
 
 out = img.copy()
 out.putalpha(mask)

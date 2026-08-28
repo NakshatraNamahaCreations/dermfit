@@ -176,7 +176,7 @@ export default function NourishSection({
             width={964}
             height={1011}
             sizes="(min-width: 1024px) 416px, 46vw"
-            className="h-auto w-full"
+            className="h-auto w-full opacity-90 brightness-115 saturate-[0.72]"
           />
         </div>
         <div
@@ -189,7 +189,7 @@ export default function NourishSection({
             width={1523}
             height={1024}
             sizes="(min-width: 1024px) 480px, 50vw"
-            className="h-auto w-full"
+            className="h-auto w-full opacity-90 brightness-115 saturate-[0.72]"
           />
         </div>
 
