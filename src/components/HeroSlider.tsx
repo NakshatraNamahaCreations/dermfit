@@ -89,7 +89,15 @@ export default function HeroSlider() {
       {/* Vignette: heavy left for the headline, heavy foot for the strip */}
       <div
         aria-hidden="true"
-        className="absolute inset-0 bg-gradient-to-r from-brand-950/92 via-brand-950/55 to-brand-950/15"
+        className="absolute inset-0 bg-gradient-to-r from-brand-950/88 via-brand-950/48 to-transparent"
+      />
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 bg-[radial-gradient(120%_90%_at_0%_50%,var(--color-brand-950)_5%,transparent_60%)] opacity-70"
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute right-[8%] top-[18%] h-[26rem] w-[26rem] rounded-full bg-gold-400/10 blur-[90px]"
       />
       <div
         aria-hidden="true"
@@ -98,9 +106,9 @@ export default function HeroSlider() {
 
       {/* Headline block */}
       <div className="container-page relative flex min-h-[44rem] flex-col justify-center pb-44 pt-40 lg:min-h-[50rem] lg:pb-48 lg:pt-44">
-        <div className="lg:flex lg:items-center lg:justify-between lg:gap-12">
+        <div className="lg:flex lg:items-end lg:justify-between lg:gap-12">
           <div className="max-w-2xl">
-            <h1 className="font-light uppercase leading-[0.86] tracking-[-0.02em] text-cream">
+            <h1 className="font-light uppercase leading-[0.86] tracking-[-0.02em] text-cream [text-shadow:0_2px_28px_rgb(1_18_45_/_0.55)]">
               <span className="block text-[4.5rem] sm:text-[7rem] lg:text-[9.5rem]">
                 {active.title}
               </span>
@@ -144,8 +152,9 @@ export default function HeroSlider() {
           {active.card && (
             <Link
               href={active.card.href}
-              className="group mt-10 hidden w-64 shrink-0 rounded-2xl border border-cream/15 bg-brand-950/55 p-5 backdrop-blur-md transition-colors hover:border-gold-400/60 hover:bg-brand-950/70 lg:mt-0 lg:block"
+              className="group mt-10 hidden w-64 shrink-0 rounded-2xl border border-cream/15 bg-brand-950/60 p-5 shadow-2xl shadow-brand-950/50 ring-1 ring-white/5 backdrop-blur-md transition-all hover:-translate-y-0.5 hover:border-gold-400/60 hover:bg-brand-950/75 lg:mb-8 lg:mt-0 lg:block"
             >
+              <span aria-hidden="true" className="mb-4 block h-px w-10 bg-gradient-to-r from-gold-300 to-transparent" />
               <span className="text-[0.62rem] font-semibold uppercase tracking-[0.18em] text-gold-300">
                 {active.card.tag}
               </span>
@@ -179,6 +188,10 @@ export default function HeroSlider() {
 
       {/* Foot: icon features left, stat right */}
       <div className="container-page absolute inset-x-0 bottom-0 z-10 pb-9">
+        <div
+          aria-hidden="true"
+          className="mb-7 h-px w-full bg-gradient-to-r from-cream/25 via-cream/10 to-transparent"
+        />
         <div className="flex items-end justify-between gap-6">
           <ul className="flex flex-wrap items-start gap-x-9 gap-y-4 sm:gap-x-12">
             {heroFeatures.map((f) => (
