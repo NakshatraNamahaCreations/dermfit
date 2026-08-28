@@ -105,30 +105,32 @@ Two things in that file need the clinic's review:
 
 A scroll-driven sequence. The section is `280vh` tall with a sticky
 viewport-height frame, so scrolling scrubs a timeline: a large pale word sits on
-a plain ground while objects pass in front of it — the aloe rises from below and
-holds, drops back down, then the treatment photograph rises to replace it.
-Timings are the `aloeY` / `faceY` expressions in `NourishSection.tsx`.
+a plain ground while objects pass in front of it — foliage slides in from the
+left and right and holds, both drop away below, then the treatment photograph
+rises from below to replace them. Timings are the `leafX` / `leafY` / `faceY`
+expressions in `NourishSection.tsx`.
 
-Objects are contained rather than full-bleed, so the word stays readable behind
-them. `public/aloe-front.png` is the plant on transparency, trimmed to its own
-bounds; regenerate it from a source photo with:
+Cut-outs, all on transparency so nothing arrives as a rectangle:
 
-```bash
-ALOE_SRC="path/to/photo.png" python make-aloe-layers.py
-```
-
-Separation is by greenness, so it only works for a plant shot against a neutral
-wall.
-
-`public/ritual-face.png` is the treatment photograph with its backdrop removed
-by `make-face-cutout.py`. Skin and backdrop are both warm, so that one separates
-on saturation (backdrop ~41, skin ~83) combined with connectivity — the mask is
-grown inward from backdrop-coloured border pixels, so nothing it cannot reach is
-ever cut:
+- `public/leaf-left.png`, `public/leaf-right.png` — `make-leaf-cutout.py`,
+  separating on greenness (works for foliage against a neutral wall)
+- `public/ritual-face.png` — `make-face-cutout.py`; skin and backdrop overlap in
+  colour, so that one fits a quadratic surface to the backdrop and uses
+  saturation as a second gate
 
 ```bash
-FACE_SRC="path/to/photo.jpg" python make-face-cutout.py
+LEAF_SRC="photo.png" LEAF_OUT="public/leaf-left.png" python make-leaf-cutout.py
+FACE_SRC="photo.png" python make-face-cutout.py
 ```
+
+## Service orbit
+
+`ServiceOrbit.tsx` arranges the six divisions on a hexagon around the clinic
+mark and swings them in as you scroll. The ring rotates as one element and each
+division counter-rotates by the same angle, so the group orbits while the labels
+stay upright. Seat positions are rounded to fixed precision — raw trig produces
+values like `32.999999999999986` that can serialise differently on the server
+and trip a hydration mismatch.
 
 ## Design tokens
 

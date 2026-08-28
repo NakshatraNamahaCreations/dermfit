@@ -10,9 +10,9 @@ import { useEffect, useRef, useState } from "react";
  * scroll. The section is deliberately tall and its inner frame is sticky, so
  * scrolling scrubs a timeline rather than simply moving past it:
  *
- *   1. the aloe rises from below and holds in front of the word
- *   2. it drops back down out of frame
- *   3. the treatment photograph rises from below to take its place
+ *   1. foliage slides in from the left and the right and holds
+ *   2. both drop away below the frame
+ *   3. the treatment photograph rises from below to take their place
  *
  * Objects are contained, not full-bleed - the word stays readable behind them.
  */
@@ -68,9 +68,12 @@ export default function NourishSection({
     };
   }, []);
 
-  // Percentages are of each object's own height, and the frame clips, so 125
-  // parks it fully out of sight below.
-  const aloeY = (1 - ease(seg(p, 0, 0.3))) * 125 + ease(seg(p, 0.46, 0.68)) * 125;
+  // Percentages are of each object's own box and the frame clips, so a value
+  // past 100 parks it fully out of sight.
+  const leafIn = ease(seg(p, 0, 0.3)); // slide in horizontally
+  const leafOut = ease(seg(p, 0.46, 0.68)); // then drop away below
+  const leafX = (1 - leafIn) * 118;
+  const leafY = leafOut * 130;
   const faceY = (1 - ease(seg(p, 0.48, 0.86))) * 125;
 
   const lettersIn = ready && p > 0.03;
@@ -116,21 +119,32 @@ export default function NourishSection({
           <span aria-hidden="true" className="mt-4 block h-px w-14 bg-forest/30" />
         </div>
 
-        {/* Object slot 1 — the aloe, on transparency */}
-        <div className="pointer-events-none absolute inset-x-0 bottom-[6%] flex justify-center">
-          <div
-            className="w-[min(74vw,34rem)] will-change-transform"
-            style={{ transform: `translate3d(0, ${aloeY}%, 0)` }}
-          >
-            <Image
-              src="/aloe-front.png"
-              alt=""
-              width={1360}
-              height={1024}
-              sizes="(min-width: 1024px) 544px, 74vw"
-              className="h-auto w-full drop-shadow-[0_24px_48px_rgb(30_47_33_/_0.22)]"
-            />
-          </div>
+        {/* Object slot 1 — foliage entering from either side */}
+        <div
+          className="pointer-events-none absolute bottom-[4%] left-0 w-[min(46vw,26rem)] will-change-transform"
+          style={{ transform: `translate3d(${-leafX}%, ${leafY}%, 0)` }}
+        >
+          <Image
+            src="/leaf-left.png"
+            alt=""
+            width={964}
+            height={1011}
+            sizes="(min-width: 1024px) 416px, 46vw"
+            className="h-auto w-full"
+          />
+        </div>
+        <div
+          className="pointer-events-none absolute bottom-[4%] right-0 w-[min(50vw,30rem)] will-change-transform"
+          style={{ transform: `translate3d(${leafX}%, ${leafY}%, 0)` }}
+        >
+          <Image
+            src="/leaf-right.png"
+            alt=""
+            width={1523}
+            height={1024}
+            sizes="(min-width: 1024px) 480px, 50vw"
+            className="h-auto w-full"
+          />
         </div>
 
         {/* Object slot 2 — the treatment photograph, cut out like the plant */}

@@ -1,12 +1,12 @@
-"""Cut the aloe plant out of its photograph.
+"""Cut foliage out of a photograph shot against a neutral wall.
 
-The statement section shows the plant as a centred object on a plain ground,
-so all that is needed is the plant on transparency, trimmed to its own bounds.
+The statement section slides foliage in over a plain ground, so what is needed
+is the leaves on transparency, trimmed to their own bounds.
 
 Separation is by greenness (g - (r+b)/2): the wall is neutral (~0.5) and the
 leaves are ~50, so a soft ramp between the two gives clean antialiased edges.
 
-    python make-aloe-layers.py  ->  public/aloe-front.png
+    LEAF_SRC="photo.png" LEAF_OUT="public/leaf-left.png" python make-aloe-layers.py
 """
 import os
 
@@ -15,7 +15,8 @@ import numpy as np
 
 # Point this at the source photograph. The generated cut-out is what ships;
 # the original is not kept in the repo.
-SRC = os.environ.get("ALOE_SRC", "public/aloe-source.png")
+SRC = os.environ.get("LEAF_SRC", "public/leaf-source.png")
+OUT = os.environ.get("LEAF_OUT", "public/leaf.png")
 WIDTH = 1600           # output width; the source is 1536 so this is a mild upscale cap
 LO, HI = 3.0, 14.0     # greenness ramp: below LO fully transparent, above HI opaque
 
@@ -40,7 +41,7 @@ front.putalpha(mask)
 # than on the original frame, where it sits off to one side.
 bbox = mask.point(lambda v: 255 if v > 8 else 0).getbbox()
 front = front.crop(bbox)
-front.save("public/aloe-front.png", optimize=True)
+front.save(OUT, optimize=True)
 
-print("aloe-front.png %s  %d KB" % (front.size, os.path.getsize("public/aloe-front.png") / 1024))
+print("%s %s  %d KB" % (OUT, front.size, os.path.getsize(OUT) / 1024))
 print("trimmed from %s" % (img.size,))

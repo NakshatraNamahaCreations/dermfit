@@ -24,9 +24,13 @@ const ease = (t: number) => 1 - Math.pow(1 - t, 3);
 /** Even hexagon, offset so nothing sits directly above or below the mark. */
 const RX = 34;
 const RY = 31;
+// Rounded deliberately: the raw trig produces values like 32.999999999999986,
+// which can serialise differently on the server than in the browser and trip a
+// hydration mismatch. Fixed precision makes both sides agree.
+const round = (n: number) => Number(n.toFixed(3));
 const seats = divisions.map((_, i) => {
   const a = ((-60 + i * 60) * Math.PI) / 180;
-  return { x: 50 + RX * Math.cos(a), y: 50 + RY * Math.sin(a) };
+  return { x: round(50 + RX * Math.cos(a)), y: round(50 + RY * Math.sin(a)) };
 });
 
 export default function ServiceOrbit() {
