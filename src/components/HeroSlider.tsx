@@ -21,9 +21,9 @@ export default function HeroSlider() {
   useEffect(() => {
     if (paused || count < 2) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const t = setInterval(() => setIndex((i) => (i + 1) % count), AUTOPLAY_MS);
-    return () => clearInterval(t);
-  }, [paused, count]);
+    const t = setTimeout(() => setIndex((i) => (i + 1) % count), AUTOPLAY_MS);
+    return () => clearTimeout(t);
+  }, [paused, count, index]);
 
   const onKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "ArrowLeft") {
@@ -43,10 +43,15 @@ export default function HeroSlider() {
       aria-label="Dermfit highlights"
       tabIndex={0}
       onKeyDown={onKeyDown}
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
-      onFocus={() => setPaused(true)}
-      onBlur={() => setPaused(false)}
+      // Pause only when focus lands on a control inside (arrows, card link), so
+      // keyboard users are not yanked mid-interaction. Focusing the section
+      // itself - which a plain click does - must not stall autoplay.
+      onFocus={(e) => {
+        if (e.target !== e.currentTarget) setPaused(true);
+      }}
+      onBlur={(e) => {
+        if (e.target !== e.currentTarget) setPaused(false);
+      }}
       onTouchStart={(e) => (touchStartX.current = e.touches[0].clientX)}
       onTouchEnd={(e) => {
         const start = touchStartX.current;
