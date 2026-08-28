@@ -3,6 +3,7 @@ import { Section } from "@/components/Section";
 import PageHero from "@/components/PageHero";
 import ServiceFilter from "@/components/ServiceFilter";
 import CTA from "@/components/CTA";
+import TreatmentCatalogue from "@/components/TreatmentCatalogue";
 
 export const metadata: Metadata = {
   title: "Treatments",
@@ -21,6 +22,7 @@ export default function ServicesPage() {
       <Section className="pt-10">
         <ServiceFilter />
       </Section>
+      <TreatmentCatalogue />
       <CTA />
     </>
   );

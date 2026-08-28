@@ -88,6 +88,19 @@ python make-about-cutout.py
 It flood-fills the white inward from the borders only, so white *inside* the
 photograph is preserved.
 
+## Treatment catalogue
+
+`src/data/catalogue.ts` holds the clinic's six divisions and all 61 treatments.
+It drives two places: the division cards on the home page, and the interactive
+tabbed catalogue at `/services#catalogue`. Add or rename a treatment there and
+both update.
+
+Two things in that file need the clinic's review:
+
+- Each division's `blurb` is descriptive filler — reword in the clinic's voice.
+- Division 06 lists both "Autologous Exosomes" and "Exosomes", as supplied.
+  Confirm whether these are distinct offerings or a duplicate.
+
 ## Design tokens
 
 The palette and fonts are defined once as Tailwind v4 `@theme` variables in `src/app/globals.css`: `brand-*` is the navy sampled from the logo (`brand-950` is its exact background, `#01122D`) and `gold-*` spans the logo's gold gradient, plus `ink` / `muted` / `line` / `surface` / `canvas`. Shared `.btn`, `.btn-gold`, `.btn-outline` and `.btn-ghost-light` classes live in the same file. Change the hex values there to rebrand the whole site.
