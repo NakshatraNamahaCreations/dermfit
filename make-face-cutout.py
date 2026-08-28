@@ -33,8 +33,8 @@ MAX_WIDTH = 1200
 # the bottom corners is colourimetrically identical to shadowed skin — no
 # threshold separates them. Trimming and fading the foot of the frame removes
 # those patches and softens the hard torso crop at the same time.
-BOTTOM_CROP = 0.06
-BOTTOM_FADE = 0.14
+BOTTOM_CROP = 0.11
+BOTTOM_FADE = 0.20
 
 img = Image.open(SRC).convert("RGB")
 if img.width > MAX_WIDTH:
@@ -111,6 +111,12 @@ fade_from = int(keep * (1 - BOTTOM_FADE))
 ramp = np.ones(keep)
 ramp[fade_from:] = np.linspace(1, 0, keep - fade_from)
 alpha = alpha * ramp[:, None]
+
+side = max(2, int(w * 0.05))
+side_ramp = np.ones(w)
+side_ramp[:side] = np.linspace(0, 1, side)
+side_ramp[-side:] = np.linspace(1, 0, side)
+alpha = alpha * side_ramp[None, :]
 
 img = img.crop((0, 0, w, keep))
 

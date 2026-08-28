@@ -1,10 +1,9 @@
-import Link from "next/link";
 import { Section, SectionHeading } from "@/components/Section";
-import DivisionGrid from "@/components/DivisionGrid";
 import CTA from "@/components/CTA";
 import HeroSlider from "@/components/HeroSlider";
 import AboutShowcase from "@/components/AboutShowcase";
 import NourishSection from "@/components/NourishSection";
+import ServiceOrbit from "@/components/ServiceOrbit";
 import FAQ from "@/components/FAQ";
 import { differentiators, testimonials } from "@/data/content";
 import { site } from "@/data/site";
@@ -17,6 +16,8 @@ export default function Home() {
       <AboutShowcase />
 
       <NourishSection />
+
+      <ServiceOrbit />
 
       {/* What a first visit looks like */}
       <Section>
@@ -78,24 +79,6 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </Section>
-
-      {/* Services */}
-      <Section className="bg-surface">
-        <div className="flex flex-wrap items-end justify-between gap-6">
-          <SectionHeading
-            eyebrow="Treatments"
-            title="Six divisions of care"
-            lead="From medical dermatology through to regenerative procedures — grouped by the kind of problem each one solves."
-          />
-          <Link
-            href="/services"
-            className="text-sm font-semibold text-gold-700 hover:underline"
-          >
-            View the full catalogue →
-          </Link>
-        </div>
-        <DivisionGrid />
       </Section>
 
       {/* Why us */}
