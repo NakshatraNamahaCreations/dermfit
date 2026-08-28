@@ -101,6 +101,22 @@ Two things in that file need the clinic's review:
 - Division 06 lists both "Autologous Exosomes" and "Exosomes", as supplied.
   Confirm whether these are distinct offerings or a duplicate.
 
+## Botanical statement section
+
+The aloe section layers one photograph twice so the leaves sit both behind and
+in front of the word. `make-aloe-layers.py` produces both from the source photo:
+
+```bash
+python make-aloe-layers.py
+```
+
+- `public/aloe-back.jpg` — the untouched plate, behind the type
+- `public/aloe-front.png` — the plant alone on transparency, over the type
+
+Separation is by greenness, so it only works on a plant shot against a neutral
+wall. The two layers must keep identical positioning and move together; drifting
+them apart would reveal the plant twice.
+
 ## Design tokens
 
 The palette and fonts are defined once as Tailwind v4 `@theme` variables in `src/app/globals.css`: `brand-*` is the navy sampled from the logo (`brand-950` is its exact background, `#01122D`) and `gold-*` spans the logo's gold gradient, plus `ink` / `muted` / `line` / `surface` / `canvas`. Shared `.btn`, `.btn-gold`, `.btn-outline` and `.btn-ghost-light` classes live in the same file. Change the hex values there to rebrand the whole site.
