@@ -206,8 +206,8 @@ export default function NourishSection({
             <Image
               src="/ritual-face.png"
               alt=""
-              width={1117}
-              height={1238}
+              width={1114}
+              height={1091}
               sizes="(min-width: 1024px) 320px, 62vw"
               className="h-auto w-full"
             />
