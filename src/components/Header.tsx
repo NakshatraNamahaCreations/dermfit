@@ -18,28 +18,36 @@ export default function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // On the home page the header rides on top of the banner until you scroll.
-  // Its height is fixed so the hero can pull itself up by exactly that much.
-  const overlay = pathname === "/" && !scrolled && !open;
+  // At the top of the home page the header is a tall transparent masthead so
+  // the full logo lockup renders large enough to actually read. Once you
+  // scroll it collapses to a compact solid bar. Other pages always get the
+  // compact bar. The tall height is what the hero pulls itself up by.
+  const masthead = pathname === "/" && !scrolled && !open;
 
   return (
     <header
       className={`sticky top-0 z-50 transition-colors duration-300 ${
-        overlay ? "bg-transparent" : "bg-brand-950 shadow-lg shadow-brand-950/25"
+        masthead ? "bg-transparent" : "bg-brand-950 shadow-lg shadow-brand-950/25"
       }`}
     >
-      <div className="container-page flex h-32 items-center justify-between gap-6 lg:h-36">
+      <div
+        className={`container-page flex items-center justify-between gap-6 transition-[height] duration-300 ${
+          masthead ? "h-40 lg:h-44" : "h-20 lg:h-24"
+        }`}
+      >
         <Link
           href="/"
           className="flex items-center gap-3"
           aria-label={`${site.name} ${site.byline} — home`}
         >
-          {/* Sized to fill the fixed bar height. The full lockup carries four lines
-              of small type, so it needs all the room the bar can give it. */}
+          {/* The lockup carries four lines of small type; below ~128px the
+              bottom lines stop resolving, hence the tall masthead at rest. */}
           <Logo
-            height={384}
-            sizes="(min-width: 1024px) 96px, 82px"
-            className="h-24 w-auto lg:h-28"
+            height={432}
+            sizes="(min-width: 1024px) 144px, 112px"
+            className={`w-auto transition-[height] duration-300 ${
+              masthead ? "h-28 lg:h-36" : "h-14 lg:h-16"
+            }`}
           />
         </Link>
 
