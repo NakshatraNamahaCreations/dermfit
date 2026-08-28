@@ -235,22 +235,6 @@ export default function HeroSlider() {
             </svg>
           </button>
 
-          <div className="container-page pointer-events-none absolute inset-x-0 bottom-32 z-10">
-            <div className="pointer-events-auto flex gap-2">
-              {slides.map((slide, i) => (
-                <button
-                  key={slide.id}
-                  type="button"
-                  onClick={() => go(i)}
-                  aria-label={`Go to slide ${i + 1}`}
-                  aria-current={i === index}
-                  className={`h-1.5 rounded-full transition-all ${
-                    i === index ? "w-8 bg-cream" : "w-1.5 bg-cream/35 hover:bg-cream/60"
-                  }`}
-                />
-              ))}
-            </div>
-          </div>
         </>
       )}
     </section>
