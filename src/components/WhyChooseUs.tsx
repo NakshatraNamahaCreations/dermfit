@@ -16,20 +16,20 @@ export default function WhyChooseUs() {
         <div className="grid gap-5 lg:grid-cols-2">
           {/* The case for the clinic */}
           <Reveal from="left">
-            <div className="relative flex h-full flex-col overflow-hidden rounded-[1.75rem] bg-surface ring-1 ring-line">
-              {/* Landscape composition — given the full panel width so the aloe
-                  and the subject both stay in frame. */}
-              <div className="relative aspect-[16/10] w-full">
+            <div className="relative flex h-full flex-col overflow-hidden rounded-[1.75rem] bg-surface ring-1 ring-line sm:flex-row">
+              {/* Image column, full panel height. The source is landscape, so the
+                  crop is biased left to keep the aloe as well as the subject. */}
+              <div className="relative h-56 shrink-0 sm:h-auto sm:w-[42%]">
                 <Image
                   src="/why-choose.jpg"
                   alt="Aloe beside a patient during a facial treatment at Dermfit"
                   fill
-                  sizes="(min-width: 1024px) 46vw, 100vw"
-                  className="object-cover object-center"
+                  sizes="(min-width: 1024px) 20vw, (min-width: 640px) 42vw, 100vw"
+                  className="object-cover object-[36%_center]"
                 />
               </div>
 
-              <div className="flex flex-1 flex-col p-7 sm:p-9">
+              <div className="flex flex-1 flex-col p-7 sm:p-8 sm:pr-28">
                 <p className="eyebrow">Why choose us</p>
                 <h2 className="mt-3 font-display text-3xl font-semibold leading-tight tracking-tight text-brand-950">
                   The thinking behind
@@ -52,7 +52,7 @@ export default function WhyChooseUs() {
               </div>
 
               {/* Rotating seal */}
-              <div className="pointer-events-none absolute bottom-4 right-4 hidden h-28 w-28 items-center justify-center sm:flex">
+              <div className="pointer-events-none absolute bottom-5 right-5 hidden h-24 w-24 items-center justify-center sm:flex">
                 <svg viewBox="0 0 200 200" className="animate-seal h-full w-full" aria-hidden="true">
                   <defs>
                     <path
@@ -68,7 +68,7 @@ export default function WhyChooseUs() {
                     <textPath href="#seal-arc">{SEAL_TEXT}</textPath>
                   </text>
                 </svg>
-                <span className="absolute flex h-12 w-12 items-center justify-center rounded-full bg-brand-950 text-gold-300">
+                <span className="absolute flex h-10 w-10 items-center justify-center rounded-full bg-brand-950 text-gold-300">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                     <path
                       d="M12 3 4.5 6.2v5c0 4.4 3.1 8.5 7.5 9.8 4.4-1.3 7.5-5.4 7.5-9.8v-5z"
@@ -91,7 +91,7 @@ export default function WhyChooseUs() {
 
           {/* The reasons */}
           <Reveal from="right" delay={120}>
-            <div className="h-full rounded-[1.75rem] bg-brand-950 p-7 sm:p-9">
+            <div className="flex h-full flex-col justify-center rounded-[1.75rem] bg-brand-950 p-7 sm:p-9">
               <h2 className="text-center font-display text-3xl font-normal italic tracking-tight text-cream">
                 Why choose us
               </h2>
