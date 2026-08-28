@@ -136,16 +136,18 @@ export default function NourishSection({
         {/* Object slot 2 — the treatment photograph, cut out like the plant */}
         <div className="pointer-events-none absolute inset-x-0 bottom-[6%] flex justify-center">
           <div
-            className="w-[min(56vw,19rem)] will-change-transform"
+            className="w-[min(78vw,27rem)] will-change-transform"
             style={{ transform: `translate3d(0, ${faceY}%, 0)` }}
           >
+            {/* No shadow here: the subject is a soft-edged cut-out, so a drop
+                shadow would trace its bounding box and read as a border. */}
             <Image
               src="/ritual-face.png"
               alt=""
-              width={1200}
-              height={1714}
-              sizes="(min-width: 1024px) 304px, 56vw"
-              className="h-auto w-full drop-shadow-[0_24px_48px_rgb(30_47_33_/_0.25)]"
+              width={1122}
+              height={1310}
+              sizes="(min-width: 1024px) 432px, 78vw"
+              className="h-auto w-full"
             />
           </div>
         </div>
