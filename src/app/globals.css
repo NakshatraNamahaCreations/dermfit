@@ -163,6 +163,11 @@
     animation: dermfit-panel 420ms cubic-bezier(0.22, 1, 0.36, 1) both;
   }
 
+  /* Rotating seal on the "why choose us" panel. */
+  .animate-seal {
+    animation: dermfit-seal 26s linear infinite;
+  }
+
   .rule-gold {
     background: linear-gradient(
       90deg,
@@ -205,5 +210,14 @@
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes dermfit-seal {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
   }
 }

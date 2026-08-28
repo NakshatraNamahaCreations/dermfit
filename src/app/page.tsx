@@ -4,8 +4,9 @@ import HeroSlider from "@/components/HeroSlider";
 import AboutShowcase from "@/components/AboutShowcase";
 import NourishSection from "@/components/NourishSection";
 import ServiceOrbit from "@/components/ServiceOrbit";
+import WhyChooseUs from "@/components/WhyChooseUs";
 import FAQ from "@/components/FAQ";
-import { differentiators, testimonials } from "@/data/content";
+import { testimonials } from "@/data/content";
 import { site } from "@/data/site";
 
 export default function Home() {
@@ -14,6 +15,8 @@ export default function Home() {
       <HeroSlider />
 
       <AboutShowcase />
+
+      <WhyChooseUs />
 
       <NourishSection />
 
@@ -81,32 +84,7 @@ export default function Home() {
         </div>
       </Section>
 
-      {/* Why us */}
-      <Section>
-        <SectionHeading
-          eyebrow="Why Dermfit"
-          title="Clinical standards, plainly applied"
-          lead="Aesthetic dermatology has a marketing problem. These four commitments are how we work around it."
-        />
-        <div className="mt-12 grid gap-5 sm:grid-cols-2">
-          {differentiators.map((d, i) => (
-            <div
-              key={d.title}
-              className="rounded-card border border-line bg-surface p-7"
-            >
-              <span className="font-display text-sm font-semibold text-gold-500">
-                {String(i + 1).padStart(2, "0")}
-              </span>
-              <h3 className="mt-3 font-display text-lg font-semibold text-brand-950">
-                {d.title}
-              </h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted">{d.body}</p>
-            </div>
-          ))}
-        </div>
-      </Section>
-
-      {/* Testimonials */}
+      {/* Patient stories */}
       <Section className="bg-surface">
         <SectionHeading
           eyebrow="Patient stories"
@@ -130,7 +108,7 @@ export default function Home() {
                 ))}
               </div>
               <blockquote className="mt-4 flex-1 text-sm leading-relaxed text-brand-900">
-                “{t.quote}”
+                &ldquo;{t.quote}&rdquo;
               </blockquote>
               <figcaption className="mt-6 border-t border-line pt-4">
                 <p className="text-sm font-semibold text-brand-950">{t.name}</p>
