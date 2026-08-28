@@ -81,8 +81,13 @@ export default function NourishSection({
     <section
       ref={ref}
       aria-label={word}
-      className="relative isolate overflow-hidden bg-gold-50 py-20 sm:py-24"
+      className="relative isolate overflow-hidden bg-gradient-to-b from-gold-50 via-[#f4f3ea] to-[#eef0e4] py-20 sm:py-24"
     >
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute left-1/2 top-1/2 h-[30rem] w-[52rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/70 blur-[90px]"
+      />
+
       <div className="relative mx-auto h-[22rem] w-full max-w-[90rem] sm:h-[26rem] lg:h-[32rem]">
         {/* Behind the word. Entrance lives on the outer element and parallax on
             the inner one — sharing a node would let the inline transform
@@ -96,7 +101,11 @@ export default function NourishSection({
             {backLayer ? (
               <Image src={backLayer} alt="" fill sizes="100vw" className="object-cover object-bottom" />
             ) : (
-              <BladeGroup blades={backBlades} className="h-full w-full" />
+              <BladeGroup
+                blades={backBlades}
+                idSuffix="back"
+                className="h-full w-full opacity-70 blur-[3px] saturate-[0.85]"
+              />
             )}
           </div>
         </div>
@@ -138,7 +147,11 @@ export default function NourishSection({
                 className="object-cover object-bottom"
               />
             ) : (
-              <BladeGroup blades={frontBlades} className="h-full w-full" />
+              <BladeGroup
+                blades={frontBlades}
+                idSuffix="front"
+                className="h-full w-full drop-shadow-[0_10px_24px_rgb(20_40_22_/_0.35)]"
+              />
             )}
           </div>
         </div>
