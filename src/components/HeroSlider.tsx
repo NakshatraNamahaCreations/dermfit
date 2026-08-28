@@ -55,7 +55,7 @@ export default function HeroSlider() {
         if (Math.abs(dx) > 45) (dx > 0 ? prev : next)();
         touchStartX.current = null;
       }}
-      className="relative isolate -mt-40 min-h-[44rem] overflow-hidden bg-brand-950 focus-visible:outline-none lg:-mt-44 lg:min-h-[50rem]"
+      className="relative isolate -mt-40 min-h-[38rem] overflow-hidden bg-brand-950 focus-visible:outline-none lg:-mt-44 lg:min-h-[42rem]"
     >
       {/* Cross-fading backdrops */}
       {slides.map((slide, i) => (
@@ -105,20 +105,20 @@ export default function HeroSlider() {
       />
 
       {/* Headline block */}
-      <div className="container-page relative flex min-h-[44rem] flex-col justify-center pb-44 pt-40 lg:min-h-[50rem] lg:pb-48 lg:pt-44">
+      <div className="container-page relative flex min-h-[38rem] flex-col justify-center pb-36 pt-40 lg:min-h-[42rem] lg:pb-40 lg:pt-44">
         <div className="lg:flex lg:items-end lg:justify-between lg:gap-12">
           <div className="max-w-2xl">
             <h1 className="font-light uppercase leading-[0.86] tracking-[-0.02em] text-cream [text-shadow:0_2px_28px_rgb(1_18_45_/_0.55)]">
-              <span className="block text-[4.5rem] sm:text-[7rem] lg:text-[9.5rem]">
+              <span className="block text-[3.75rem] sm:text-[6rem] lg:text-[8rem]">
                 {active.title}
               </span>
               {/* Second line carries the logo's gold gradient. */}
-              <span className="block text-gold-gradient text-[4.5rem] sm:text-[7rem] lg:text-[9.5rem]">
+              <span className="block text-gold-gradient text-[3.75rem] sm:text-[6rem] lg:text-[8rem]">
                 {active.titleAccent}
               </span>
             </h1>
 
-            <div className="mt-9 space-y-0.5 text-lg font-semibold uppercase tracking-[0.02em] text-cream sm:text-xl">
+            <div className="mt-7 space-y-0.5 text-lg font-semibold uppercase tracking-[0.02em] text-cream sm:text-xl">
               {active.lines.map((line) => (
                 <p key={line}>{line}</p>
               ))}
@@ -126,7 +126,7 @@ export default function HeroSlider() {
 
             <Link
               href={active.cta.href}
-              className="group mt-9 inline-flex items-center gap-3 rounded-full border border-cream/45 px-7 py-3.5 text-sm font-medium text-cream transition-colors hover:border-cream hover:bg-cream/10"
+              className="group mt-8 inline-flex items-center gap-3 rounded-full border border-cream/45 px-7 py-3.5 text-sm font-medium text-cream transition-colors hover:border-cream hover:bg-cream/10"
             >
               {active.cta.label}
               <svg
