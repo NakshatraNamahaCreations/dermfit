@@ -42,17 +42,23 @@ Almost all copy lives in `src/data/`. Adding a treatment to `services.ts` automa
 
 ## Hero slider
 
-The home page opens with a carousel defined in `src/data/slides.ts`. Each entry
-has an eyebrow, a two-part headline, body lines and two buttons.
+The home page opens with a full-bleed carousel defined in `src/data/slides.ts`.
+Each slide has an eyebrow, a two-part headline (the second half renders in gold),
+two small uppercase lines, two buttons, and an optional card that floats over the
+right of the banner.
 
-Banner artwork should be **2:1, with the subject on the right and open space on
-the left** — the copy sits over that space. Drop a file in `public/` and point a
-slide's `image` at it (e.g. `"/b2.png"`). A slide with `image: null` renders the
-navy brand panel instead, so the carousel works with as few or as many photos as
-you have. Slides 2 and 3 currently use that panel; give them images to swap.
+Banner artwork should be **wide (about 2:1), with the subject on the right and
+open space on the left** — the oversized headline sits over that space. Save
+photos as **JPEG**, not PNG: the same image is ~90% smaller. Drop the file in
+`public/` and point a slide's `image` at it. `image: null` renders the navy brand
+panel instead, so the carousel works with however many photos you have.
 
-Autoplay is 6s, pauses on hover/focus, and is disabled for visitors who have
-"reduce motion" turned on. Arrow keys, dot buttons and touch swipe all work.
+`heroFeatures` and `heroStat` in the same file drive the trust strip along the
+bottom of the banner; they are static, not per-slide. Icons live in
+`src/components/HeroIcons.tsx`.
+
+Autoplay is 7s, pauses on hover/focus, and is off for visitors who have "reduce
+motion" enabled. Arrow keys, dot buttons and touch swipe all work.
 
 ## Design tokens
 

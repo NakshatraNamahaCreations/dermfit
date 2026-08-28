@@ -1,60 +1,75 @@
 export type Slide = {
   id: string;
   eyebrow: string;
+  /** Kept short — this renders very large. Two words is the sweet spot. */
   title: string;
-  titleAccent?: string;
+  titleAccent: string;
+  /** Small uppercase lines under the headline. Two is ideal. */
   lines: string[];
   primary: { label: string; href: string };
   secondary: { label: string; href: string };
+  /** Card floating over the right of the banner. Hidden below lg. */
+  card?: { tag: string; title: string; body: string; href: string; cta: string };
   /**
-   * Banner artwork, 2:1, subject to the RIGHT and open space on the LEFT —
-   * the copy sits over that space. Drop new files in public/ and reference
-   * them here. Leave null to use the navy brand panel instead.
+   * Banner artwork: wide (roughly 2:1), subject on the RIGHT, open space on
+   * the LEFT — the headline sits over that space. Drop files in public/ and
+   * point here. null renders the navy brand panel instead.
    */
   image: string | null;
-  /** Only used when `image` is set: tints the scrim over the open space. */
-  tone?: "light";
 };
 
 export const slides: Slide[] = [
   {
-    id: "radiance",
+    id: "healthy-skin",
     eyebrow: "Skin · Hair · Aesthetics",
-    title: "Radiant Skin,",
-    titleAccent: "Backed by Science.",
-    lines: [
-      "Evidence-based dermatology from Dr Sourab Hegde.",
-      "Diagnosis first, treatment second — always.",
-    ],
+    title: "HEALTHY SKIN,",
+    titleAccent: "HONESTLY DONE.",
+    lines: ["Diagnosis first.", "Treatment second."],
     primary: { label: "Book a consultation", href: "/contact" },
     secondary: { label: "Explore treatments", href: "/services" },
-    image: "/b1.png",
-    tone: "light",
+    card: {
+      tag: "Most booked",
+      title: "Acne & Acne Scar Programme",
+      body: "Clear active breakouts, then remodel the scarring they leave behind.",
+      href: "/services/acne-scar-treatment",
+      cta: "See the protocol",
+    },
+    image: "/hero-1.jpg",
   },
   {
-    id: "hair",
-    eyebrow: "Hair Restoration",
-    title: "Real Regrowth,",
-    titleAccent: "Not Guesswork.",
-    lines: [
-      "Trichoscopy and blood work before any procedure.",
-      "PRP, medical therapy and nutritional correction.",
-    ],
+    id: "radiance",
+    eyebrow: "Pigmentation & Melasma",
+    title: "RADIANT SKIN,",
+    titleAccent: "BACKED BY SCIENCE.",
+    lines: ["Evidence-based dermatology.", "By Dr Sourab Hegde."],
     primary: { label: "Book a consultation", href: "/contact" },
-    secondary: { label: "See hair treatments", href: "/services/hair-loss-treatment" },
-    image: null,
+    secondary: { label: "See pigmentation care", href: "/services/pigmentation-melasma" },
+    card: {
+      tag: "Chronic care",
+      title: "Melasma, Managed Properly",
+      body: "Stability over speed — built on priming and rigorous photoprotection.",
+      href: "/services/pigmentation-melasma",
+      cta: "How we treat it",
+    },
+    image: "/hero-2.jpg",
   },
   {
-    id: "clarity",
+    id: "written-plan",
     eyebrow: "Transparent Care",
-    title: "A Written Plan,",
-    titleAccent: "Before You Commit.",
-    lines: [
-      "Session counts, timelines and costs up front.",
-      "Yours to keep, whether you treat with us or not.",
-    ],
+    title: "A WRITTEN PLAN,",
+    titleAccent: "BEFORE YOU COMMIT.",
+    lines: ["Clear costs up front.", "No pressure to book."],
     primary: { label: "Book a consultation", href: "/contact" },
     secondary: { label: "Why Dermfit", href: "/about" },
     image: null,
   },
 ];
+
+/** Static trust strip along the bottom of the banner — not per-slide. */
+export const heroFeatures = [
+  { icon: "stethoscope", label: "Dermatologist-\nperformed" },
+  { icon: "scan", label: "Diagnosis before\ntreatment" },
+  { icon: "receipt", label: "Transparent\npricing" },
+];
+
+export const heroStat = { value: "18k+", label: "Consultations" };
