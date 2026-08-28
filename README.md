@@ -120,6 +120,16 @@ ALOE_SRC="path/to/photo.png" python make-aloe-layers.py
 Separation is by greenness, so it only works for a plant shot against a neutral
 wall.
 
+`public/ritual-face.png` is the treatment photograph with its backdrop removed
+by `make-face-cutout.py`. Skin and backdrop are both warm, so that one separates
+on saturation (backdrop ~41, skin ~83) combined with connectivity — the mask is
+grown inward from backdrop-coloured border pixels, so nothing it cannot reach is
+ever cut:
+
+```bash
+FACE_SRC="path/to/photo.jpg" python make-face-cutout.py
+```
+
 ## Design tokens
 
 The palette and fonts are defined once as Tailwind v4 `@theme` variables in `src/app/globals.css`: `brand-*` is the navy sampled from the logo (`brand-950` is its exact background, `#01122D`) and `gold-*` spans the logo's gold gradient, plus `ink` / `muted` / `line` / `surface` / `canvas`. Shared `.btn`, `.btn-gold`, `.btn-outline` and `.btn-ghost-light` classes live in the same file. Change the hex values there to rebrand the whole site.

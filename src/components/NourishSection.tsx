@@ -133,18 +133,19 @@ export default function NourishSection({
           </div>
         </div>
 
-        {/* Object slot 2 — the treatment photograph, as a card */}
+        {/* Object slot 2 — the treatment photograph, cut out like the plant */}
         <div className="pointer-events-none absolute inset-x-0 bottom-[6%] flex justify-center">
           <div
-            className="relative h-[46vh] w-[min(58vw,20rem)] overflow-hidden rounded-[1.75rem] shadow-2xl shadow-forest/25 will-change-transform sm:h-[52vh]"
+            className="w-[min(56vw,19rem)] will-change-transform"
             style={{ transform: `translate3d(0, ${faceY}%, 0)` }}
           >
             <Image
-              src="/ritual-face.jpg"
+              src="/ritual-face.png"
               alt=""
-              fill
-              sizes="(min-width: 1024px) 320px, 58vw"
-              className="object-cover object-center"
+              width={1200}
+              height={1714}
+              sizes="(min-width: 1024px) 304px, 56vw"
+              className="h-auto w-full drop-shadow-[0_24px_48px_rgb(30_47_33_/_0.25)]"
             />
           </div>
         </div>
