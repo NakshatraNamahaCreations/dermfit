@@ -6,6 +6,7 @@ import NourishSection from "@/components/NourishSection";
 import WhyChooseUs from "@/components/WhyChooseUs";
 import FirstVisit from "@/components/FirstVisit";
 import PatientStories from "@/components/PatientStories";
+import NewsletterBand from "@/components/NewsletterBand";
 import FAQ from "@/components/FAQ";
 
 export default function Home() {
@@ -22,6 +23,8 @@ export default function Home() {
       <FirstVisit />
 
       <PatientStories />
+
+      <NewsletterBand />
 
       {/* FAQ */}
       <Section>
