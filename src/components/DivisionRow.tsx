@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { divisions, treatmentCount } from "@/data/catalogue";
+import { divisions } from "@/data/catalogue";
 import Reveal from "./Reveal";
 
 /**
@@ -10,8 +10,9 @@ import Reveal from "./Reveal";
 export default function DivisionRow({
   // The scroll sequence further down already says "Six divisions, one clinic",
   // so this leads differently rather than repeating it.
-  label = "Areas of care",
-}: { label?: string } = {}) {
+  label = "Where to begin",
+  lead = "Bring us the concern, not a procedure name. These are the six areas we work across — the consultation decides which one it belongs to.",
+}: { label?: string; lead?: string } = {}) {
   return (
     <section className="relative overflow-hidden bg-gradient-to-b from-gold-50 to-canvas py-20 sm:py-24">
       <div className="mx-auto w-full max-w-[92rem] px-5">
@@ -24,9 +25,8 @@ export default function DivisionRow({
           <span aria-hidden="true" className="h-px flex-1 bg-gradient-to-l from-transparent to-gold-400/60" />
         </div>
 
-        <p className="mx-auto mt-5 max-w-xl text-center text-sm leading-relaxed text-muted">
-          {treatmentCount} treatments, grouped by the kind of problem each one solves — so
-          you can start from the concern rather than the procedure name.
+        <p className="mx-auto mt-5 max-w-xl text-center text-base leading-relaxed text-muted">
+          {lead}
         </p>
 
         <ol className="mt-12 grid grid-cols-2 gap-x-4 gap-y-10 sm:grid-cols-3 lg:flex lg:items-start lg:gap-0">
