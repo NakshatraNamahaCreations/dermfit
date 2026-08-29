@@ -4,9 +4,9 @@ import HeroSlider from "@/components/HeroSlider";
 import AboutShowcase from "@/components/AboutShowcase";
 import NourishSection from "@/components/NourishSection";
 import WhyChooseUs from "@/components/WhyChooseUs";
+import FirstVisit from "@/components/FirstVisit";
 import FAQ from "@/components/FAQ";
 import { testimonials } from "@/data/content";
-import { site } from "@/data/site";
 
 export default function Home() {
   return (
@@ -19,67 +19,7 @@ export default function Home() {
 
       <NourishSection />
 
-      {/* What a first visit looks like */}
-      <Section>
-        <div className="grid gap-12 lg:grid-cols-[1fr_1fr] lg:items-center">
-          <div>
-            <p className="inline-flex items-center gap-2 rounded-full border border-gold-200 bg-gold-50 px-3.5 py-1.5 text-xs font-medium text-gold-700">
-              <span className="h-1.5 w-1.5 rounded-full bg-gold-500" />
-              Dermatology clinic · Dr Sourab Hegde · Bengaluru
-            </p>
-            <h2 className="mt-6 font-display text-3xl font-semibold leading-tight tracking-tight text-brand-950 sm:text-4xl">
-              Skin and hair care that starts with the right diagnosis
-            </h2>
-            <p className="mt-5 max-w-xl text-base leading-relaxed text-muted">
-              Dermfit is a clinical dermatology practice. We diagnose before we treat, tell you
-              honestly what will and will not improve, and price every plan in writing.
-            </p>
-
-
-          </div>
-
-          <div className="rounded-card border border-line bg-surface p-8 shadow-xl shadow-brand-950/5">
-            <p className="eyebrow">What a first visit looks like</p>
-            <ol className="mt-6 space-y-6">
-              {[
-                {
-                  t: "Examination & imaging",
-                  d: "Dermoscopy, trichoscopy or a lamp assessment — whatever your concern needs.",
-                },
-                {
-                  t: "Explanation",
-                  d: "What is actually happening in your skin, in plain language.",
-                },
-                {
-                  t: "A written plan",
-                  d: "Options, session counts, timelines and per-session cost.",
-                },
-                {
-                  t: "No pressure to book",
-                  d: "Take the plan away. It is yours whether you treat here or not.",
-                },
-              ].map((item, i) => (
-                <li key={item.t} className="flex gap-4">
-                  <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-brand-900 text-xs font-semibold text-gold-200">
-                    {i + 1}
-                  </span>
-                  <div>
-                    <p className="font-medium text-brand-950">{item.t}</p>
-                    <p className="mt-1 text-sm leading-relaxed text-muted">{item.d}</p>
-                  </div>
-                </li>
-              ))}
-            </ol>
-            <div className="mt-7 rounded-xl bg-canvas p-4 text-sm text-muted">
-              Consultation fee is adjusted against your first treatment.{" "}
-              <a href={site.phoneHref} className="font-medium text-gold-700 hover:underline">
-                Call us
-              </a>{" "}
-              to check availability.
-            </div>
-          </div>
-        </div>
-      </Section>
+      <FirstVisit />
 
       {/* Patient stories */}
       <Section className="bg-surface">
