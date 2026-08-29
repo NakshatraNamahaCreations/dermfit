@@ -33,7 +33,7 @@ export default function FirstVisit() {
         className="pointer-events-none absolute -left-40 top-10 h-96 w-96 rounded-full bg-gold-200/25 blur-3xl"
       />
 
-      <div className="container-page relative grid gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:items-center lg:gap-16">
+      <div className="relative mx-auto grid w-full max-w-[88rem] gap-12 px-5 lg:grid-cols-[0.95fr_1.05fr] lg:items-center lg:gap-20">
         {/* The pitch */}
         <Reveal from="left">
           <p className="inline-flex items-center gap-2 rounded-full border border-gold-200 bg-surface px-3.5 py-1.5 text-xs font-medium text-gold-700">
@@ -46,12 +46,12 @@ export default function FirstVisit() {
             <span className="block text-gold-gradient">start to finish</span>
           </h2>
 
-          <p className="mt-5 max-w-lg text-base leading-relaxed text-muted">
+          <p className="mt-5 max-w-xl text-base leading-relaxed text-muted">
             Thirty minutes, and you leave knowing exactly what is going on and what it
             would cost to treat — whether or not you book anything.
           </p>
 
-          <dl className="mt-9 grid max-w-md grid-cols-3 gap-4">
+          <dl className="mt-9 grid max-w-lg grid-cols-3 gap-4">
             {[
               { v: YEARS, l: "Years in practice" },
               { v: String(treatmentCount), l: "Treatments" },
