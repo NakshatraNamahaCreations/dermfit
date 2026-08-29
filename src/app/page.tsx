@@ -24,8 +24,6 @@ export default function Home() {
 
       <PatientStories />
 
-      <NewsletterBand />
-
       {/* FAQ */}
       <Section>
         <SectionHeading eyebrow="Questions" title="Before you book" align="center" />
@@ -35,6 +33,8 @@ export default function Home() {
       </Section>
 
       <BlogSection />
+
+      <NewsletterBand />
     </>
   );
 }
