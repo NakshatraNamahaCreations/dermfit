@@ -132,6 +132,19 @@ stay upright. Seat positions are rounded to fixed precision — raw trig produce
 values like `32.999999999999986` that can serialise differently on the server
 and trip a hydration mismatch.
 
+## Journal covers
+
+The site's photography is clinical and reusing it across the blog made every
+card look alike, so the post covers are generated from the brand palette — one
+composition per subject:
+
+```bash
+python make-post-covers.py
+```
+
+Writes `public/post-*.jpg`. Swap any of them for real photography by pointing a
+post's `image` at a different file in `src/data/posts.ts`.
+
 ## Design tokens
 
 The palette and fonts are defined once as Tailwind v4 `@theme` variables in `src/app/globals.css`: `brand-*` is the navy sampled from the logo (`brand-950` is its exact background, `#01122D`) and `gold-*` spans the logo's gold gradient, plus `ink` / `muted` / `line` / `surface` / `canvas`. Shared `.btn`, `.btn-gold`, `.btn-outline` and `.btn-ghost-light` classes live in the same file. Change the hex values there to rebrand the whole site.
