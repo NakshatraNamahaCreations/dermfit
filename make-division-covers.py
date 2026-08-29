@@ -25,7 +25,12 @@ def crop(img, focus=(0.5, 0.5)):
         new_h = int(img.width / want)
         top = int((img.height - new_h) * focus[1])
         box = (0, top, img.width, top + new_h)
-    return img.crop(box).resize((W, H), Image.LANCZOS)
+    cut = img.crop(box)
+    # Never upscale: a small or very wide source leaves little to crop from, and
+    # blowing it up to the nominal size only adds softness. The discs render at
+    # ~112px, so anything above that is already plenty.
+    out_w = min(W, cut.width)
+    return cut.resize((out_w, round(out_w / (W / H))), Image.LANCZOS)
 
 
 def grade(img, tint, strength, brightness=1.0, contrast=1.0, saturation=1.0):
@@ -95,6 +100,10 @@ SRC_AESTHETIC = os.environ.get(
 SRC_HAIR = os.environ.get(
     "SRC_HAIR", "public/beautician-protective-mask-doing-procedure-hair.jpg"
 )
+SRC_BODY = os.environ.get(
+    "SRC_BODY",
+    "public/body-contouring-treatments-your-complete-guide-178379-1024x512.webp",
+)
 SRC_LASER = os.environ.get(
     "SRC_LASER", "public/female-patient-receiving-cosmetic-treatment.jpg"
 )
@@ -133,13 +142,8 @@ from_photo(SRC_LASER, "division-laser", focus=(0.55, 0.5),
            tint=(246, 248, 253), strength=0.16, brightness=1.01, contrast=1.05,
            saturation=0.93)
 
-# 06 Body — foliage on cream, light and open.
-foliage = on_ground("public/leaf-left.png", (246, 240, 227), scale=2.1, offset=(-0.16, 0.06))
-_spray = Image.open("public/leaf-right.png").convert("RGBA")
-_sh = int(H * 1.5)
-_spray = _spray.resize((round(_spray.width * _sh / _spray.height), _sh), Image.LANCZOS)
-foliage.paste(_spray, (int(W * 0.1), int(H * 0.3)), _spray)
-save(
-    grade(foliage, (255, 244, 222), 0.3, brightness=1.05, contrast=1.02, saturation=0.95),
-    "division-body",
-)
+# 06 Body — supplied contouring photograph. It is 2:1, so a 3:4 crop is a
+# narrow slice; framed on the handpiece against the décolletage.
+from_photo(SRC_BODY, "division-body", focus=(0.45, 0.5),
+           tint=(255, 250, 244), strength=0.14, brightness=1.02, contrast=1.04,
+           saturation=0.96)
