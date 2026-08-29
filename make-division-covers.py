@@ -95,6 +95,11 @@ SRC_AESTHETIC = os.environ.get(
 SRC_HAIR = os.environ.get(
     "SRC_HAIR", "public/beautician-protective-mask-doing-procedure-hair.jpg"
 )
+SRC_REGEN = os.environ.get(
+    "SRC_REGEN",
+    "public/client-beautician-s-appointment-consultation-face-shaping-preparation-"
+    "upcoming-procedures-visual-examination-problem-areas.jpg",
+)
 
 # 01 Clinical — supplied consultation photograph. Barely graded: these are real
 # clinical frames and should look like it.
@@ -113,13 +118,11 @@ from_photo(SRC_HAIR, "division-hair", focus=(0.8, 0.5),
            tint=(248, 249, 252), strength=0.16, brightness=1.02, contrast=1.05,
            saturation=0.94)
 
-# 04 Regenerative — the serum portrait on deep navy.
-save(
-    grade(crop(on_ground("public/about-portrait.png", (4, 22, 52), scale=1.75, offset=(0.02, 0.14)),
-               focus=(0.5, 0.3)), (214, 226, 255), 0.26, brightness=1.0, contrast=1.06,
-          saturation=0.95),
-    "division-regenerative",
-)
+# 04 Regenerative — supplied consultation photograph, cropped right so the
+# patient and the examining hands fill the disc.
+from_photo(SRC_REGEN, "division-regenerative", focus=(0.8, 0.5),
+           tint=(250, 248, 250), strength=0.16, brightness=1.02, contrast=1.04,
+           saturation=0.95)
 
 # 05 Lasers — the aloe treatment frame, cooled and contrasty.
 save(
