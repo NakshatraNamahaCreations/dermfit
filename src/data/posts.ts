@@ -1,0 +1,99 @@
+/**
+ * Blog posts.
+ *
+ * IMPORTANT: the article bodies below are placeholder editorial written to
+ * populate the layout. They are deliberately general — no dosages, protocols or
+ * prescribing advice — but they are NOT clinically reviewed and are published
+ * under the clinic's name. Dr Hegde should rewrite or sign off on every one
+ * before this goes live.
+ */
+export type Post = {
+  slug: string;
+  title: string;
+  excerpt: string;
+  category: string;
+  /** ISO date, used for <time> and sorting. */
+  date: string;
+  readingMinutes: number;
+  image: string;
+  /** Paragraphs. Keep them short. */
+  body: string[];
+};
+
+export const posts: Post[] = [
+  {
+    slug: "why-melasma-comes-back",
+    title: "Why melasma keeps coming back",
+    excerpt:
+      "Pigment that clears and then returns is not treatment failure — it is the nature of the condition, and it changes how you should plan for it.",
+    category: "Pigmentation",
+    date: "2026-08-14",
+    readingMinutes: 5,
+    image: "/why-choose.jpg",
+    body: [
+      "Melasma is a chronic, relapsing condition. That single fact explains most of the frustration people bring to a first consultation: a course of treatment works, the pigment fades, and some months later it is back. Patients often read that as the treatment having failed. Usually it has not.",
+      "What drives melasma — sun exposure, heat, hormonal shifts — does not stop when a course of peels ends. Unless those triggers are managed continuously, pigment-producing cells go back to doing what they were doing before.",
+      "This is why we prime the skin for several weeks before any in-clinic procedure, and why photoprotection is treated as part of the treatment rather than advice given on the way out. A plan that ends when the sessions end is a plan that will disappoint you.",
+      "The realistic goal is control, not cure. Managed properly, most people reach a stable maintenance phase with long quiet periods. Anyone promising permanent clearance in a fixed number of sittings is describing a different condition.",
+    ],
+  },
+  {
+    slug: "reading-a-hair-fall-diagnosis",
+    title: "Hair fall: what the diagnosis actually tells you",
+    excerpt:
+      "Shedding has many causes, and they need different treatments. Trichoscopy and blood work exist to tell them apart before anyone spends money.",
+    category: "Trichology",
+    date: "2026-07-29",
+    readingMinutes: 6,
+    image: "/hero-2.jpg",
+    body: [
+      "Hair fall is a symptom, not a diagnosis. Androgenetic hair loss, telogen effluvium after an illness or pregnancy, an autoimmune process, and a nutritional deficiency can all present as hair coming out in the shower — and they respond to entirely different treatment.",
+      "That is why the first appointment is spent on trichoscopy and, where indicated, blood work rather than on starting a procedure. Magnified imaging shows whether follicles are miniaturising or simply shedding, and lab work picks up the deficiencies that no in-clinic procedure will fix.",
+      "It matters commercially as well as clinically. A course of PRP for shedding that turns out to be thyroid-related is months and money spent on the wrong problem, while the actual cause goes untreated.",
+      "If a clinic offers you a hair treatment package before it has examined your scalp under magnification, that is worth questioning.",
+    ],
+  },
+  {
+    slug: "what-a-written-plan-should-contain",
+    title: "What a written treatment plan should contain",
+    excerpt:
+      "Before you commit to anything, you should be holding a document that says what, how many, how long and how much. Here is what to look for.",
+    category: "Clinic",
+    date: "2026-07-11",
+    readingMinutes: 4,
+    image: "/hero-1.jpg",
+    body: [
+      "A consultation should end with something you can take away and think about. Not a quote for a package, and not a verbal summary you will half-remember — a written plan.",
+      "It should name the diagnosis, the proposed treatment, the expected number of sessions and their spacing, what improvement is realistic, what will not improve, and the cost per session rather than a bundled total.",
+      "The last two matter most. Being told which scars will respond and which will not is more useful than an optimistic estimate, and per-session pricing lets you stop at any point rather than committing up front to a course you cannot leave.",
+      "You should never feel that leaving without booking is a problem. The plan is yours either way.",
+    ],
+  },
+  {
+    slug: "sunscreen-questions-worth-asking",
+    title: "The only sunscreen questions worth asking",
+    excerpt:
+      "Most of what is argued about online does not matter much. A short list of things that genuinely affect whether your sunscreen works.",
+    category: "Skin care",
+    date: "2026-06-23",
+    readingMinutes: 4,
+    image: "/about-portrait.png",
+    body: [
+      "Sunscreen is the single most useful thing in most skincare routines, and also the product people get most confused about. Much of the online argument is between formulations that would all work if applied properly.",
+      "The questions that actually matter: will you use it every day, is it broad spectrum, and are you applying enough of it. Under-application is far more common than any formulation problem — most people use a fraction of the amount products are tested at.",
+      "For pigmentary conditions there is a further consideration: visible light contributes to melasma, and a tinted formulation offers protection that a clear one does not.",
+      "Beyond that, the best sunscreen is the one whose texture you can tolerate daily. A technically superior product sitting unused in a drawer protects nothing.",
+    ],
+  },
+];
+
+export function getPost(slug: string) {
+  return posts.find((p) => p.slug === slug);
+}
+
+export const formatPostDate = (iso: string) =>
+  new Date(iso).toLocaleDateString("en-GB", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });

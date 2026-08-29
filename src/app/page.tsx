@@ -1,5 +1,5 @@
 import { Section, SectionHeading } from "@/components/Section";
-import CTA from "@/components/CTA";
+import BlogSection from "@/components/BlogSection";
 import HeroSlider from "@/components/HeroSlider";
 import AboutShowcase from "@/components/AboutShowcase";
 import NourishSection from "@/components/NourishSection";
@@ -34,7 +34,7 @@ export default function Home() {
         </div>
       </Section>
 
-      <CTA />
+      <BlogSection />
     </>
   );
 }
