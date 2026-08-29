@@ -1,4 +1,3 @@
-import { Section, SectionHeading } from "@/components/Section";
 import BlogSection from "@/components/BlogSection";
 import HeroSlider from "@/components/HeroSlider";
 import AboutShowcase from "@/components/AboutShowcase";
@@ -7,7 +6,7 @@ import WhyChooseUs from "@/components/WhyChooseUs";
 import FirstVisit from "@/components/FirstVisit";
 import PatientStories from "@/components/PatientStories";
 import NewsletterBand from "@/components/NewsletterBand";
-import FAQ from "@/components/FAQ";
+import FaqSection from "@/components/FaqSection";
 
 export default function Home() {
   return (
@@ -24,13 +23,7 @@ export default function Home() {
 
       <PatientStories />
 
-      {/* FAQ */}
-      <Section>
-        <SectionHeading eyebrow="Questions" title="Before you book" align="center" />
-        <div className="mx-auto max-w-3xl">
-          <FAQ />
-        </div>
-      </Section>
+      <FaqSection />
 
       <BlogSection />
 
