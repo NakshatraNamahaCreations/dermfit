@@ -36,12 +36,7 @@ export default function FirstVisit() {
       <div className="relative mx-auto grid w-full max-w-[88rem] gap-12 px-5 lg:grid-cols-[0.95fr_1.05fr] lg:items-center lg:gap-20">
         {/* The pitch */}
         <Reveal from="left">
-          <p className="inline-flex items-center gap-2 rounded-full border border-gold-200 bg-surface px-3.5 py-1.5 text-xs font-medium text-gold-700">
-            <span className="h-1.5 w-1.5 rounded-full bg-gold-500" />
-            Dermatology clinic · {site.byline.replace("by ", "")} · Bengaluru
-          </p>
-
-          <h2 className="mt-6 font-display text-4xl font-semibold leading-[1.1] tracking-tight text-brand-950 sm:text-5xl">
+          <h2 className="font-display text-4xl font-semibold leading-[1.1] tracking-tight text-brand-950 sm:text-5xl">
             Your first visit,
             <span className="block text-gold-gradient">start to finish</span>
           </h2>
