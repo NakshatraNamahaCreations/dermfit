@@ -65,23 +65,37 @@ def on_ground(src, ground, scale=1.0, offset=(0.0, 0.0)):
 
 def save(img, name):
     path = "public/%s.jpg" % name
-    foot_scrim(img).save(path, quality=84, optimize=True, progressive=True)
+    img.save(path, quality=84, optimize=True, progressive=True)
     print("%-32s %4d KB" % (path, os.path.getsize(path) / 1024))
 
 
 photo = lambda p: Image.open(p).convert("RGB")
 
-# 01 Clinical — the examination frame, neutral and clinical.
+# Supplied clinical photography. Set these to wherever the originals live; the
+# generated discs are what ships, the originals are not kept in the repo.
+SRC_CLINICAL = os.environ.get(
+    "SRC_CLINICAL", "public/female-cosmetologist-making-facial-treatment-beautiful-woma.jpg"
+)
+SRC_AESTHETIC = os.environ.get(
+    "SRC_AESTHETIC", "public/high-angle-woman-getting-injection.jpg"
+)
+
+# 01 Clinical — supplied consultation photograph. Barely graded: it is a real
+# clinical frame and should look like one.
 save(
-    grade(crop(photo("public/hero-1.jpg"), focus=(0.62, 0.4)), (236, 240, 246), 0.34,
-          brightness=1.03, contrast=1.05, saturation=0.8),
+    grade(
+        crop(photo(SRC_CLINICAL), focus=(0.56, 0.46)),
+        (246, 248, 252), 0.16, brightness=1.03, contrast=1.03, saturation=0.94,
+    ),
     "division-clinical",
 )
 
-# 02 Aesthetic — the golden treatment frame, warm and rich.
+# 02 Aesthetic — supplied injectables photograph.
 save(
-    grade(crop(photo("public/hero-2.jpg"), focus=(0.66, 0.35)), (255, 232, 198), 0.4,
-          brightness=1.04, contrast=1.05, saturation=1.05),
+    grade(
+        crop(photo(SRC_AESTHETIC), focus=(0.5, 0.5)),
+        (250, 246, 244), 0.16, brightness=1.02, contrast=1.04, saturation=0.96,
+    ),
     "division-aesthetic",
 )
 
