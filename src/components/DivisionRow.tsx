@@ -10,8 +10,8 @@ import Reveal from "./Reveal";
 export default function DivisionRow({
   // The scroll sequence further down already says "Six divisions, one clinic",
   // so this leads differently rather than repeating it.
-  label = "Where to begin",
-  lead = "Bring us the concern, not a procedure name. These are the six areas we work across — the consultation decides which one it belongs to.",
+  label = "What we look after",
+  lead = "Medical, aesthetic and regenerative care under one roof — and a dermatologist, not a price list, deciding which of it you actually need.",
 }: { label?: string; lead?: string } = {}) {
   return (
     <section className="relative overflow-hidden bg-gradient-to-b from-gold-50 to-canvas py-20 sm:py-24">
