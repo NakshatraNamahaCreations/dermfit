@@ -1,100 +1,174 @@
+import Image from "next/image";
 import Link from "next/link";
 import { nav, site } from "@/data/site";
-import { services } from "@/data/services";
+import { divisions } from "@/data/catalogue";
 import Logo from "./Logo";
+import SocialIcon from "./SocialIcon";
+
+const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+  `${site.name} ${site.address.line1} ${site.address.line2}`,
+)}`;
 
 export default function Footer() {
   return (
-    <footer className="mt-24 bg-brand-950 text-brand-100">
+    <footer className="relative isolate overflow-hidden bg-brand-950 text-brand-100">
       <div className="h-px w-full bg-gradient-to-r from-transparent via-gold-500/60 to-transparent" />
-      <div className="container-page grid gap-12 py-16 md:grid-cols-4">
-        <div className="md:col-span-1">
+
+      {/* Ground */}
+      <Image
+        src="/leaf-left.png"
+        alt=""
+        width={964}
+        height={1011}
+        sizes="420px"
+        aria-hidden="true"
+        className="pointer-events-none absolute -bottom-16 -left-16 hidden w-96 opacity-[0.07] lg:block"
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -right-24 top-0 h-96 w-96 rounded-full bg-gold-400/10 blur-3xl"
+      />
+
+      <div className="container-page relative grid gap-12 py-16 sm:py-20 lg:grid-cols-12 lg:gap-8">
+        {/* Brand */}
+        <div className="lg:col-span-4">
           <Logo height={560} sizes="200px" className="h-auto w-48 max-w-full" />
           <p className="mt-5 max-w-xs text-sm leading-relaxed text-brand-200">
             {site.description}
           </p>
-          <div className="mt-5 flex gap-3">
+
+          <Link
+            href="/contact"
+            className="mt-6 inline-block rounded-full bg-gradient-to-br from-gold-300 to-gold-600 px-6 py-3 text-sm font-semibold text-brand-950 transition-opacity hover:opacity-90"
+          >
+            Book a consultation
+          </Link>
+
+          <div className="mt-7 flex gap-2.5">
             {site.socials.map((s) => (
               <a
                 key={s.label}
                 href={s.href}
                 target="_blank"
                 rel="noreferrer noopener"
-                className="rounded-full border border-white/15 px-3 py-1.5 text-xs font-medium text-brand-200 transition-colors hover:border-gold-500 hover:text-gold-200"
+                aria-label={s.label}
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 text-brand-200 transition-colors hover:border-gold-400 hover:text-gold-300"
               >
-                {s.label}
+                <SocialIcon name={s.label} />
               </a>
             ))}
           </div>
         </div>
 
-        <div>
-          <h3 className="text-xs font-semibold uppercase tracking-[0.14em] text-gold-400">
-            Pages
-          </h3>
-          <ul className="mt-4 space-y-2.5 text-sm">
+        {/* Explore */}
+        <nav className="lg:col-span-2" aria-label="Footer">
+          <h2 className="text-xs font-semibold uppercase tracking-[0.16em] text-gold-400">
+            Explore
+          </h2>
+          <ul className="mt-5 space-y-3 text-sm">
             {nav.map((item) => (
               <li key={item.href}>
-                <Link href={item.href} className="text-brand-200 hover:text-white">
+                <Link
+                  href={item.href}
+                  className="text-brand-200 transition-colors hover:text-gold-300"
+                >
                   {item.label}
                 </Link>
               </li>
             ))}
           </ul>
-        </div>
+        </nav>
 
-        <div>
-          <h3 className="text-xs font-semibold uppercase tracking-[0.14em] text-gold-400">
-            Treatments
-          </h3>
-          <ul className="mt-4 space-y-2.5 text-sm">
-            {services.slice(0, 5).map((s) => (
-              <li key={s.slug}>
-                <Link href={`/services/${s.slug}`} className="text-brand-200 hover:text-white">
-                  {s.title}
+        {/* Divisions */}
+        <div className="lg:col-span-3">
+          <h2 className="text-xs font-semibold uppercase tracking-[0.16em] text-gold-400">
+            Divisions
+          </h2>
+          <ul className="mt-5 space-y-3 text-sm">
+            {divisions.map((d) => (
+              <li key={d.slug}>
+                <Link
+                  href="/services#catalogue"
+                  className="text-brand-200 transition-colors hover:text-gold-300"
+                >
+                  {d.title}
                 </Link>
               </li>
             ))}
           </ul>
         </div>
 
-        <div>
-          <h3 className="text-xs font-semibold uppercase tracking-[0.14em] text-gold-400">
+        {/* Visit */}
+        <div className="lg:col-span-3">
+          <h2 className="text-xs font-semibold uppercase tracking-[0.16em] text-gold-400">
             Visit
-          </h3>
-          <address className="mt-4 space-y-1 text-sm not-italic text-brand-200">
+          </h2>
+
+          <address className="mt-5 space-y-1 text-sm not-italic leading-relaxed text-brand-200">
             <p>{site.address.line1}</p>
             <p>{site.address.line2}</p>
           </address>
-          <div className="mt-4 space-y-1 text-sm">
-            <p>
-              <a href={site.phoneHref} className="text-brand-200 hover:text-white">
+          <a
+            href={mapsUrl}
+            target="_blank"
+            rel="noreferrer noopener"
+            className="mt-2 inline-flex items-center gap-1.5 text-xs font-semibold text-gold-400 transition-colors hover:text-gold-300"
+          >
+            Get directions
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+              <path
+                d="M2 6h8M6.5 2.5 10 6l-3.5 3.5"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </a>
+
+          <ul className="mt-5 space-y-2 text-sm">
+            <li>
+              <a href={site.phoneHref} className="text-brand-200 hover:text-gold-300">
                 {site.phone}
               </a>
-            </p>
-            <p>
-              <a href={`mailto:${site.email}`} className="text-brand-200 hover:text-white">
+            </li>
+            <li>
+              <a href={`mailto:${site.email}`} className="text-brand-200 hover:text-gold-300">
                 {site.email}
               </a>
-            </p>
-          </div>
-          <dl className="mt-4 space-y-1 text-xs text-brand-300">
+            </li>
+            <li>
+              <a
+                href={site.whatsapp}
+                target="_blank"
+                rel="noreferrer noopener"
+                className="text-brand-200 hover:text-gold-300"
+              >
+                WhatsApp
+              </a>
+            </li>
+          </ul>
+
+          <dl className="mt-6 rounded-2xl bg-white/[0.05] p-4 text-xs ring-1 ring-white/10">
+            <h3 className="mb-2.5 text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-gold-400">
+              Opening hours
+            </h3>
             {site.hours.map((h) => (
-              <div key={h.days} className="flex justify-between gap-4">
-                <dt>{h.days}</dt>
-                <dd>{h.time}</dd>
+              <div key={h.days} className="flex justify-between gap-4 py-1">
+                <dt className="text-brand-300">{h.days}</dt>
+                <dd className="text-brand-100">{h.time}</dd>
               </div>
             ))}
           </dl>
         </div>
       </div>
 
-      <div className="border-t border-white/10">
-        <div className="container-page flex flex-col gap-2 py-6 text-xs text-brand-300 sm:flex-row sm:items-center sm:justify-between">
+      <div className="relative border-t border-white/10">
+        <div className="container-page flex flex-col gap-3 py-6 text-xs text-brand-300 sm:flex-row sm:items-center sm:justify-between">
           <p>
             © {new Date().getFullYear()} {site.name} {site.kind}. All rights reserved.
           </p>
-          <p>
+          <p className="sm:max-w-md sm:text-right">
             Information on this site is educational and is not a substitute for a medical
             consultation.
           </p>
