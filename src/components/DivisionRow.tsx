@@ -1,13 +1,17 @@
 import Image from "next/image";
 import Link from "next/link";
-import { divisions } from "@/data/catalogue";
+import { divisions, treatmentCount } from "@/data/catalogue";
 import Reveal from "./Reveal";
 
 /**
  * The six divisions as a single reading line: numbered image discs joined by
  * arrows, each with its title and the treatments it covers.
  */
-export default function DivisionRow() {
+export default function DivisionRow({
+  // The scroll sequence further down already says "Six divisions, one clinic",
+  // so this leads differently rather than repeating it.
+  label = "Areas of care",
+}: { label?: string } = {}) {
   return (
     <section className="relative overflow-hidden bg-gradient-to-b from-gold-50 to-canvas py-20 sm:py-24">
       <div className="mx-auto w-full max-w-[92rem] px-5">
@@ -15,10 +19,15 @@ export default function DivisionRow() {
         <div className="flex items-center gap-5">
           <span aria-hidden="true" className="h-px flex-1 bg-gradient-to-r from-transparent to-gold-400/60" />
           <h2 className="text-center text-sm font-semibold uppercase tracking-[0.24em] text-brand-950 sm:text-base">
-            Six divisions of care
+            {label}
           </h2>
           <span aria-hidden="true" className="h-px flex-1 bg-gradient-to-l from-transparent to-gold-400/60" />
         </div>
+
+        <p className="mx-auto mt-5 max-w-xl text-center text-sm leading-relaxed text-muted">
+          {treatmentCount} treatments, grouped by the kind of problem each one solves — so
+          you can start from the concern rather than the procedure name.
+        </p>
 
         <ol className="mt-12 grid grid-cols-2 gap-x-4 gap-y-10 sm:grid-cols-3 lg:flex lg:items-start lg:gap-0">
           {divisions.map((d, i) => (
