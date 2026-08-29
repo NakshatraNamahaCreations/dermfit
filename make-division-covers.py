@@ -71,6 +71,19 @@ def save(img, name):
 
 photo = lambda p: Image.open(p).convert("RGB")
 
+
+def from_photo(src, name, **kw):
+    """Build a disc from a supplied photograph.
+
+    The multi-megabyte originals are not kept in the repo, so a missing source
+    is not an error — the disc already generated from it is left in place and
+    the rest of the script still runs. Point SRC_* at the file to rebuild one.
+    """
+    if not os.path.exists(src):
+        print("%-32s skipped (source not present: %s)" % ("public/%s.jpg" % name, src))
+        return
+    save(grade(crop(photo(src), focus=kw.pop("focus")), **kw), name)
+
 # Supplied clinical photography. Set these to wherever the originals live; the
 # generated discs are what ships, the originals are not kept in the repo.
 SRC_CLINICAL = os.environ.get(
@@ -79,33 +92,26 @@ SRC_CLINICAL = os.environ.get(
 SRC_AESTHETIC = os.environ.get(
     "SRC_AESTHETIC", "public/high-angle-woman-getting-injection.jpg"
 )
-
-# 01 Clinical — supplied consultation photograph. Barely graded: it is a real
-# clinical frame and should look like one.
-save(
-    grade(
-        crop(photo(SRC_CLINICAL), focus=(0.56, 0.46)),
-        (246, 248, 252), 0.16, brightness=1.03, contrast=1.03, saturation=0.94,
-    ),
-    "division-clinical",
+SRC_HAIR = os.environ.get(
+    "SRC_HAIR", "public/beautician-protective-mask-doing-procedure-hair.jpg"
 )
+
+# 01 Clinical — supplied consultation photograph. Barely graded: these are real
+# clinical frames and should look like it.
+from_photo(SRC_CLINICAL, "division-clinical", focus=(0.56, 0.46),
+           tint=(246, 248, 252), strength=0.16, brightness=1.03, contrast=1.03,
+           saturation=0.94)
 
 # 02 Aesthetic — supplied injectables photograph.
-save(
-    grade(
-        crop(photo(SRC_AESTHETIC), focus=(0.5, 0.5)),
-        (250, 246, 244), 0.16, brightness=1.02, contrast=1.04, saturation=0.96,
-    ),
-    "division-aesthetic",
-)
+from_photo(SRC_AESTHETIC, "division-aesthetic", focus=(0.5, 0.5),
+           tint=(250, 246, 244), strength=0.16, brightness=1.02, contrast=1.04,
+           saturation=0.96)
 
-# 03 Trichology — cropped to the head, cool and close.
-save(
-    grade(crop(on_ground("public/ritual-face.png", (8, 30, 64), scale=1.7, offset=(0.02, 0.22)),
-               focus=(0.5, 0.3)), (198, 216, 255), 0.3, brightness=0.98, contrast=1.08,
-          saturation=0.9),
-    "division-hair",
-)
+# 03 Trichology — supplied scalp treatment photograph, cropped to the hands and
+# hairline rather than the centre of the frame.
+from_photo(SRC_HAIR, "division-hair", focus=(0.8, 0.5),
+           tint=(248, 249, 252), strength=0.16, brightness=1.02, contrast=1.05,
+           saturation=0.94)
 
 # 04 Regenerative — the serum portrait on deep navy.
 save(
