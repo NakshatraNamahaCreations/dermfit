@@ -27,8 +27,8 @@ const seg = (p: number, a: number, b: number) => clamp((p - a) / (b - a), 0, 1);
 const ease = (t: number) => 1 - Math.pow(1 - t, 3);
 
 /** Hexagon around the portrait, offset so nothing sits directly above or below. */
-const RX = 36;
-const RY = 30;
+const RX = 40;
+const RY = 31;
 // Rounded: raw trig yields values like 32.999999999999986, which can serialise
 // differently on the server and in the browser and trip a hydration mismatch.
 const round = (n: number) => Number(n.toFixed(3));
@@ -198,7 +198,7 @@ export default function NourishSection({
         </div>
 
         {/* The portrait — rises, then holds while the divisions orbit it */}
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 top-[16%] flex items-center justify-center">
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 top-[20%] flex items-center justify-center">
           <div
             className="w-[min(62vw,20rem)] will-change-transform"
             style={{ transform: `translate3d(0, ${portraitY}%, 0)` }}
@@ -215,9 +215,9 @@ export default function NourishSection({
         </div>
 
         {/* The divisions, orbiting the portrait */}
-        <div className="absolute inset-x-0 bottom-0 top-[16%] hidden lg:block">
+        <div className="absolute inset-x-0 bottom-0 top-[20%] hidden lg:block">
           <div
-            className="absolute inset-0 mx-auto max-w-6xl will-change-transform"
+            className="absolute inset-0 mx-auto max-w-7xl will-change-transform"
             style={{ transform: `rotate(${angle}deg) scale(${scale})` }}
           >
             {divisions.map((d, i) => {
@@ -227,7 +227,7 @@ export default function NourishSection({
               return (
                 <div
                   key={d.slug}
-                  className="absolute w-56"
+                  className="absolute w-60"
                   style={{
                     left: `${seat.x}%`,
                     top: `${seat.y}%`,
@@ -243,17 +243,17 @@ export default function NourishSection({
                     }}
                   >
                     <span
-                      className={`flex h-12 w-12 items-center justify-center rounded-full bg-surface text-brand-900 shadow-sm ring-1 ring-brand-100 transition-colors group-hover:bg-brand-950 group-hover:text-gold-300 ${
+                      className={`flex h-14 w-14 items-center justify-center rounded-full bg-surface text-brand-900 shadow-sm ring-1 ring-brand-100 transition-colors group-hover:bg-brand-950 group-hover:text-gold-300 ${
                         right ? "" : "ml-auto"
                       }`}
                     >
-                      <DivisionIcon name={d.icon} className="h-5 w-5" />
+                      <DivisionIcon name={d.icon} className="h-6 w-6" />
                     </span>
-                    <h3 className="mt-2.5 text-sm font-bold leading-snug tracking-[-0.01em] text-brand-950">
+                    <h3 className="mt-3 text-base font-bold leading-snug tracking-[-0.01em] text-brand-950">
                       {d.title}
                     </h3>
-                    <p className="mt-1 text-[0.72rem] leading-relaxed text-muted">{d.blurb}</p>
-                    <span className="mt-1.5 inline-block text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-gold-600">
+                    <p className="mt-1.5 text-[0.82rem] leading-relaxed text-muted">{d.blurb}</p>
+                    <span className="mt-2 inline-block text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-gold-600">
                       {d.treatments.length} treatments
                     </span>
                   </Link>
