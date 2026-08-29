@@ -11,6 +11,10 @@ export type Division = {
   title: string;
   blurb: string;
   icon: "clinical" | "aesthetic" | "hair" | "body" | "laser" | "regenerative";
+  /** Short headline list for the carousel — the clinic's own wording. */
+  highlights: string[];
+  /** Card artwork, 3:4. Built by make-division-covers.py. */
+  image: string;
   treatments: string[];
 };
 
@@ -22,6 +26,16 @@ export const divisions: Division[] = [
     blurb:
       "Medical diagnosis and treatment of conditions affecting the skin, hair and nails.",
     icon: "clinical",
+    highlights: [
+      "Skin",
+      "Acne",
+      "Pigmentation",
+      "Eczema",
+      "Psoriasis",
+      "Infections",
+      "Vitiligo",
+    ],
+    image: "/division-clinical.jpg",
     treatments: [
       "Acne & Acne Scars",
       "Pigmentation & Melasma",
@@ -44,6 +58,15 @@ export const divisions: Division[] = [
     blurb:
       "Procedures that refine skin texture, tone and volume, performed by a dermatologist.",
     icon: "aesthetic",
+    highlights: [
+      "Injectables",
+      "Lasers",
+      "Peels",
+      "Skin Boosters",
+      "Anti-ageing",
+      "Scar Treatment",
+    ],
+    image: "/division-aesthetic.jpg",
     treatments: [
       "Chemical Peels",
       "Microneedling",
@@ -68,6 +91,14 @@ export const divisions: Division[] = [
     blurb:
       "Diagnosis-led management of hair and scalp disorders, through to transplantation.",
     icon: "hair",
+    highlights: [
+      "Hair Fall",
+      "PRP",
+      "GFC",
+      "Mesotherapy",
+      "Hair Transplantation",
+    ],
+    image: "/division-hair.jpg",
     treatments: [
       "Hair Fall Evaluation",
       "Male & Female Pattern Hair Loss",
@@ -81,23 +112,29 @@ export const divisions: Division[] = [
     ],
   },
   {
-    slug: "body-contouring-skin-wellness",
+    slug: "advanced-regenerative",
     number: "04",
-    title: "Body Contouring & Skin Wellness",
+    title: "Regenerative Dermatology",
     blurb:
-      "Non-surgical body treatments and the skin concerns that accompany weight change.",
-    icon: "body",
+      "Newer regenerative therapies that work with the skin's own repair mechanisms.",
+    icon: "regenerative",
+    highlights: [
+      "Autologous Regenerative Therapies",
+      "PDRN / Polynucleotides",
+      "FSCT",
+      "Exosome-based Therapies",
+    ],
+    image: "/division-regenerative.jpg",
     treatments: [
-      "GLP-1 Agonist",
-      "HIFU",
-      "Fat Reduction",
-      "Cellulite Reduction",
-      "Skin Tightening",
-      "Stretch Mark Treatments",
-      "Body Pigmentation",
-      "Excessive Sweating",
-      "Weight-Loss-Related Skin Concerns",
-      "Post-Weight-Loss Skin Management",
+      // NOTE: the supplied list had both "Autologous exosomes" and "Exosomes".
+      // Kept as two entries — confirm whether these are distinct offerings.
+      "Autologous Exosomes",
+      "Polynucleotides / PDRN",
+      "Exosomes",
+      "FSCT",
+      "Nanofat-Based Treatment",
+      "Regenerative Wound Care",
+      "Scar Regeneration",
     ],
   },
   {
@@ -107,6 +144,15 @@ export const divisions: Division[] = [
     blurb:
       "Laser and energy-based platforms selected and calibrated to your skin type.",
     icon: "laser",
+    highlights: [
+      "Laser Hair Reduction",
+      "CO₂ Laser",
+      "Pigmentation",
+      "Resurfacing",
+      "Vascular Lasers",
+      "Scar Revision",
+    ],
+    image: "/division-laser.jpg",
     treatments: [
       "Laser Hair Reduction",
       "CO₂ Laser Treatments",
@@ -120,22 +166,31 @@ export const divisions: Division[] = [
     ],
   },
   {
-    slug: "advanced-regenerative",
+    slug: "body-contouring-skin-wellness",
     number: "06",
-    title: "Advanced Regenerative Procedures",
+    title: "Body Contouring & Skin Wellness",
     blurb:
-      "Newer regenerative therapies that work with the skin's own repair mechanisms.",
-    icon: "regenerative",
+      "Non-surgical body treatments and the skin concerns that accompany weight change.",
+    icon: "body",
+    highlights: [
+      "Fat Reduction",
+      "Body Contouring",
+      "Skin Tightening",
+      "Cellulite",
+      "Stretch Marks",
+    ],
+    image: "/division-body.jpg",
     treatments: [
-      // NOTE: the supplied list had both "Autologous exosomes" and "Exosomes".
-      // Kept as two entries — confirm whether these are distinct offerings.
-      "Autologous Exosomes",
-      "Polynucleotides / PDRN",
-      "Exosomes",
-      "FSCT",
-      "Nanofat-Based Treatment",
-      "Regenerative Wound Care",
-      "Scar Regeneration",
+      "GLP-1 Agonist",
+      "HIFU",
+      "Fat Reduction",
+      "Cellulite Reduction",
+      "Skin Tightening",
+      "Stretch Mark Treatments",
+      "Body Pigmentation",
+      "Excessive Sweating",
+      "Weight-Loss-Related Skin Concerns",
+      "Post-Weight-Loss Skin Management",
     ],
   },
 ];
