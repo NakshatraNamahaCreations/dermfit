@@ -134,16 +134,16 @@ and trip a hydration mismatch.
 
 ## Journal covers
 
-The site's photography is clinical and reusing it across the blog made every
-card look alike, so the post covers are generated from the brand palette — one
-composition per subject:
+Post covers are built from the site's own photography, each with a different
+source, crop and colour grade so the row of cards does not read as the same
+picture four times:
 
 ```bash
 python make-post-covers.py
 ```
 
-Writes `public/post-*.jpg`. Swap any of them for real photography by pointing a
-post's `image` at a different file in `src/data/posts.ts`.
+Writes `public/post-*.jpg`. To use a supplied photograph instead, drop it in
+`public/` and point that post's `image` at it in `src/data/posts.ts`.
 
 ## Design tokens
 
