@@ -28,7 +28,7 @@ const ease = (t: number) => 1 - Math.pow(1 - t, 3);
 
 /** Hexagon around the portrait, offset so nothing sits directly above or below. */
 const RX = 36;
-const RY = 32;
+const RY = 30;
 // Rounded: raw trig yields values like 32.999999999999986, which can serialise
 // differently on the server and in the browser and trip a hydration mismatch.
 const round = (n: number) => Number(n.toFixed(3));
@@ -185,7 +185,7 @@ export default function NourishSection({
 
         {/* Orbit heading */}
         <div
-          className="absolute inset-x-0 top-[7%] z-20 hidden transition-opacity duration-500 lg:block"
+          className="absolute inset-x-0 top-[14%] z-20 hidden transition-opacity duration-500 lg:block"
           style={{ opacity: orbitCopy }}
           aria-hidden={orbitCopy < 0.05}
         >
@@ -198,7 +198,7 @@ export default function NourishSection({
         </div>
 
         {/* The portrait — rises, then holds while the divisions orbit it */}
-        <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 top-[16%] flex items-center justify-center">
           <div
             className="w-[min(62vw,20rem)] will-change-transform"
             style={{ transform: `translate3d(0, ${portraitY}%, 0)` }}
@@ -215,7 +215,7 @@ export default function NourishSection({
         </div>
 
         {/* The divisions, orbiting the portrait */}
-        <div className="absolute inset-0 hidden lg:block">
+        <div className="absolute inset-x-0 bottom-0 top-[16%] hidden lg:block">
           <div
             className="absolute inset-0 mx-auto max-w-6xl will-change-transform"
             style={{ transform: `rotate(${angle}deg) scale(${scale})` }}
