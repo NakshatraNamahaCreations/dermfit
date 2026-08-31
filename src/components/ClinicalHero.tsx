@@ -41,12 +41,12 @@ export default function ClinicalHero() {
             Dermatology clinic · {site.byline.replace("by ", "")}
           </p>
 
-          <h1 className="mt-7 font-display text-4xl font-semibold leading-[1.08] tracking-tight text-cream sm:text-5xl lg:text-6xl">
+          <h1 className="mt-6 font-display text-3xl font-semibold leading-[1.12] tracking-tight text-cream sm:text-4xl lg:text-5xl">
             Every plan starts with
             <span className="block text-gold-gradient">a diagnosis</span>
           </h1>
 
-          <p className="mt-7 max-w-xl text-lg leading-relaxed text-brand-100">
+          <p className="mt-6 max-w-xl text-base leading-relaxed text-brand-100 sm:text-lg">
             Dermfit is a doctor-led dermatology practice. Nothing is treated until it has
             been examined and named — and you are told plainly what will improve, what
             will not, and what it costs before you commit to anything.
