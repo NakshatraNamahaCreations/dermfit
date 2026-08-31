@@ -1,0 +1,10 @@
+# Netlify build config.
+#
+# `publish` is deliberately not set: the Next.js runtime resolves it itself, and
+# pinning it here resolves to an absolute path that breaks the runtime's static
+# publishing step.
+[build]
+  command = "npm run build"
+
+[build.environment]
+  NODE_VERSION = "22"

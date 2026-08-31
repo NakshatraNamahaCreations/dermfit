@@ -26,6 +26,14 @@ export const metadata: Metadata = {
     template: `%s · ${site.name}`,
   },
   description: site.description,
+  // The site still carries placeholder clinical content — invented colleagues,
+  // testimonials and unreviewed articles published under a real doctor's name.
+  // Search engines are kept out until that is replaced. Set
+  // NEXT_PUBLIC_ALLOW_INDEXING=true in the Netlify environment to go live.
+  robots:
+    process.env.NEXT_PUBLIC_ALLOW_INDEXING === "true"
+      ? undefined
+      : { index: false, follow: false },
   openGraph: {
     title: `${site.name} ${site.byline} — ${site.tagline}`,
     description: site.description,
