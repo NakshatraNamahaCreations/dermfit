@@ -158,14 +158,28 @@ export default function Footer() {
       </div>
 
       <div className="relative border-t border-white/10">
-        <div className="container-page flex flex-col gap-3 py-6 text-xs text-brand-300 sm:flex-row sm:items-center sm:justify-between">
-          <p>
-            © {new Date().getFullYear()} {site.name} {site.kind}. All rights reserved.
-          </p>
-          <p className="sm:max-w-md sm:text-right">
+        <div className="container-page py-6 text-xs text-brand-300">
+          <p className="leading-relaxed">
             Information on this site is educational and is not a substitute for a medical
             consultation.
           </p>
+
+          <div className="mt-4 flex flex-col gap-2 border-t border-white/10 pt-4 sm:flex-row sm:items-center sm:justify-between">
+            <p>
+              © {new Date().getFullYear()} {site.name} {site.kind}. All rights reserved.
+            </p>
+            <p>
+              Designed and developed by{" "}
+              <a
+                href="https://www.nakshatranamahacreations.com/"
+                target="_blank"
+                rel="noreferrer noopener"
+                className="font-medium text-brand-200 underline decoration-gold-500/60 underline-offset-4 transition-colors hover:text-gold-300"
+              >
+                Nakshatra Namaha Creations
+              </a>
+            </p>
+          </div>
         </div>
       </div>
     </footer>
