@@ -46,6 +46,18 @@ export default function Footer() {
                 <SocialIcon name={s.label} />
               </a>
             ))}
+
+            {/* WhatsApp is a way to reach the clinic rather than a profile, so it
+                takes the brand green and sits slightly apart from the socials. */}
+            <a
+              href={site.whatsapp}
+              target="_blank"
+              rel="noreferrer noopener"
+              aria-label="Message the clinic on WhatsApp"
+              className="ml-1.5 flex h-10 w-10 items-center justify-center rounded-full border border-[#25D366]/40 text-[#25D366] transition-colors hover:border-[#25D366] hover:bg-[#25D366]/10"
+            >
+              <SocialIcon name="whatsapp" />
+            </a>
           </div>
         </div>
 
