@@ -16,18 +16,18 @@ export default function ClinicalHero() {
     <section className="relative isolate -mt-40 min-h-[44rem] overflow-hidden bg-brand-950 lg:-mt-44 lg:min-h-[48rem]">
       <Image
         src="/banner-clinic.jpg"
-        alt="A dermatologist treating a patient at the Dermfit clinic"
+        alt="A dermatologist carrying out a device-based facial procedure at the Dermfit clinic"
         fill
         priority
         sizes="100vw"
-        className="object-cover object-[62%_center]"
+        className="object-cover object-[58%_center]"
       />
 
       {/* Copy sits on near-solid ground at the left and the photograph opens up
           towards the right. */}
       <div
         aria-hidden="true"
-        className="absolute inset-0 bg-gradient-to-r from-brand-950 via-brand-950/85 to-brand-950/25"
+        className="absolute inset-0 bg-gradient-to-r from-brand-950 via-brand-950/72 to-brand-950/15"
       />
       <div
         aria-hidden="true"
