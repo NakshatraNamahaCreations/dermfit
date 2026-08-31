@@ -17,12 +17,12 @@ export default function WhyChooseUs() {
           {/* The case for the clinic */}
           <Reveal from="left">
             <div className="relative flex h-full flex-col overflow-hidden rounded-[1.75rem] bg-surface ring-1 ring-line sm:flex-row">
-              {/* Image column, full panel height. The source is landscape, so the
-                  crop is biased left to keep the aloe as well as the subject. */}
+              {/* Image column, full panel height. Real clinical photography —
+                  the previous frame here was AI-generated and read as a spa. */}
               <div className="relative h-64 shrink-0 sm:h-auto sm:w-[46%]">
                 <Image
-                  src="/why-choose.jpg"
-                  alt="Aloe beside a patient during a facial treatment at Dermfit"
+                  src="/division-clinical.jpg"
+                  alt="A consultation in progress at Dermfit"
                   fill
                   sizes="(min-width: 1024px) 22vw, (min-width: 640px) 46vw, 100vw"
                   className="object-cover object-center"

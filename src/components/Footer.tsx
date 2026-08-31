@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { nav, site } from "@/data/site";
 import { divisions } from "@/data/catalogue";
@@ -14,16 +13,6 @@ export default function Footer() {
     <footer className="relative isolate overflow-hidden bg-brand-950 text-brand-100">
       <div className="h-px w-full bg-gradient-to-r from-transparent via-gold-500/60 to-transparent" />
 
-      {/* Ground */}
-      <Image
-        src="/leaf-left.png"
-        alt=""
-        width={964}
-        height={1011}
-        sizes="420px"
-        aria-hidden="true"
-        className="pointer-events-none absolute -bottom-16 -left-16 hidden w-96 opacity-[0.07] lg:block"
-      />
       <div
         aria-hidden="true"
         className="pointer-events-none absolute -right-24 top-0 h-96 w-96 rounded-full bg-gold-400/10 blur-3xl"

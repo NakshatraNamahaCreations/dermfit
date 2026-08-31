@@ -40,110 +40,38 @@ src/
 
 Almost all copy lives in `src/data/`. Adding a treatment to `services.ts` automatically creates its detail page, its card on `/services` and `/`, its footer link, and an option in the booking form's dropdown — no routing changes needed.
 
-## Hero slider
+## Structure: problem-led, not treatment-led
 
-The home page opens with a full-bleed carousel defined in `src/data/slides.ts`.
-Each slide has an eyebrow, a two-part headline (the second half renders in gold),
-two small uppercase lines, two buttons, and an optional card that floats over the
-right of the banner.
+The page order follows the order of care rather than a treatment menu:
 
-Banner artwork should be **wide (about 2:1), with the subject on the right and
-open space on the left** — the oversized headline sits over that space. Save
-photos as **JPEG**, not PNG: the same image is ~90% smaller. Drop the file in
-`public/` and point a slide's `image` at it. `image: null` renders the navy brand
-panel instead, so the carousel works with however many photos you have.
-
-`heroFeatures` and `heroStat` in the same file drive the trust strip along the
-bottom of the banner; they are static, not per-slide. Icons live in
-`src/components/HeroIcons.tsx`.
-
-Autoplay is 7s, pauses on hover/focus, and is off for visitors who have "reduce
-motion" enabled. Arrow keys, dot buttons and touch swipe all work.
-
-## Logo
-
-`public/logo.png` is the supplied artwork, byte-identical to the original file.
-`public/logo-transparent.png` is what the site actually renders: the same lockup
-with the flat navy backdrop turned into alpha and the empty margin trimmed, so it
-can sit over the banner photography. Regenerate it with:
-
-```bash
-python make-logo-transparent.py
+```
+concern -> examination -> diagnosis -> plan -> treatment -> follow-up -> outcome
 ```
 
-Nothing is cropped or recoloured — every element of the lockup is kept. The
-favicons in `src/app/` stay on the navy square, which reads better in a browser
-tab.
+- `src/data/concerns.ts` — what patients notice, in their own words, plus what
+  the first appointment does about it. This is the site's front door: the hero
+  and `/concerns` both lead from here.
+- `src/data/pathway.ts` — the seven stages, rendered by `CarePathway`. Treatment
+  is stage five of seven, deliberately.
+- `src/data/catalogue.ts` — the six divisions and 61 treatments. Reached *after*
+  the concern, never as the entry point.
 
-## About section image
+## Imagery
 
-`public/about-portrait.png` is the supplied artwork with its flat white page
-removed, so the angled photo-card shape sits directly on the cream section
-background. Regenerate from a new source with:
+Only real clinical photography ships. Earlier drafts used AI-generated imagery,
+which read as a beauty brand rather than a dermatology practice; those files and
+the scripts that produced them have been removed.
 
-```bash
-python make-about-cutout.py
-```
+`make-division-covers.py` cuts the six division discs from supplied photographs,
+and `make-post-covers.py` derives the journal covers from the same frames. The
+multi-megabyte originals are not kept in the repo, so a missing source skips
+that image rather than failing the run.
 
-It flood-fills the white inward from the borders only, so white *inside* the
-photograph is preserved.
-
-## Treatment catalogue
-
-`src/data/catalogue.ts` holds the clinic's six divisions and all 61 treatments.
-It drives two places: the division cards on the home page, and the interactive
-tabbed catalogue at `/services#catalogue`. Add or rename a treatment there and
-both update.
-
-Two things in that file need the clinic's review:
-
-- Each division's `blurb` is descriptive filler — reword in the clinic's voice.
-- Division 06 lists both "Autologous Exosomes" and "Exosomes", as supplied.
-  Confirm whether these are distinct offerings or a duplicate.
-
-## Botanical statement section
-
-A scroll-driven sequence. The section is `280vh` tall with a sticky
-viewport-height frame, so scrolling scrubs a timeline: a large pale word sits on
-a plain ground while objects pass in front of it — foliage slides in from the
-left and right and holds, both drop away below, then the treatment photograph
-rises from below to replace them. Timings are the `leafX` / `leafY` / `faceY`
-expressions in `NourishSection.tsx`.
-
-Cut-outs, all on transparency so nothing arrives as a rectangle:
-
-- `public/leaf-left.png`, `public/leaf-right.png` — `make-leaf-cutout.py`,
-  separating on greenness (works for foliage against a neutral wall)
-- `public/ritual-face.png` — `make-face-cutout.py`; skin and backdrop overlap in
-  colour, so that one fits a quadratic surface to the backdrop and uses
-  saturation as a second gate
-
-```bash
-LEAF_SRC="photo.png" LEAF_OUT="public/leaf-left.png" python make-leaf-cutout.py
-FACE_SRC="photo.png" python make-face-cutout.py
-```
-
-## Service orbit
-
-`ServiceOrbit.tsx` arranges the six divisions on a hexagon around the clinic
-mark and swings them in as you scroll. The ring rotates as one element and each
-division counter-rotates by the same angle, so the group orbits while the labels
-stay upright. Seat positions are rounded to fixed precision — raw trig produces
-values like `32.999999999999986` that can serialise differently on the server
-and trip a hydration mismatch.
-
-## Journal covers
-
-Post covers are built from the site's own photography, each with a different
-source, crop and colour grade so the row of cards does not read as the same
-picture four times:
-
-```bash
-python make-post-covers.py
-```
-
-Writes `public/post-*.jpg`. To use a supplied photograph instead, drop it in
-`public/` and point that post's `image` at it in `src/data/posts.ts`.
+**Outstanding:** the current photography is licensed stock and under-represents
+Indian and brown skin, which is most of the clinic's practice. Real photographs
+of the clinic, of Dr Hegde, and — with written consent — of patients should
+replace it. Drop files in `public/` and point `image` at them in the relevant
+data file.
 
 ## Design tokens
 

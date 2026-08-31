@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { useActionState } from "react";
 import { useFormStatus } from "react-dom";
 import { subscribe } from "@/app/newsletter/actions";
@@ -26,23 +25,13 @@ export default function NewsletterBand() {
     <section className="py-8 sm:py-12">
       <div className="mx-auto w-full max-w-[92rem] px-5">
         <div className="relative overflow-hidden rounded-[1.75rem] bg-brand-950">
-          {/* Foliage accent, low opacity so the copy stays legible */}
-          <Image
-            src="/leaf-left.png"
-            alt=""
-            width={964}
-            height={1011}
-            sizes="320px"
-            aria-hidden="true"
-            className="pointer-events-none absolute -bottom-10 -left-10 hidden w-72 opacity-25 saturate-[0.6] sm:block"
-          />
           <div
             aria-hidden="true"
             className="pointer-events-none absolute -right-16 top-1/2 h-72 w-72 -translate-y-1/2 rounded-full bg-gold-400/10 blur-3xl"
           />
 
           <div className="relative grid items-center gap-8 p-8 sm:p-10 lg:grid-cols-[1.35fr_auto_1fr] lg:gap-12">
-            <div className="sm:pl-52 lg:pl-56">
+            <div>
               <p className="text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-gold-400">
                 From the clinic
               </p>

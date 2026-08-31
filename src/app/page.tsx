@@ -1,10 +1,9 @@
 import BlogSection from "@/components/BlogSection";
-import HeroSlider from "@/components/HeroSlider";
-import AboutShowcase from "@/components/AboutShowcase";
-import NourishSection from "@/components/NourishSection";
+import ClinicalHero from "@/components/ClinicalHero";
+import ConcernGrid from "@/components/ConcernGrid";
+import CarePathway from "@/components/CarePathway";
 import WhyChooseUs from "@/components/WhyChooseUs";
 import DivisionRow from "@/components/DivisionRow";
-import FirstVisit from "@/components/FirstVisit";
 import PatientStories from "@/components/PatientStories";
 import NewsletterBand from "@/components/NewsletterBand";
 import FaqSection from "@/components/FaqSection";
@@ -12,17 +11,17 @@ import FaqSection from "@/components/FaqSection";
 export default function Home() {
   return (
     <>
-      <HeroSlider />
+      {/* Concern -> examination -> diagnosis -> plan -> treatment -> follow-up
+          -> outcome. The order of the page follows the order of care. */}
+      <ClinicalHero />
 
-      <AboutShowcase />
+      <ConcernGrid limit={4} />
+
+      <CarePathway />
 
       <WhyChooseUs />
 
       <DivisionRow />
-
-      <NourishSection />
-
-      <FirstVisit />
 
       <PatientStories />
 
