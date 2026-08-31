@@ -3,6 +3,7 @@ import { Fraunces, Inter } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import BackToTop from "@/components/BackToTop";
+import WhatsAppButton from "@/components/WhatsAppButton";
 import { site } from "@/data/site";
 import "./globals.css";
 
@@ -54,6 +55,7 @@ export default function RootLayout({
         <Header />
         <main id="main">{children}</main>
         <Footer />
+        <WhatsAppButton />
         <BackToTop />
       </body>
     </html>

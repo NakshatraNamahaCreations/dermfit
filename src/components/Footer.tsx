@@ -141,16 +141,6 @@ export default function Footer() {
                 {site.email}
               </a>
             </li>
-            <li>
-              <a
-                href={site.whatsapp}
-                target="_blank"
-                rel="noreferrer noopener"
-                className="text-brand-200 hover:text-gold-300"
-              >
-                WhatsApp
-              </a>
-            </li>
           </ul>
 
           <dl className="mt-6 rounded-2xl bg-white/[0.05] p-4 text-xs ring-1 ring-white/10">

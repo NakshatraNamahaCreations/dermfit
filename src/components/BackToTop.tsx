@@ -41,7 +41,7 @@ export default function BackToTop() {
       // Hidden from assistive tech and the tab order until it is actually usable.
       aria-hidden={!shown}
       tabIndex={shown ? 0 : -1}
-      className={`group fixed bottom-6 right-5 z-40 flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-gold-300 to-gold-600 text-brand-950 shadow-lg shadow-brand-950/25 transition-all duration-300 hover:brightness-110 sm:bottom-8 sm:right-8 ${
+      className={`group fixed bottom-[5.25rem] right-5 z-40 flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-gold-300 to-gold-600 text-brand-950 shadow-lg shadow-brand-950/25 transition-all duration-300 hover:brightness-110 sm:bottom-[6.25rem] sm:right-8 ${
         shown
           ? "translate-y-0 opacity-100"
           : "pointer-events-none translate-y-3 opacity-0"
