@@ -23,7 +23,7 @@ export default function AboutPage() {
         <div className="grid gap-14 lg:grid-cols-[1.15fr_0.85fr]">
           <div className="space-y-5 text-base leading-relaxed text-muted">
             <p>
-              We opened on MG Road with three consultants and one operating principle: nothing is treated until it is
+              We opened in Yadavgiri with one operating principle: nothing is treated until it is
               diagnosed. In practice that means imaging, scoring or blood work at the first
               visit, and a written plan you can take away and think about.
             </p>

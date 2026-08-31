@@ -96,7 +96,7 @@ export default function BookingForm() {
             type="tel"
             required
             autoComplete="tel"
-            placeholder="+91 98765 43210"
+            placeholder="+91 90000 00000"
             aria-invalid={Boolean(state.errors.phone)}
             aria-describedby={state.errors.phone ? "phone-error" : undefined}
             className={`${fieldBase} ${state.errors.phone ? "border-red-400" : "border-line"}`}

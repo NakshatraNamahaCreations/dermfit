@@ -27,13 +27,19 @@ export default function ContactPage() {
               <address className="mt-4 space-y-1 text-sm not-italic leading-relaxed text-muted">
                 <p>{site.address.line1}</p>
                 <p>{site.address.line2}</p>
+                <p>{site.address.line3}</p>
               </address>
               <div className="mt-5 space-y-2 text-sm">
                 <p>
                   <span className="text-muted">Phone · </span>
-                  <a href={site.phoneHref} className="font-medium text-gold-700 hover:underline">
-                    {site.phone}
-                  </a>
+                  {site.phones.map((t, i) => (
+                    <span key={t.href}>
+                      {i > 0 && <span className="text-muted"> · </span>}
+                      <a href={t.href} className="font-medium text-gold-700 hover:underline">
+                        {t.display}
+                      </a>
+                    </span>
+                  ))}
                 </p>
                 <p>
                   <span className="text-muted">Email · </span>
@@ -76,7 +82,7 @@ export default function ContactPage() {
               <div className="flex h-48 items-center justify-center bg-[radial-gradient(circle_at_30%_30%,var(--color-gold-100),var(--color-gold-50))]">
                 <p className="px-6 text-center text-sm text-gold-800">
                   Map placeholder — drop in a Google Maps embed for{" "}
-                  <span className="font-medium">{site.address.line2}</span>.
+                  <span className="font-medium">{site.address.line3}</span>.
                 </p>
               </div>
             </div>

@@ -5,7 +5,7 @@ import Logo from "./Logo";
 import SocialIcon from "./SocialIcon";
 
 const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-  `${site.name} ${site.address.line1} ${site.address.line2}`,
+  [site.address.line1, site.address.line2, site.address.line3].join(", "),
 )}`;
 
 export default function Footer() {
@@ -96,6 +96,7 @@ export default function Footer() {
           <address className="mt-5 space-y-1 text-sm not-italic leading-relaxed text-brand-200">
             <p>{site.address.line1}</p>
             <p>{site.address.line2}</p>
+            <p>{site.address.line3}</p>
           </address>
           <a
             href={mapsUrl}
@@ -116,11 +117,13 @@ export default function Footer() {
           </a>
 
           <ul className="mt-5 space-y-2 text-sm">
-            <li>
-              <a href={site.phoneHref} className="text-brand-200 hover:text-gold-300">
-                {site.phone}
-              </a>
-            </li>
+            {site.phones.map((t) => (
+              <li key={t.href}>
+                <a href={t.href} className="text-brand-200 hover:text-gold-300">
+                  {t.display}
+                </a>
+              </li>
+            ))}
             <li>
               <a href={`mailto:${site.email}`} className="text-brand-200 hover:text-gold-300">
                 {site.email}
