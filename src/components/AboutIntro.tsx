@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { divisions, treatmentCount } from "@/data/catalogue";
 import { site } from "@/data/site";
@@ -6,15 +7,14 @@ import Reveal from "./Reveal";
 /**
  * Home-page "About us" band, sitting directly under the banner.
  *
- * Two columns in the manner of the reference site: the clinic's case on the
- * left, a summary panel on the right.
+ * Photograph on the left with a navy card overlapping its lower edge, the
+ * clinic's case on the right — the reference site's two-column About block.
  *
- * Deliberately without a photograph. The stock frames available here are the
- * glossy, fair-skinned, spa-lit kind the clinic asked us to move away from, and
- * putting one in the first block below the banner would set exactly that tone.
- * The panel is built to take a real portrait of Dr Hegde or the consulting room
- * the moment there is one — drop the file in public/ and replace the monogram
- * block with an <Image fill> in the same box.
+ * The frame is an examination rather than a treatment being enjoyed, which is
+ * the tone the clinic asked for; the glossy candle-lit alternative in public/
+ * would have read as a spa. It does repeat lower down as the Regenerative
+ * Dermatology thumbnail. Replace it with a real photograph of Dr Hegde or the
+ * consulting room and the repeat goes away with it — same box, same crop.
  *
  * The two figures are counted from the real catalogue rather than asserted, so
  * they cannot drift out of date or overstate anything.
@@ -31,9 +31,61 @@ export default function AboutIntro() {
   return (
     <section className="bg-surface py-16 sm:py-24">
       <div className="container-page">
-        <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
-          {/* The case */}
+        <div className="grid items-center gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
+          {/* Photograph, with the consultant card lapping over its lower edge */}
           <Reveal from="left">
+            <div className="mx-auto max-w-md lg:mx-0 lg:max-w-none">
+              <div className="relative overflow-hidden rounded-[1.75rem] ring-1 ring-line">
+                <div className="relative aspect-[4/5]">
+                  <Image
+                    src="/division-regenerative.jpg"
+                    alt="A dermatologist examining a patient's face at Dermfit"
+                    fill
+                    sizes="(min-width: 1024px) 38vw, (min-width: 640px) 28rem, 100vw"
+                    className="object-cover object-center"
+                  />
+                </div>
+                {/* Grounds the card against the pale top of the photograph */}
+                <div
+                  aria-hidden="true"
+                  className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-brand-950/25 to-transparent"
+                />
+              </div>
+
+              <div className="relative z-10 -mt-12 mx-5 overflow-hidden rounded-[1.25rem] bg-brand-950 text-white shadow-xl shadow-brand-950/20 sm:mx-8">
+                <div className="flex items-center gap-4 px-6 py-5">
+                  <span
+                    aria-hidden="true"
+                    className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white/10 font-display text-base font-semibold text-gold-200 ring-1 ring-white/15"
+                  >
+                    SH
+                  </span>
+                  <div>
+                    <p className="font-display text-base font-semibold">Dr Sourab Hegde</p>
+                    <p className="mt-0.5 text-xs text-gold-200">MBBS, MD (Dermatology)</p>
+                  </div>
+                </div>
+
+                <dl className="grid grid-cols-2 gap-px bg-white/10">
+                  <div className="bg-brand-950 px-6 py-4">
+                    <dd className="font-display text-2xl font-semibold">{divisions.length}</dd>
+                    <dt className="mt-0.5 text-[0.65rem] uppercase tracking-[0.12em] text-white/60">
+                      Clinical divisions
+                    </dt>
+                  </div>
+                  <div className="bg-brand-950 px-6 py-4">
+                    <dd className="font-display text-2xl font-semibold">{treatmentCount}</dd>
+                    <dt className="mt-0.5 text-[0.65rem] uppercase tracking-[0.12em] text-white/60">
+                      Treatments offered
+                    </dt>
+                  </div>
+                </dl>
+              </div>
+            </div>
+          </Reveal>
+
+          {/* The case */}
+          <Reveal from="right" delay={120}>
             <p className="eyebrow">About us</p>
             <h2 className="mt-3 font-display text-3xl font-semibold leading-tight tracking-tight text-brand-950 sm:text-4xl">
               A dermatology clinic in {site.city},
@@ -88,70 +140,13 @@ export default function AboutIntro() {
                 More about the clinic
               </Link>
             </div>
-          </Reveal>
 
-          {/* Summary panel */}
-          <Reveal from="right" delay={120}>
-            <div className="overflow-hidden rounded-[1.75rem] bg-brand-950 text-white ring-1 ring-brand-900">
-              <div className="flex items-center gap-5 p-8 sm:p-9">
-                <span
-                  aria-hidden="true"
-                  className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-white/10 font-display text-xl font-semibold text-gold-200 ring-1 ring-white/15"
-                >
-                  SH
-                </span>
-                <div>
-                  <p className="font-display text-lg font-semibold">Dr Sourab Hegde</p>
-                  <p className="mt-0.5 text-sm text-gold-200">MBBS, MD (Dermatology)</p>
-                  <p className="mt-1 text-xs text-white/60">
-                    Consultant Dermatologist · Founder
-                  </p>
-                </div>
-              </div>
-
-              <dl className="grid grid-cols-2 gap-px bg-white/10">
-                <div className="bg-brand-950 px-8 py-7">
-                  <dd className="font-display text-3xl font-semibold text-white">
-                    {divisions.length}
-                  </dd>
-                  <dt className="mt-1 text-xs uppercase tracking-[0.12em] text-white/60">
-                    Clinical divisions
-                  </dt>
-                </div>
-                <div className="bg-brand-950 px-8 py-7">
-                  <dd className="font-display text-3xl font-semibold text-white">
-                    {treatmentCount}
-                  </dd>
-                  <dt className="mt-1 text-xs uppercase tracking-[0.12em] text-white/60">
-                    Treatments offered
-                  </dt>
-                </div>
-              </dl>
-
-              <div className="space-y-4 px-8 py-7 sm:px-9">
-                <div>
-                  <p className="text-xs uppercase tracking-[0.14em] text-white/50">Clinic</p>
-                  <address className="mt-1.5 text-sm not-italic leading-relaxed text-white/85">
-                    {site.address.line1}
-                    <br />
-                    {site.address.line2}
-                    <br />
-                    {site.address.line3}
-                  </address>
-                </div>
-                <div>
-                  <p className="text-xs uppercase tracking-[0.14em] text-white/50">
-                    Appointments
-                  </p>
-                  <a
-                    href={site.phoneHref}
-                    className="mt-1.5 inline-block text-sm text-white/85 transition-colors hover:text-gold-200"
-                  >
-                    {site.phone}
-                  </a>
-                </div>
-              </div>
-            </div>
+            <p className="mt-7 border-t border-line pt-5 text-sm leading-relaxed text-muted">
+              {site.address.line1}, {site.address.line3} ·{" "}
+              <a href={site.phoneHref} className="text-brand-900 hover:text-gold-700">
+                {site.phone}
+              </a>
+            </p>
           </Reveal>
         </div>
       </div>
