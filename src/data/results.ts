@@ -34,13 +34,14 @@ export const results: ResultCase[] = [
   {
     id: "hair",
     concern: "Hair fall & thinning",
-    headline: "Density at the parting",
+    headline: "Density at the crown",
     before: "/result-hair-before.jpg",
     after: "/result-hair-after.jpg",
-    beforeAlt: "A widening parting with visible scalp through thinning hair.",
-    afterAlt: "The same parting appearing narrower, with denser hair either side.",
+    beforeAlt:
+      "The crown of a head seen from above, with scalp visible through thinned hair.",
+    afterAlt: "The same crown from the same angle, with the scalp covered by denser hair.",
     summary:
-      "A widening parting with scalp showing through, against a narrower parting and fuller cover. What is achievable depends on the cause, which trichoscopy and bloods establish first.",
+      "Scalp showing through at the vertex, against fuller cover from the same angle. What is achievable depends on the cause and the stage — trichoscopy and bloods establish both before anything is offered.",
     href: "/concerns#hair-fall",
   },
   {
