@@ -18,13 +18,13 @@ export default function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Always solid. The transparent masthead was there for a dark full-bleed hero;
-  // the banner is light now, so cream-on-white would be invisible.
+  // White bar. It sits above a light banner, so it carries a hairline and only
+  // takes a shadow once the page has moved under it.
 
   return (
     <header
-      className={`sticky top-0 z-50 bg-brand-950 transition-shadow ${
-        scrolled ? "shadow-lg shadow-brand-950/25" : ""
+      className={`sticky top-0 z-50 border-b bg-white transition-shadow ${
+        scrolled ? "border-transparent shadow-lg shadow-brand-950/10" : "border-line"
       }`}
     >
       <div
@@ -38,10 +38,19 @@ export default function Header() {
           {/* The lockup carries four lines of small type, so the wordmark beside
               it does the work at this size. */}
           <Logo
-            height={432}
-            sizes="(min-width: 1024px) 144px, 112px"
-            className="h-14 w-auto lg:h-16"
+            onLight
+            height={288}
+            sizes="(min-width: 1024px) 64px, 56px"
+            className="h-14 w-14 rounded-xl lg:h-16 lg:w-16"
           />
+          <span className="flex flex-col leading-none">
+            <span className="font-display text-lg font-semibold tracking-[0.16em] text-brand-950 lg:text-xl">
+              DERMFIT
+            </span>
+            <span className="mt-1 text-[0.55rem] font-medium uppercase tracking-[0.2em] text-muted">
+              {site.tagline}
+            </span>
+          </span>
         </Link>
 
         <nav className="hidden items-center gap-1 md:flex" aria-label="Main">
@@ -55,8 +64,8 @@ export default function Header() {
                 aria-current={active ? "page" : undefined}
                 className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
                   active
-                    ? "bg-white/10 text-gold-300"
-                    : "text-brand-200 hover:bg-white/5 hover:text-white"
+                    ? "bg-brand-50 text-brand-900"
+                    : "text-muted hover:bg-brand-50 hover:text-brand-900"
                 }`}
               >
                 {item.label}
@@ -68,7 +77,7 @@ export default function Header() {
         <div className="hidden items-center gap-4 md:flex">
           <a
             href={site.phoneHref}
-            className="text-sm font-medium text-brand-200 transition-colors hover:text-white"
+            className="text-sm font-medium text-brand-900 transition-colors hover:text-gold-700"
           >
             {site.phone}
           </a>
@@ -85,7 +94,7 @@ export default function Header() {
           onClick={() => setOpen((v) => !v)}
           aria-expanded={open}
           aria-controls="mobile-nav"
-          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/20 text-gold-200 md:hidden"
+          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-line text-brand-900 md:hidden"
         >
           <span className="sr-only">{open ? "Close menu" : "Open menu"}</span>
           <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
@@ -99,14 +108,14 @@ export default function Header() {
       </div>
 
       {open && (
-        <div id="mobile-nav" className="border-t border-white/10 bg-brand-950 md:hidden">
+        <div id="mobile-nav" className="border-t border-line bg-white md:hidden">
           <div className="container-page flex flex-col gap-1 py-4">
             {nav.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
                 onClick={() => setOpen(false)}
-                className="rounded-lg px-3 py-2.5 text-base font-medium text-brand-100 hover:bg-white/5"
+                className="rounded-lg px-3 py-2.5 text-base font-medium text-brand-900 hover:bg-brand-50"
               >
                 {item.label}
               </Link>
@@ -118,7 +127,7 @@ export default function Header() {
             >
               Book a consult
             </Link>
-            <a href={site.phoneHref} className="py-2 text-center text-sm text-brand-300">
+            <a href={site.phoneHref} className="py-2 text-center text-sm text-muted">
               {site.phone}
             </a>
           </div>
