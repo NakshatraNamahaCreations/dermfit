@@ -18,6 +18,9 @@ export type Banner = {
   /** Two words: the second takes the gold. */
   headline: [string, string];
   features: { icon: string; label: [string, string] }[];
+  /** Sampled from the artwork's top and bottom edges, so the padding around it
+   *  blends instead of showing a band. */
+  edge: { top: string; bottom: string };
   cta: { label: string; href: string };
 };
 
@@ -28,6 +31,7 @@ export const banners: Banner[] = [
     width: 1983,
     height: 793,
     alt: "Before and after: thinning hair with a widening parting, and thicker hair with a denser parting.",
+    edge: { top: "#f2f5fb", bottom: "#dae1f0" },
     strapline: "Transforming hair.",
     headline: ["Restoring", "confidence."],
     features: [
@@ -44,6 +48,7 @@ export const banners: Banner[] = [
     width: 1857,
     height: 847,
     alt: "Before and after: skin with active acne and marks, and calmer skin with a more even tone.",
+    edge: { top: "#e4d2c0", bottom: "#decfbf" },
     strapline: "Treating acne.",
     headline: ["Restoring", "skin."],
     features: [

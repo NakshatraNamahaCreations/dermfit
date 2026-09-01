@@ -64,7 +64,16 @@ export default function BannerSlider() {
         touchX.current = null;
       }}
     >
-      <div className="relative">
+      {/* Padded above and below to give the banner more height. The artwork is
+          2.5:1 with the BEFORE and AFTER labels hard against its edges, so it
+          cannot be cropped taller — the bands take each slide's own edge tone
+          instead, which reads as part of the image. */}
+      <div
+        className="relative transition-colors duration-700 lg:py-14"
+        style={{
+          background: `linear-gradient(${slide.edge.top}, ${slide.edge.top} 50%, ${slide.edge.bottom})`,
+        }}
+      >
         {/* The first slide sits in flow so the section keeps its height without a
             hard-coded aspect ratio; the rest are stacked over it and cross-fade. */}
         {banners.map((b, i) => (
@@ -78,7 +87,7 @@ export default function BannerSlider() {
             sizes="100vw"
             aria-hidden={i !== index}
             className={`h-auto w-full transition-opacity duration-700 ${
-              i === 0 ? "relative" : "absolute inset-0"
+              i === 0 ? "relative" : "absolute inset-x-0 top-1/2 -translate-y-1/2"
             } ${i === index ? "opacity-100" : "opacity-0"}`}
           />
         ))}
