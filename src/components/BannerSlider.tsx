@@ -10,6 +10,39 @@ import BannerIcon from "./BannerIcon";
 const AUTOPLAY_MS = 6000;
 
 /**
+ * One word, animated letter by letter.
+ *
+ * The word is left whole in an sr-only span and the letters hidden from
+ * assistive tech, so a screen reader reads "Restoring" rather than nine
+ * separate characters.
+ */
+function Word({
+  text,
+  from,
+  className = "",
+}: {
+  text: string;
+  from: number;
+  className?: string;
+}) {
+  return (
+    <span className="inline-block">
+      <span className="sr-only">{text}</span>
+      {[...text].map((ch, i) => (
+        <span
+          key={`${ch}-${i}`}
+          aria-hidden="true"
+          style={{ animationDelay: `${from + i * 45}ms` }}
+          className={`animate-letter-in inline-block ${className}`}
+        >
+          {ch}
+        </span>
+      ))}
+    </span>
+  );
+}
+
+/**
  * Banner slider.
  *
  * Each slide is a supplied before/after composite whose centre is empty, so the
@@ -109,8 +142,14 @@ export default function BannerSlider() {
           ))}
         </div>
 
+        {/* Sits above the vertical centre on wide screens: the artwork's two
+            faces are bottom-weighted, so dead centre put the headline across
+            their chins. */}
         <div className="px-6 pb-4 pt-8 lg:absolute lg:inset-0 lg:flex lg:items-center lg:justify-center lg:p-0">
-          <div key={slide.id} className="mx-auto w-full max-w-lg text-center lg:max-w-[36%]">
+          <div
+            key={slide.id}
+            className="mx-auto w-full max-w-lg text-center lg:max-w-[40%] lg:-translate-y-[7%]"
+          >
             <p
               style={delay(0)}
               className={`${rise} text-xs font-medium uppercase tracking-[0.34em] text-brand-800 sm:text-sm lg:text-base`}
@@ -118,21 +157,21 @@ export default function BannerSlider() {
               {slide.strapline}
             </p>
 
-            <h1 className="mt-4 font-display text-3xl font-semibold uppercase leading-[1.1] tracking-tight text-brand-950 sm:text-4xl lg:text-[3.25rem]">
-              <span style={delay(200)} className={`${rise} inline-block`}>
-                {slide.headline[0]}{" "}
-              </span>
-              {/* Animation on the outside, gradient on the inside. The entrance
-                  uses filter: blur, and stacking that on the same element as
-                  background-clip: text is where browsers disagree. */}
-              <span style={delay(360)} className={`${rise} inline-block`}>
-                <span className="text-gold-gradient">{slide.headline[1]}</span>
-              </span>
+            <h1 className="mt-4 font-display text-[2.1rem] font-semibold uppercase leading-[1.05] tracking-tight text-brand-950 sm:text-5xl lg:text-[3.9rem]">
+              <Word text={slide.headline[0]} from={200} />{" "}
+              {/* The gradient goes on the letters, the entrance on their
+                  wrappers: filter and background-clip: text on one element is
+                  where browsers disagree. */}
+              <Word
+                text={slide.headline[1]}
+                from={200 + slide.headline[0].length * 45 + 90}
+                className="text-gold-shimmer"
+              />
             </h1>
 
             <span
               aria-hidden="true"
-              style={delay(520)}
+              style={delay(880)}
               className={`${rise} mx-auto mt-5 block h-px w-28 bg-gradient-to-r from-transparent via-gold-500 to-transparent`}
             />
 
@@ -140,7 +179,7 @@ export default function BannerSlider() {
               {slide.features.map((f, i) => (
                 <li
                   key={f.icon}
-                  style={delay(640 + i * 120)}
+                  style={delay(1000 + i * 120)}
                   className={`${rise} flex w-20 flex-col items-center gap-2.5 text-center`}
                 >
                   <span className="flex h-12 w-12 items-center justify-center rounded-full bg-white/90 text-brand-800 ring-1 ring-brand-200/80">

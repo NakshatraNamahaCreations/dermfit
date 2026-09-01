@@ -1,0 +1,58 @@
+/**
+ * Before / after comparisons for the results band.
+ *
+ * IMPORTANT — these are NOT patient records. Both pairs are cut from the same
+ * illustrative composites used on the home banner, and the section says so on
+ * the page, in text, next to them.
+ *
+ * Real patient comparisons carry obligations here that stock imagery does not:
+ * written consent for publication, images shot under matched lighting and
+ * angle, and — under the Drugs and Magic Remedies Act and the ASCI code — no
+ * implied guarantee of outcome. When the clinic has consented, matched pairs,
+ * they replace `before` and `after` and the `illustrative` flag comes off,
+ * which is what removes the disclaimer.
+ */
+export type ResultCase = {
+  id: string;
+  /** What the patient came in for, in their own words. */
+  concern: string;
+  headline: string;
+  before: string;
+  after: string;
+  beforeAlt: string;
+  afterAlt: string;
+  /** Describes what the two frames show — not a promise about anyone else. */
+  summary: string;
+  /** Reads across to the concern page rather than to a treatment sales page. */
+  href: string;
+};
+
+/** Off only when every pair below is a consented patient record. */
+export const resultsAreIllustrative = true;
+
+export const results: ResultCase[] = [
+  {
+    id: "hair",
+    concern: "Hair fall & thinning",
+    headline: "Density at the parting",
+    before: "/result-hair-before.jpg",
+    after: "/result-hair-after.jpg",
+    beforeAlt: "A widening parting with visible scalp through thinning hair.",
+    afterAlt: "The same parting appearing narrower, with denser hair either side.",
+    summary:
+      "A widening parting with scalp showing through, against a narrower parting and fuller cover. What is achievable depends on the cause, which trichoscopy and bloods establish first.",
+    href: "/concerns#hair-fall",
+  },
+  {
+    id: "acne",
+    concern: "Acne & acne marks",
+    headline: "Active acne and the marks it leaves",
+    before: "/result-skin-before.jpg",
+    after: "/result-skin-after.jpg",
+    beforeAlt: "A cheek with active acne and post-inflammatory marks.",
+    afterAlt: "The same cheek with calmer skin and a more even tone.",
+    summary:
+      "Active lesions and post-inflammatory pigmentation, against calmer skin and an evener tone. Marks and scars behave differently — which of yours will respond is established at examination.",
+    href: "/concerns#acne",
+  },
+];

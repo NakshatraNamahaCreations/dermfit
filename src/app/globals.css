@@ -184,6 +184,43 @@
     animation: dermfit-banner-in 1000ms cubic-bezier(0.16, 1, 0.3, 1) both;
   }
 
+  /* Per-letter variant for the headline. Same idea, shorter, with a little
+     rotation so the letters settle rather than slide. */
+  .animate-letter-in {
+    animation: dermfit-letter-in 760ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  /* Gold that catches the light once the word has landed. Same clip-to-text
+     trick as .text-gold-gradient, but the gradient is oversized so it can be
+     swept across. */
+  .text-gold-shimmer {
+    background: linear-gradient(
+      100deg,
+      #a87c2c 0%,
+      #c3903a 18%,
+      #f4d097 38%,
+      #fff1d4 48%,
+      #e3b869 60%,
+      #a87c2c 100%
+    );
+    background-size: 260% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: dermfit-shimmer 4.2s ease-in-out 900ms infinite;
+  }
+
+  /* Before/after wipe. Opens on the "before" frame and settles at half, so the
+     comparison plays itself once rather than waiting to be dragged. Percentages
+     are right-insets: 0% shows all of the before frame, 50% shows half. */
+  .animate-wipe {
+    animation: dermfit-wipe 1700ms cubic-bezier(0.65, 0, 0.35, 1) 250ms both;
+  }
+
+  .animate-wipe-handle {
+    animation: dermfit-wipe-handle 1700ms cubic-bezier(0.65, 0, 0.35, 1) 250ms both;
+  }
+
   .rule-gold {
     background: linear-gradient(
       90deg,
@@ -251,6 +288,50 @@
     opacity: 1;
     transform: none;
     filter: blur(0);
+  }
+}
+
+@keyframes dermfit-letter-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.7em) rotate(5deg);
+    filter: blur(8px);
+  }
+  60% {
+    filter: blur(0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: blur(0);
+  }
+}
+
+@keyframes dermfit-shimmer {
+  0% {
+    background-position: 130% 0;
+  }
+  55%,
+  100% {
+    background-position: -30% 0;
+  }
+}
+
+@keyframes dermfit-wipe {
+  from {
+    clip-path: inset(0 0 0 0);
+  }
+  to {
+    clip-path: inset(0 50% 0 0);
+  }
+}
+
+@keyframes dermfit-wipe-handle {
+  from {
+    left: 100%;
+  }
+  to {
+    left: 50%;
   }
 }
 
