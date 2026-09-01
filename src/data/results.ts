@@ -50,10 +50,11 @@ export const results: ResultCase[] = [
     headline: "Active acne and the marks it leaves",
     before: "/result-skin-before.jpg",
     after: "/result-skin-after.jpg",
-    beforeAlt: "A cheek with active acne and post-inflammatory marks.",
-    afterAlt: "The same cheek with calmer skin and a more even tone.",
+    beforeAlt:
+      "A face turned to three-quarters, with active acne and post-inflammatory marks across the cheek and jaw.",
+    afterAlt: "The same face at the same angle, with clear skin and an even tone.",
     summary:
-      "Active lesions and post-inflammatory pigmentation, against calmer skin and an evener tone. Marks and scars behave differently — which of yours will respond is established at examination.",
+      "Active lesions and post-inflammatory pigmentation, against clear skin at the same angle. Marks and scars behave differently — which of yours will respond is established at examination.",
     href: "/concerns#acne",
   },
 ];
