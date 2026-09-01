@@ -17,21 +17,17 @@ export default function Logo({
   height = 128,
   sizes = "128px",
   decorative = false,
-  onLight = false,
 }: {
   className?: string;
   height?: number;
   sizes?: string;
   decorative?: boolean;
-  /** Use the original lockup on its navy ground — the cut-out is gold artwork
-   *  meant for a dark bar and goes weak on white. */
-  onLight?: boolean;
 }) {
   return (
     <Image
-      src={onLight ? "/logo.png" : "/logo-transparent.png"}
+      src="/logo-transparent.png"
       alt={decorative ? "" : `${site.name} ${site.byline} - ${site.kind}`}
-      width={onLight ? height : Math.round((height * W) / H)}
+      width={Math.round((height * W) / H)}
       height={height}
       quality={90}
       sizes={sizes}

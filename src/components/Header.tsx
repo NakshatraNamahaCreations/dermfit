@@ -18,17 +18,23 @@ export default function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // White bar. It sits above a light banner, so it carries a hairline and only
-  // takes a shadow once the page has moved under it.
+  // On wide screens the bar sits transparent on top of the banner so the two
+  // read as one block. Below lg the banner is only a couple of hundred pixels
+  // tall, so an overlaid bar would cover most of it — there it stays white.
+  const overlay = pathname === "/" && !scrolled && !open;
 
   return (
     <header
-      className={`sticky top-0 z-50 border-b bg-white transition-shadow ${
-        scrolled ? "border-transparent shadow-lg shadow-brand-950/10" : "border-line"
+      className={`sticky top-0 z-50 border-b transition-all duration-300 ${
+        overlay
+          ? "border-line bg-white lg:border-transparent lg:bg-transparent"
+          : scrolled
+            ? "border-transparent bg-white shadow-lg shadow-brand-950/10"
+            : "border-line bg-white"
       }`}
     >
       <div
-        className="container-page flex h-20 items-center justify-between gap-6 lg:h-24"
+        className="container-page flex h-24 items-center justify-between gap-6 lg:h-28"
       >
         <Link
           href="/"
@@ -38,16 +44,15 @@ export default function Header() {
           {/* The lockup carries four lines of small type, so the wordmark beside
               it does the work at this size. */}
           <Logo
-            onLight
-            height={288}
-            sizes="(min-width: 1024px) 64px, 56px"
-            className="h-14 w-14 rounded-xl lg:h-16 lg:w-16"
+            height={480}
+            sizes="(min-width: 1024px) 96px, 76px"
+            className="h-[4.5rem] w-auto lg:h-[5.5rem]"
           />
           <span className="flex flex-col leading-none">
-            <span className="font-display text-lg font-semibold tracking-[0.16em] text-brand-950 lg:text-xl">
+            <span className="font-display text-xl font-semibold tracking-[0.16em] text-brand-950 lg:text-2xl">
               DERMFIT
             </span>
-            <span className="mt-1 text-[0.55rem] font-medium uppercase tracking-[0.2em] text-muted">
+            <span className="mt-1 text-[0.58rem] font-medium uppercase tracking-[0.2em] text-muted">
               {site.tagline}
             </span>
           </span>

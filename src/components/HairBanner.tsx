@@ -62,7 +62,7 @@ export default function HairBanner() {
   const delay = (ms: number) => ({ transitionDelay: `${ms}ms` });
 
   return (
-    <section className="relative bg-white">
+    <section className="relative bg-white lg:-mt-28">
       <div className="relative">
         <Image
           src="/banner-hair.jpg"
