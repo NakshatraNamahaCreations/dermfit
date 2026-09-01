@@ -19,11 +19,14 @@ export default function Header() {
   }, []);
 
   // Solid on every page: the bar is its own block, separate from the banner.
+  // No hairline under it — the bar and the banner beneath are both white, so a
+  // rule only drew a line across the join. Once the page moves under the bar a
+  // soft shadow does the separating instead.
 
   return (
     <header
-      className={`sticky top-0 z-50 border-b bg-white transition-shadow ${
-        scrolled ? "border-transparent shadow-lg shadow-brand-950/10" : "border-line"
+      className={`sticky top-0 z-50 bg-white transition-shadow ${
+        scrolled ? "shadow-lg shadow-brand-950/10" : ""
       }`}
     >
       <div
