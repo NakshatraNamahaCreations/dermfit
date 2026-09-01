@@ -1,23 +1,31 @@
 import Image from "next/image";
 import Link from "next/link";
 import { doctors } from "@/data/content";
+import { ClinicianPortrait, type ClinicianProps } from "./illustrations/Clinician";
 import Reveal from "./Reveal";
 
 /**
  * "Meet our doctors" band — photo above, name and qualifications below, in the
  * manner of the reference site.
  *
- * PORTRAITS ARE MISSING. Every card falls back to a navy plate carrying the
- * consultant's initials, because the only faces available here are stock
- * models, and putting one under a named doctor would show a stranger as
- * Dr Hegde. Set `photo` on the entry in data/content.ts — e.g.
- * photo: "/dr-hegde.jpg", 4:5 portrait dropped in public/ — and the plate
- * becomes the photograph with no other change.
+ * PORTRAITS ARE MISSING. Every card falls back to an illustrated stand-in,
+ * because the only faces available here are stock models, and a stock model
+ * under a named doctor shows patients a stranger's face as their consultant.
+ * Set `photo` on the entry in data/content.ts — e.g. photo: "/dr-hegde.jpg",
+ * a 4:5 portrait dropped in public/ — and the illustration gives way to the
+ * photograph with no other change.
  *
  * NOTE: only Dr Sourab Hegde is real. The other two entries in content.ts are
  * placeholders and must be replaced with the clinic's actual consultants, or
  * removed, before this goes live.
  */
+/** Varied so a row of stand-ins does not read as the same person three times. */
+const looks: ClinicianProps[] = [
+  { tone: "mid", hair: "short", beard: true },
+  { tone: "deep", hair: "bun" },
+  { tone: "warm", hair: "long" },
+];
+
 export default function MeetDoctors() {
   return (
     <section className="relative overflow-hidden border-b border-line bg-canvas py-16 sm:py-24">
@@ -57,23 +65,10 @@ export default function MeetDoctors() {
                       className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
                     />
                   ) : (
-                    <>
-                      {/* Monogram plate. Deliberately designed rather than an
-                          empty grey box, since it may be on the live site for a
-                          while. */}
-                      <span
-                        aria-hidden="true"
-                        className="absolute -right-10 -top-10 h-52 w-52 rounded-full bg-gold-500/15 blur-2xl"
-                      />
-                      <span
-                        aria-hidden="true"
-                        className="absolute left-1/2 top-1/2 flex h-28 w-28 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full ring-1 ring-white/15"
-                      >
-                        <span className="font-display text-3xl font-semibold tracking-[0.12em] text-gold-200">
-                          {d.initials}
-                        </span>
-                      </span>
-                    </>
+                    <ClinicianPortrait
+                      {...looks[i % looks.length]}
+                      className="absolute inset-0 h-full w-full transition-transform duration-700 group-hover:scale-105"
+                    />
                   )}
 
                   {/* Gold hairline along the join */}
