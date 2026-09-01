@@ -15,6 +15,10 @@ import Reveal from "./Reveal";
  * a 4:5 portrait dropped in public/ — and the illustration gives way to the
  * photograph with no other change.
  *
+ * Supply portraits at 4:5 (900 x 1125 is what the current three use). The slot
+ * is 4:5 and covers, so anything squarer loses its sides and anything taller
+ * loses its feet — crop to the subject before dropping the file in, not here.
+ *
  * NOTE: only Dr Sourab Hegde is real. The other two entries in content.ts are
  * placeholders and must be replaced with the clinic's actual consultants, or
  * removed, before this goes live.
