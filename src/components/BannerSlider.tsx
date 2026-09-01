@@ -69,7 +69,7 @@ export default function BannerSlider() {
           cannot be cropped taller — the bands take each slide's own edge tone
           instead, which reads as part of the image. */}
       <div
-        className="relative transition-colors duration-700 lg:py-14"
+        className="relative py-6 transition-colors duration-700 sm:py-10 lg:py-24"
         style={{
           background: `linear-gradient(${slide.edge.top}, ${slide.edge.top} 50%, ${slide.edge.bottom})`,
         }}
