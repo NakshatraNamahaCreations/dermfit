@@ -28,6 +28,9 @@ export const doctors: Doctor[] = [
     role: "Consultant Trichologist",
     credentials: "MBBS, DDVL, Fellowship in Trichology",
     bio: "Leads the hair restoration programme. Special interest in female pattern hair loss and PRP protocol standardisation.",
+    // PLACEHOLDER PORTRAIT — a generated likeness, not this consultant. Cropped
+    // to drop another clinic's wall logo out of the left of the frame.
+    photo: "/doctor-2.jpg",
   },
   {
     name: "Dr. Simran Kaur",
