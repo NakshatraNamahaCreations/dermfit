@@ -48,14 +48,6 @@ export default function Header() {
             sizes="(min-width: 1024px) 96px, 76px"
             className="h-[4.5rem] w-auto lg:h-[5.5rem]"
           />
-          <span className="flex flex-col leading-none">
-            <span className="font-display text-xl font-semibold tracking-[0.16em] text-brand-950 lg:text-2xl">
-              DERMFIT
-            </span>
-            <span className="mt-1 text-[0.58rem] font-medium uppercase tracking-[0.2em] text-muted">
-              {site.tagline}
-            </span>
-          </span>
         </Link>
 
         <nav className="hidden items-center gap-1 md:flex" aria-label="Main">

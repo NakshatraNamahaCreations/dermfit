@@ -1,4 +1,4 @@
-import HairBanner from "@/components/HairBanner";
+import BannerSlider from "@/components/BannerSlider";
 import ConcernGrid from "@/components/ConcernGrid";
 import DivisionRow from "@/components/DivisionRow";
 import CarePathway from "@/components/CarePathway";
@@ -11,7 +11,7 @@ export default function Home() {
       {/* Concern -> what we treat -> how care runs -> proof -> book.
           Deliberately short: the journal and the signup band live on their own
           pages rather than lengthening the home page. */}
-      <HairBanner />
+      <BannerSlider />
 
       <ConcernGrid limit={4} />
 
