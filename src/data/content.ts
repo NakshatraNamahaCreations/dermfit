@@ -38,6 +38,11 @@ export const doctors: Doctor[] = [
     role: "Aesthetic Dermatologist",
     credentials: "MBBS, MD (Dermatology)",
     bio: "Focused on injectables and non-surgical skin tightening, with an emphasis on conservative, anatomy-led planning.",
+    // PLACEHOLDER PORTRAIT — a generated likeness, not this consultant. Cropped
+    // past another clinic's wall logo, and the framed "board certified" notice
+    // behind her put out of focus: that is a credential claim, and the name in
+    // front of it is one we invented.
+    photo: "/doctor-3.jpg",
   },
 ];
 
