@@ -31,7 +31,7 @@ export const banners: Banner[] = [
     width: 1983,
     height: 793,
     alt: "Before and after: thinning hair with a widening parting, and thicker hair with a denser parting.",
-    edge: { top: "#f2f5fb", bottom: "#dae1f0" },
+    edge: { top: "#fefefe", bottom: "#fcfcfc" },
     strapline: "Transforming hair.",
     headline: ["Restoring", "confidence."],
     features: [
