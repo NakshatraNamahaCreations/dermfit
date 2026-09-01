@@ -7,7 +7,7 @@ import { banners } from "@/data/banners";
 import { site } from "@/data/site";
 import BannerIcon from "./BannerIcon";
 
-const AUTOPLAY_MS = 7000;
+const AUTOPLAY_MS = 6000;
 
 /**
  * Banner slider.
@@ -49,12 +49,19 @@ export default function BannerSlider() {
       aria-roledescription="carousel"
       aria-label="Dermfit treatments"
       className="relative bg-white"
+      // Pause only for keyboard focus. Clicking an arrow or a dot also focuses
+      // it, and since blur does not fire until focus moves elsewhere, pausing on
+      // any focus left autoplay stopped for good after a single click.
       onFocus={(e) => {
-        if (e.target !== e.currentTarget) setPaused(true);
+        const el = e.target as HTMLElement;
+        if (el === e.currentTarget) return;
+        try {
+          if (el.matches(":focus-visible")) setPaused(true);
+        } catch {
+          /* :focus-visible unsupported — leave autoplay running */
+        }
       }}
-      onBlur={(e) => {
-        if (e.target !== e.currentTarget) setPaused(false);
-      }}
+      onBlur={() => setPaused(false)}
       onTouchStart={(e) => (touchX.current = e.touches[0].clientX)}
       onTouchEnd={(e) => {
         const start = touchX.current;
