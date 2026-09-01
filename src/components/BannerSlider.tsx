@@ -93,15 +93,15 @@ export default function BannerSlider() {
         ))}
 
         <div className="px-6 pb-4 pt-8 lg:absolute lg:inset-0 lg:flex lg:items-center lg:justify-center lg:p-0">
-          <div key={slide.id} className="mx-auto w-full max-w-sm text-center lg:max-w-[26%]">
+          <div key={slide.id} className="mx-auto w-full max-w-md text-center lg:max-w-[30%]">
             <p
               style={delay(0)}
-              className={`${rise} text-[0.6rem] font-medium uppercase tracking-[0.32em] text-brand-800 sm:text-[0.7rem]`}
+              className={`${rise} text-[0.7rem] font-medium uppercase tracking-[0.32em] text-brand-800 sm:text-xs lg:text-sm`}
             >
               {slide.strapline}
             </p>
 
-            <h1 className="mt-2 font-display text-xl font-semibold uppercase leading-tight tracking-tight text-brand-950 sm:text-2xl lg:text-[1.7rem]">
+            <h1 className="mt-3 font-display text-2xl font-semibold uppercase leading-[1.15] tracking-tight text-brand-950 sm:text-3xl lg:text-[2.4rem]">
               <span style={delay(160)} className={`${rise} inline-block`}>
                 {slide.headline[0]}{" "}
               </span>
@@ -113,20 +113,20 @@ export default function BannerSlider() {
             <span
               aria-hidden="true"
               style={delay(460)}
-              className={`${rise} mx-auto mt-3 block h-px w-20 bg-gradient-to-r from-transparent via-gold-500 to-transparent`}
+              className={`${rise} mx-auto mt-4 block h-px w-24 bg-gradient-to-r from-transparent via-gold-500 to-transparent`}
             />
 
-            <ul className="mt-5 flex flex-wrap items-start justify-center gap-x-4 gap-y-4 sm:gap-x-5">
+            <ul className="mt-6 flex flex-wrap items-start justify-center gap-x-5 gap-y-5 sm:gap-x-6">
               {slide.features.map((f, i) => (
                 <li
                   key={f.icon}
                   style={delay(560 + i * 110)}
-                  className={`${rise} flex w-14 flex-col items-center gap-1.5 text-center`}
+                  className={`${rise} flex w-[4.5rem] flex-col items-center gap-2 text-center`}
                 >
-                  <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white/90 text-brand-800 ring-1 ring-brand-200/80">
+                  <span className="flex h-11 w-11 items-center justify-center rounded-full bg-white/90 text-brand-800 ring-1 ring-brand-200/80">
                     <BannerIcon name={f.icon} />
                   </span>
-                  <span className="text-[0.52rem] font-semibold uppercase leading-tight tracking-[0.08em] text-brand-900">
+                  <span className="text-[0.6rem] font-semibold uppercase leading-tight tracking-[0.08em] text-brand-900">
                     {f.label[0]}
                     <br />
                     {f.label[1]}
