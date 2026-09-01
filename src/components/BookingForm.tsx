@@ -22,12 +22,23 @@ function SubmitButton() {
   );
 }
 
-export default function BookingForm() {
+/**
+ * @param bare Drops the form's own card chrome, for when it is already sitting
+ *   inside a panel — nesting the two draws a border inside a border.
+ */
+export default function BookingForm({ bare = false }: { bare?: boolean }) {
   const [state, formAction] = useActionState(submitBooking, initialBookingState);
+  const chrome = bare ? "" : "rounded-card border border-line bg-surface p-7 sm:p-8";
 
   if (state.status === "success") {
     return (
-      <div className="rounded-card border border-gold-200 bg-gold-50 p-8 text-center">
+      <div
+        className={`text-center ${
+          bare
+            ? "py-6"
+            : "rounded-card border border-gold-200 bg-gold-50 p-8"
+        }`}
+      >
         <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-brand-900">
           <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
             <path
@@ -51,7 +62,7 @@ export default function BookingForm() {
   }
 
   return (
-    <form action={formAction} noValidate className="rounded-card border border-line bg-surface p-7 sm:p-8">
+    <form action={formAction} noValidate className={chrome}>
       <div aria-hidden="true" className="hidden">
         <label htmlFor="company">Company</label>
         <input id="company" name="company" type="text" tabIndex={-1} autoComplete="off" />
