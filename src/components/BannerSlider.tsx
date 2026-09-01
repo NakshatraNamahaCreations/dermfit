@@ -81,23 +81,29 @@ export default function BannerSlider() {
           background: `linear-gradient(${slide.edge.top}, ${slide.edge.top} 50%, ${slide.edge.bottom})`,
         }}
       >
-        {/* The first slide sits in flow so the section keeps its height without a
-            hard-coded aspect ratio; the rest are stacked over it and cross-fade. */}
-        {banners.map((b, i) => (
-          <Image
-            key={b.id}
-            src={b.image}
-            alt={i === index ? b.alt : ""}
-            width={b.width}
-            height={b.height}
-            priority={i === 0}
-            sizes="100vw"
-            aria-hidden={i !== index}
-            className={`h-auto w-full transition-opacity duration-700 ${
-              i === 0 ? "relative" : "absolute inset-x-0 top-1/2 -translate-y-1/2"
-            } ${i === index ? "opacity-100" : "opacity-0"}`}
-          />
-        ))}
+        {/* Every slide fills one fixed box rather than the first sizing the rest.
+            The two artworks are 2.5:1 and 2.19:1, so letting slide one set the
+            height left the other mispositioned; object-contain inside a shared
+            box keeps both whole, and the letterboxing is invisible because both
+            grounds are white. */}
+        <div className="relative w-full" style={{ aspectRatio: "2.4 / 1" }}>
+          {banners.map((b, i) => (
+            <Image
+              key={b.id}
+              src={b.image}
+              alt={i === index ? b.alt : ""}
+              fill
+              // Both are eager: a lazily loaded slide shows blank on the first
+              // switch, before the browser has fetched it.
+              priority
+              sizes="100vw"
+              aria-hidden={i !== index}
+              className={`object-contain transition-opacity duration-700 ${
+                i === index ? "opacity-100" : "opacity-0"
+              }`}
+            />
+          ))}
+        </div>
 
         <div className="px-6 pb-4 pt-8 lg:absolute lg:inset-0 lg:flex lg:items-center lg:justify-center lg:p-0">
           <div key={slide.id} className="mx-auto w-full max-w-md text-center lg:max-w-[30%]">
