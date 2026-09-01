@@ -41,7 +41,7 @@ export default function BannerSlider() {
   // The text block is keyed on the slide, so changing slides remounts it and
   // the CSS entrance replays — no state to reset, and nothing to sequence in an
   // effect.
-  const rise = "animate-rise";
+  const rise = "animate-banner-in";
   const delay = (ms: number) => ({ animationDelay: `${ms}ms` });
 
   return (
@@ -102,7 +102,7 @@ export default function BannerSlider() {
               priority
               sizes="100vw"
               aria-hidden={i !== index}
-              className={`object-contain transition-opacity duration-700 ${
+              className={`object-contain transition-opacity duration-500 ${
                 i === index ? "opacity-100" : "opacity-0"
               }`}
             />
@@ -110,40 +110,43 @@ export default function BannerSlider() {
         </div>
 
         <div className="px-6 pb-4 pt-8 lg:absolute lg:inset-0 lg:flex lg:items-center lg:justify-center lg:p-0">
-          <div key={slide.id} className="mx-auto w-full max-w-md text-center lg:max-w-[30%]">
+          <div key={slide.id} className="mx-auto w-full max-w-lg text-center lg:max-w-[36%]">
             <p
               style={delay(0)}
-              className={`${rise} text-[0.7rem] font-medium uppercase tracking-[0.32em] text-brand-800 sm:text-xs lg:text-sm`}
+              className={`${rise} text-xs font-medium uppercase tracking-[0.34em] text-brand-800 sm:text-sm lg:text-base`}
             >
               {slide.strapline}
             </p>
 
-            <h1 className="mt-3 font-display text-2xl font-semibold uppercase leading-[1.15] tracking-tight text-brand-950 sm:text-3xl lg:text-[2.4rem]">
-              <span style={delay(160)} className={`${rise} inline-block`}>
+            <h1 className="mt-4 font-display text-3xl font-semibold uppercase leading-[1.1] tracking-tight text-brand-950 sm:text-4xl lg:text-[3.25rem]">
+              <span style={delay(200)} className={`${rise} inline-block`}>
                 {slide.headline[0]}{" "}
               </span>
-              <span style={delay(300)} className={`${rise} inline-block text-gold-gradient`}>
-                {slide.headline[1]}
+              {/* Animation on the outside, gradient on the inside. The entrance
+                  uses filter: blur, and stacking that on the same element as
+                  background-clip: text is where browsers disagree. */}
+              <span style={delay(360)} className={`${rise} inline-block`}>
+                <span className="text-gold-gradient">{slide.headline[1]}</span>
               </span>
             </h1>
 
             <span
               aria-hidden="true"
-              style={delay(460)}
-              className={`${rise} mx-auto mt-4 block h-px w-24 bg-gradient-to-r from-transparent via-gold-500 to-transparent`}
+              style={delay(520)}
+              className={`${rise} mx-auto mt-5 block h-px w-28 bg-gradient-to-r from-transparent via-gold-500 to-transparent`}
             />
 
-            <ul className="mt-6 flex flex-wrap items-start justify-center gap-x-5 gap-y-5 sm:gap-x-6">
+            <ul className="mt-7 flex flex-wrap items-start justify-center gap-x-6 gap-y-6 sm:gap-x-7">
               {slide.features.map((f, i) => (
                 <li
                   key={f.icon}
-                  style={delay(560 + i * 110)}
-                  className={`${rise} flex w-[4.5rem] flex-col items-center gap-2 text-center`}
+                  style={delay(640 + i * 120)}
+                  className={`${rise} flex w-20 flex-col items-center gap-2.5 text-center`}
                 >
-                  <span className="flex h-11 w-11 items-center justify-center rounded-full bg-white/90 text-brand-800 ring-1 ring-brand-200/80">
+                  <span className="flex h-12 w-12 items-center justify-center rounded-full bg-white/90 text-brand-800 ring-1 ring-brand-200/80">
                     <BannerIcon name={f.icon} />
                   </span>
-                  <span className="text-[0.6rem] font-semibold uppercase leading-tight tracking-[0.08em] text-brand-900">
+                  <span className="text-[0.68rem] font-semibold uppercase leading-tight tracking-[0.08em] text-brand-900">
                     {f.label[0]}
                     <br />
                     {f.label[1]}
