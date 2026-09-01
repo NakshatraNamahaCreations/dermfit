@@ -74,9 +74,13 @@ export default function BannerSlider() {
       {/* Padded above and below to give the banner more height. The artwork is
           2.5:1 with the BEFORE and AFTER labels hard against its edges, so it
           cannot be cropped taller — the bands take each slide's own edge tone
-          instead, which reads as part of the image. */}
+          instead, which reads as part of the image.
+
+          The padding is uneven on purpose: less above than below, which lifts
+          the artwork and the text over it closer to the header without losing
+          the height overall. */}
       <div
-        className="relative py-6 transition-colors duration-700 sm:py-10 lg:py-24"
+        className="relative pb-8 pt-2 transition-colors duration-700 sm:pb-12 sm:pt-3 lg:pb-28 lg:pt-10"
         style={{
           background: `linear-gradient(${slide.edge.top}, ${slide.edge.top} 50%, ${slide.edge.bottom})`,
         }}
