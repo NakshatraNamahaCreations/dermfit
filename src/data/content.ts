@@ -18,6 +18,9 @@ export const doctors: Doctor[] = [
     credentials: "MBBS, MD (Dermatology)",
     // PLACEHOLDER BIO — replace with Dr Hegde's actual credentials and background.
     bio: "Founder of Dermfit, practising across clinical dermatology, trichology and aesthetics with a focus on diagnosis-led treatment planning.",
+    // PLACEHOLDER PORTRAIT — a generated likeness supplied by the clinic, not a
+    // photograph of Dr Hegde. Replace with his own before launch.
+    photo: "/doctor-hegde.jpg",
   },
   {
     name: "Dr. Kabir Menon",
