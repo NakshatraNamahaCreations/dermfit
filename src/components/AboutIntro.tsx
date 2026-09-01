@@ -1,7 +1,7 @@
+import Image from "next/image";
 import Link from "next/link";
 import { divisions, treatmentCount } from "@/data/catalogue";
 import { site } from "@/data/site";
-import { ClinicTeamScene } from "./illustrations/Clinician";
 import Reveal from "./Reveal";
 
 /**
@@ -9,11 +9,11 @@ import Reveal from "./Reveal";
  *
  * Text left, team image right, as on the reference site.
  *
- * The team image is an illustration, not a photograph. The only stock frames
- * available are glossy, fair-skinned and spa-lit — the tone the clinic asked us
- * to move away from — and none of the free-licence pools searched had a usable
- * Indian clinic team. See illustrations/Clinician for the reasoning. Swapping in
- * a real photograph of the team is one <Image fill> in the same box.
+ * The team photograph was supplied by the clinic (public/about-team.jpg). It is
+ * a stand-in showing a clinical team rather than Dermfit's own, so it carries no
+ * caption naming anyone — replace it with a photograph of the actual team when
+ * there is one. Its filename suggests another hospital's site, so the clinic
+ * should confirm they hold the rights before launch.
  *
  * The two figures are counted from the real catalogue rather than asserted, so
  * they cannot drift out of date or overstate anything.
@@ -99,8 +99,19 @@ export default function AboutIntro() {
           {/* Team image, with the consultant card lapping over its lower edge */}
           <Reveal from="right" delay={120}>
             <div className="mx-auto max-w-md lg:mx-0 lg:max-w-none">
-              <div className="overflow-hidden rounded-[1.75rem] ring-1 ring-line">
-                <ClinicTeamScene className="block aspect-[9/7] w-full" />
+              <div className="relative aspect-[9/7] overflow-hidden rounded-[1.75rem] ring-1 ring-line">
+                <Image
+                  src="/about-team.jpg"
+                  alt="Doctors in white coats outside the clinic"
+                  fill
+                  sizes="(min-width: 1024px) 42vw, (min-width: 640px) 28rem, 100vw"
+                  className="object-cover object-center"
+                />
+                {/* Grounds the navy card against the pale lower edge */}
+                <div
+                  aria-hidden="true"
+                  className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-brand-950/30 to-transparent"
+                />
               </div>
 
               <div className="relative z-10 -mt-12 mx-5 overflow-hidden rounded-[1.25rem] bg-brand-950 text-white shadow-xl shadow-brand-950/20 sm:mx-8">

@@ -168,8 +168,11 @@ export function ClinicianPortrait({
 }
 
 /**
- * Three clinicians in a consulting room, for the About band. 900 x 700, drawn
- * to be cropped by object-cover at any ratio down to about 4:3.
+ * Three clinicians in a consulting room. 900 x 700, drawn to be cropped by
+ * object-cover at any ratio down to about 4:3.
+ *
+ * Currently unused — the About band took a supplied photograph instead. Kept as
+ * the fallback if that photograph has to come down over rights.
  */
 export function ClinicTeamScene({ className = "" }: { className?: string }) {
   return (
