@@ -27,7 +27,7 @@ export default function Header() {
       }`}
     >
       <div
-        className="container-page flex h-24 items-center justify-between gap-6 lg:h-28"
+        className="container-page flex h-28 items-center justify-between gap-6 lg:h-36"
       >
         <Link
           href="/"
@@ -36,10 +36,12 @@ export default function Header() {
         >
           {/* The lockup carries four lines of small type, so the wordmark beside
               it does the work at this size. */}
+          {/* The lockup carries four lines of small type; below roughly 128px
+              the bottom two stop resolving, which is what made it look soft. */}
           <Logo
-            height={480}
-            sizes="(min-width: 1024px) 96px, 76px"
-            className="h-[4.5rem] w-auto lg:h-[5.5rem]"
+            height={512}
+            sizes="(min-width: 1024px) 108px, 84px"
+            className="h-24 w-auto lg:h-32"
           />
         </Link>
 

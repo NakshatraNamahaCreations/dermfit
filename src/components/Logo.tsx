@@ -29,7 +29,7 @@ export default function Logo({
       alt={decorative ? "" : `${site.name} ${site.byline} - ${site.kind}`}
       width={Math.round((height * W) / H)}
       height={height}
-      quality={90}
+      quality={100}
       sizes={sizes}
       priority
       className={className}
