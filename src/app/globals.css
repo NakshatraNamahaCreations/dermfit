@@ -210,15 +210,9 @@
     animation: dermfit-shimmer 4.2s ease-in-out 900ms infinite;
   }
 
-  /* Before/after wipe. Opens on the "before" frame and settles at half, so the
-     comparison plays itself once rather than waiting to be dragged. Percentages
-     are right-insets: 0% shows all of the before frame, 50% shows half. */
-  .animate-wipe {
-    animation: dermfit-wipe 1700ms cubic-bezier(0.65, 0, 0.35, 1) 250ms both;
-  }
-
-  .animate-wipe-handle {
-    animation: dermfit-wipe-handle 1700ms cubic-bezier(0.65, 0, 0.35, 1) 250ms both;
+  /* Light running down the seam between a before and an after, on hover. */
+  .animate-seam {
+    animation: dermfit-seam 1500ms ease-in-out infinite;
   }
 
   .rule-gold {
@@ -317,21 +311,12 @@
   }
 }
 
-@keyframes dermfit-wipe {
+@keyframes dermfit-seam {
   from {
-    clip-path: inset(0 0 0 0);
+    transform: translate(-50%, -100%);
   }
   to {
-    clip-path: inset(0 50% 0 0);
-  }
-}
-
-@keyframes dermfit-wipe-handle {
-  from {
-    left: 100%;
-  }
-  to {
-    left: 50%;
+    transform: translate(-50%, 300%);
   }
 }
 

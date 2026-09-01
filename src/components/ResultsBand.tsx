@@ -1,70 +1,23 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
-import { useCallback, useEffect, useRef, useState } from "react";
 import { results, resultsAreIllustrative } from "@/data/results";
-
-const AUTOPLAY_MS = 8000;
+import Reveal from "./Reveal";
 
 /**
- * Before / after results band.
+ * Before / after results band — three columns, as on the reference.
  *
- * Rather than two frames sitting side by side, each case is a single frame with
- * a wipe across it: the comparison opens on the "before" state and sweeps to
- * half, so it plays itself once, and can then be dragged. That is the whole
- * point of a before/after — seeing the same pixels change — and it is lost when
- * the eye has to travel between two separate pictures.
+ * The frame is 3:2 and each half is exactly 3:4, which is the ratio the source
+ * files are cut to, so neither picture is cropped by the layout. The earlier
+ * single wide frame cropped a portrait to 3:2 and took the tops off the faces.
  *
- * The sweep is a CSS keyframe until the visitor touches the handle, at which
- * point an inline clip takes over. No animation loop in JS, and no state to
- * reset between slides — the frame is keyed on the case, so changing case
- * remounts it and the sweep replays.
+ * Two comparisons and a closing card. There are only two honest pairs to show,
+ * and padding the row with a third by re-cropping one of them would be showing
+ * the same case twice — so the third column carries the invitation instead.
  *
  * These are illustrative images, not patient records, and the band says so in
  * text. See data/results.ts for what has to be true before that changes.
  */
 export default function ResultsBand() {
-  const [index, setIndex] = useState(0);
-  const [paused, setPaused] = useState(false);
-  // Null until dragged: null means "let the CSS sweep run".
-  const [x, setX] = useState<number | null>(null);
-  const frame = useRef<HTMLDivElement>(null);
-  // Touch reports buttons as 0, so the mouse-button test alone left dragging
-  // dead on phones. Track it explicitly instead.
-  const dragging = useRef(false);
-  const count = results.length;
-  const item = results[index];
-
-  const go = useCallback(
-    (n: number) => {
-      setIndex(((n % count) + count) % count);
-      setX(null);
-    },
-    [count],
-  );
-
-  useEffect(() => {
-    if (paused || count < 2) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const t = setTimeout(() => {
-      setIndex((i) => (i + 1) % count);
-      setX(null);
-    }, AUTOPLAY_MS);
-    return () => clearTimeout(t);
-  }, [paused, count, index]);
-
-  const track = (clientX: number) => {
-    const el = frame.current;
-    if (!el) return;
-    const r = el.getBoundingClientRect();
-    setX(Math.min(100, Math.max(0, ((clientX - r.left) / r.width) * 100)));
-  };
-
-  const swept = x === null;
-  const clip = swept ? undefined : { clipPath: `inset(0 ${100 - x}% 0 0)` };
-  const handleAt = swept ? undefined : { left: `${x}%` };
-
   return (
     <section className="bg-surface py-16 sm:py-24" aria-labelledby="results-heading">
       <div className="container-page text-center">
@@ -79,186 +32,164 @@ export default function ResultsBand() {
           aria-hidden="true"
           className="mx-auto mt-5 block h-px w-24 bg-gradient-to-r from-transparent via-gold-500 to-transparent"
         />
+        <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-muted">
+          What changes, and what it depends on. Every plan starts from a diagnosis, so what
+          is achievable is established before anything is booked.
+        </p>
       </div>
 
-      <div className="mt-12 bg-canvas py-12 sm:py-16">
+      <div className="mt-14 bg-canvas py-14 sm:py-20">
         <div className="container-page">
-          <div
-            className="relative"
-            onMouseEnter={() => setPaused(true)}
-            onMouseLeave={() => setPaused(false)}
-          >
-            {/* Navy offset blocks and the dot field, as on the reference */}
-            <span
-              aria-hidden="true"
-              className="absolute -left-2 -top-2 hidden h-24 w-24 rounded-tl-2xl bg-brand-950 sm:block lg:-left-4 lg:-top-4 lg:h-32 lg:w-32"
-            />
-            <span
-              aria-hidden="true"
-              className="absolute -bottom-2 -right-2 hidden h-24 w-24 rounded-br-2xl bg-brand-950 sm:block lg:-bottom-4 lg:-right-4 lg:h-32 lg:w-32"
-            />
-            <span
-              aria-hidden="true"
-              className="absolute -right-1 -top-6 hidden h-20 w-40 lg:block"
-              style={{
-                backgroundImage: "radial-gradient(var(--color-brand-200) 1.5px, transparent 1.5px)",
-                backgroundSize: "12px 12px",
-              }}
-            />
-
-            <div className="relative overflow-hidden rounded-2xl bg-surface p-4 shadow-xl shadow-brand-950/5 sm:p-6 lg:p-8">
-              <div className="grid items-center gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:gap-12">
-                {/* The comparison */}
-                <div
-                  key={item.id}
-                  ref={frame}
-                  className="relative aspect-[3/2] w-full touch-pan-y select-none overflow-hidden rounded-xl bg-canvas"
-                  onPointerDown={(e) => {
-                    e.currentTarget.setPointerCapture(e.pointerId);
-                    dragging.current = true;
-                    track(e.clientX);
-                  }}
-                  onPointerMove={(e) => {
-                    if (dragging.current) track(e.clientX);
-                  }}
-                  onPointerUp={() => (dragging.current = false)}
-                  onPointerCancel={() => (dragging.current = false)}
-                >
-                  <Image
-                    src={item.after}
-                    alt={item.afterAlt}
-                    fill
-                    sizes="(min-width: 1024px) 55vw, 100vw"
-                    className="object-cover object-top"
+          <div className="grid gap-7 md:grid-cols-2 lg:grid-cols-3">
+            {results.map((r, i) => (
+              <Reveal key={r.id} delay={i * 120} className="h-full">
+                <article className="group relative h-full">
+                  {/* Navy offset blocks, as on the reference */}
+                  <span
+                    aria-hidden="true"
+                    className="absolute -left-2 -top-2 h-16 w-16 rounded-tl-xl bg-brand-950 transition-transform duration-500 group-hover:-translate-x-1 group-hover:-translate-y-1"
+                  />
+                  <span
+                    aria-hidden="true"
+                    className="absolute -bottom-2 -right-2 h-16 w-16 rounded-br-xl bg-brand-950 transition-transform duration-500 group-hover:translate-x-1 group-hover:translate-y-1"
                   />
 
-                  <div
-                    className={`absolute inset-0 ${swept ? "animate-wipe" : ""}`}
-                    style={clip}
-                  >
-                    <Image
-                      src={item.before}
-                      alt={item.beforeAlt}
-                      fill
-                      sizes="(min-width: 1024px) 55vw, 100vw"
-                      className="object-cover object-top"
-                    />
-                  </div>
-
-                  {/* Handle */}
-                  <div
-                    aria-hidden="true"
-                    className={`absolute inset-y-0 w-px -translate-x-1/2 bg-white/90 shadow-[0_0_0_1px_rgba(1,18,45,0.12)] ${
-                      swept ? "animate-wipe-handle" : ""
-                    }`}
-                    style={handleAt}
-                  >
-                    <span className="absolute left-1/2 top-1/2 flex h-9 w-9 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white text-brand-900 shadow-lg">
-                      <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
-                        <path
-                          d="M7.5 4 4 9l3.5 5M10.5 4 14 9l-3.5 5"
-                          stroke="currentColor"
-                          strokeWidth="1.6"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
+                  <div className="relative flex h-full flex-col overflow-hidden rounded-xl bg-surface shadow-lg shadow-brand-950/5 transition-shadow duration-500 group-hover:shadow-2xl group-hover:shadow-brand-950/10">
+                    {/* 3:2 frame, two 3:4 halves — the ratio the files are cut
+                        to, so nothing is cropped by the layout. */}
+                    <div className="relative grid aspect-[3/2] grid-cols-2">
+                      <div className="relative overflow-hidden">
+                        <Image
+                          src={r.before}
+                          alt={r.beforeAlt}
+                          fill
+                          sizes="(min-width: 1024px) 16vw, (min-width: 768px) 24vw, 45vw"
+                          className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
                         />
-                      </svg>
-                    </span>
+                      </div>
+                      <div className="relative overflow-hidden">
+                        <Image
+                          src={r.after}
+                          alt={r.afterAlt}
+                          fill
+                          sizes="(min-width: 1024px) 16vw, (min-width: 768px) 24vw, 45vw"
+                          className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+                        />
+                      </div>
+
+                      {/* Divider, and the light that runs down it on hover */}
+                      <span
+                        aria-hidden="true"
+                        className="pointer-events-none absolute inset-y-0 left-1/2 w-px -translate-x-1/2 bg-white/90"
+                      />
+                      <span
+                        aria-hidden="true"
+                        className="pointer-events-none absolute left-1/2 top-0 h-1/3 w-px -translate-x-1/2 bg-gradient-to-b from-transparent via-gold-400 to-transparent opacity-0 transition-opacity duration-500 group-hover:animate-seam group-hover:opacity-100"
+                      />
+                    </div>
+
+                    <div className="grid grid-cols-2 border-b border-line text-center text-[0.7rem] font-semibold uppercase tracking-[0.14em]">
+                      <span className="border-r border-line py-2.5 text-muted">Before</span>
+                      <span className="bg-gold-50 py-2.5 text-gold-700">After</span>
+                    </div>
+
+                    <div className="flex flex-1 flex-col p-6">
+                      <p className="text-[0.7rem] font-semibold uppercase tracking-[0.16em] text-gold-700">
+                        {r.concern}
+                      </p>
+                      <h3 className="mt-2.5 font-display text-lg font-semibold leading-snug text-brand-950">
+                        {r.headline}
+                      </h3>
+                      <p className="mt-3 text-sm leading-relaxed text-muted">{r.summary}</p>
+                      <Link
+                        href={r.href}
+                        className="mt-auto pt-6 text-xs font-semibold uppercase tracking-[0.16em] text-brand-950 underline decoration-gold-500 underline-offset-8 transition-colors hover:text-gold-700"
+                      >
+                        How this is diagnosed
+                      </Link>
+                    </div>
+                  </div>
+                </article>
+              </Reveal>
+            ))}
+
+            {/* Third column: the invitation, rather than a third case we do not
+                honestly have. */}
+            <Reveal delay={results.length * 120} className="h-full">
+              <article className="group relative h-full">
+                <span
+                  aria-hidden="true"
+                  className="absolute -left-2 -top-2 h-16 w-16 rounded-tl-xl bg-gold-500 transition-transform duration-500 group-hover:-translate-x-1 group-hover:-translate-y-1"
+                />
+                <span
+                  aria-hidden="true"
+                  className="absolute -bottom-2 -right-2 h-16 w-16 rounded-br-xl bg-gold-500 transition-transform duration-500 group-hover:translate-x-1 group-hover:translate-y-1"
+                />
+
+                <div className="relative flex h-full flex-col justify-between overflow-hidden rounded-xl bg-brand-950 p-8 text-white shadow-lg shadow-brand-950/10 transition-shadow duration-500 group-hover:shadow-2xl">
+                  <span
+                    aria-hidden="true"
+                    className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full bg-gold-500/10 blur-2xl"
+                  />
+
+                  <div className="relative">
+                    <p className="text-[0.7rem] font-semibold uppercase tracking-[0.16em] text-gold-200">
+                      Your case
+                    </p>
+                    <h3 className="mt-3 font-display text-2xl font-semibold leading-tight">
+                      What changes for you depends on the cause
+                    </h3>
+                    <p className="mt-4 text-sm leading-relaxed text-white/70">
+                      Two people with the same complaint rarely have the same diagnosis.
+                      Yours is worked out first — with imaging, scoring or bloods — and you
+                      leave with a written plan and its costs before anything is booked.
+                    </p>
+
+                    <ul className="mt-6 space-y-2.5 text-sm text-white/85">
+                      {["Examination and diagnosis", "A written plan you keep", "Progress measured, not claimed"].map(
+                        (t) => (
+                          <li key={t} className="flex items-start gap-2.5">
+                            <svg
+                              width="16"
+                              height="16"
+                              viewBox="0 0 20 20"
+                              fill="none"
+                              aria-hidden="true"
+                              className="mt-1 shrink-0 text-gold-400"
+                            >
+                              <path
+                                d="m4 10.5 4 4 8-9"
+                                stroke="currentColor"
+                                strokeWidth="1.8"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                              />
+                            </svg>
+                            {t}
+                          </li>
+                        ),
+                      )}
+                    </ul>
                   </div>
 
-                  <span className="pointer-events-none absolute left-3 top-3 rounded-full bg-brand-950/85 px-3 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-white">
-                    Before
-                  </span>
-                  <span className="pointer-events-none absolute right-3 top-3 rounded-full bg-gold-500/95 px-3 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-brand-950">
-                    After
-                  </span>
-                </div>
-
-                {/* The case */}
-                <div key={`${item.id}-copy`} className="animate-rise">
-                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-gold-700">
-                    {item.concern}
-                  </p>
-                  <h3 className="mt-3 font-display text-2xl font-semibold leading-tight text-brand-950 sm:text-3xl">
-                    {item.headline}
-                  </h3>
-                  <p className="mt-4 text-sm leading-relaxed text-muted sm:text-base">
-                    {item.summary}
-                  </p>
-
-                  <div className="mt-7 flex flex-wrap items-center gap-3">
-                    <Link href={item.href} className="btn btn-navy">
-                      How this is diagnosed
+                  <div className="relative mt-8 flex flex-col gap-3">
+                    <Link href="/contact" className="btn btn-gold w-full justify-center">
+                      Book a consultation
                     </Link>
-                    <Link href="/contact" className="btn btn-outline">
-                      Book a consult
+                    <Link
+                      href="/concerns"
+                      className="btn btn-ghost-light w-full justify-center"
+                    >
+                      Start from your concern
                     </Link>
                   </div>
-
-                  <p className="mt-6 text-xs text-muted">
-                    Drag the handle to compare.
-                  </p>
                 </div>
-              </div>
-            </div>
-
-            {count > 1 && (
-              <>
-                <button
-                  type="button"
-                  onClick={() => go(index - 1)}
-                  aria-label="Previous result"
-                  className="absolute -left-3 top-1/2 hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-surface text-brand-900 shadow-lg ring-1 ring-line transition-colors hover:text-gold-700 lg:flex"
-                >
-                  <svg width="16" height="16" viewBox="0 0 18 18" fill="none" aria-hidden="true">
-                    <path
-                      d="M11 3.5 5.5 9l5.5 5.5"
-                      stroke="currentColor"
-                      strokeWidth="1.6"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </button>
-                <button
-                  type="button"
-                  onClick={() => go(index + 1)}
-                  aria-label="Next result"
-                  className="absolute -right-3 top-1/2 hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-surface text-brand-900 shadow-lg ring-1 ring-line transition-colors hover:text-gold-700 lg:flex"
-                >
-                  <svg width="16" height="16" viewBox="0 0 18 18" fill="none" aria-hidden="true">
-                    <path
-                      d="m7 3.5 5.5 5.5L7 14.5"
-                      stroke="currentColor"
-                      strokeWidth="1.6"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </button>
-              </>
-            )}
+              </article>
+            </Reveal>
           </div>
 
-          {count > 1 && (
-            <div className="mt-8 flex justify-center gap-2">
-              {results.map((r, i) => (
-                <button
-                  key={r.id}
-                  type="button"
-                  onClick={() => go(i)}
-                  aria-label={r.concern}
-                  aria-current={i === index}
-                  className={`h-1.5 rounded-full transition-all ${
-                    i === index ? "w-9 bg-gold-500" : "w-1.5 bg-brand-200 hover:bg-brand-300"
-                  }`}
-                />
-              ))}
-            </div>
-          )}
-
           {resultsAreIllustrative && (
-            <p className="mx-auto mt-8 max-w-2xl text-center text-xs leading-relaxed text-muted">
+            <p className="mx-auto mt-12 max-w-2xl text-center text-xs leading-relaxed text-muted">
               Illustrative images, not patient records. Outcomes differ with the cause, the
               severity and the individual, and are never guaranteed — yours is established at
               consultation.
