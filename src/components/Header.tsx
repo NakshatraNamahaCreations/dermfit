@@ -18,19 +18,12 @@ export default function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // On wide screens the bar sits transparent on top of the banner so the two
-  // read as one block. Below lg the banner is only a couple of hundred pixels
-  // tall, so an overlaid bar would cover most of it — there it stays white.
-  const overlay = pathname === "/" && !scrolled && !open;
+  // Solid on every page: the bar is its own block, separate from the banner.
 
   return (
     <header
-      className={`sticky top-0 z-50 border-b transition-all duration-300 ${
-        overlay
-          ? "border-line bg-white lg:border-transparent lg:bg-transparent"
-          : scrolled
-            ? "border-transparent bg-white shadow-lg shadow-brand-950/10"
-            : "border-line bg-white"
+      className={`sticky top-0 z-50 border-b bg-white transition-shadow ${
+        scrolled ? "border-transparent shadow-lg shadow-brand-950/10" : "border-line"
       }`}
     >
       <div

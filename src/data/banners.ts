@@ -45,10 +45,10 @@ export const banners: Banner[] = [
   {
     id: "skin",
     image: "/banner-skin.jpg",
-    width: 1857,
-    height: 847,
+    width: 1855,
+    height: 848,
     alt: "Before and after: skin with active acne and marks, and calmer skin with a more even tone.",
-    edge: { top: "#e4d2c0", bottom: "#decfbf" },
+    edge: { top: "#fefefe", bottom: "#f5f5f5" },
     strapline: "Treating acne.",
     headline: ["Restoring", "skin."],
     features: [

@@ -48,7 +48,7 @@ export default function BannerSlider() {
     <section
       aria-roledescription="carousel"
       aria-label="Dermfit treatments"
-      className="relative bg-white lg:-mt-28"
+      className="relative bg-white"
       onFocus={(e) => {
         if (e.target !== e.currentTarget) setPaused(true);
       }}
