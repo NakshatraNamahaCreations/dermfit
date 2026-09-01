@@ -22,9 +22,7 @@ export default function CarePathway() {
               <span className="block text-gold-gradient">in that order</span>
             </h2>
             <p className="mt-5 max-w-md text-base leading-relaxed text-brand-200">
-              Treatment is the fifth stage, not the first. Everything before it exists so
-              that what follows is the right thing — and everything after it exists to
-              prove whether it worked.
+              Treatment is the fifth stage, not the first.
             </p>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">

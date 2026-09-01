@@ -22,8 +22,8 @@ export default function CTA() {
               Start with a proper diagnosis, not a package
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-brand-200">
-              Book a 30-minute consultation. You will leave with a written plan, expected
-              timelines and clear costs — whether or not you decide to treat with us.
+              Thirty minutes. You leave with a written plan and clear costs, whether or
+              not you treat with us.
             </p>
             <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
               <Link

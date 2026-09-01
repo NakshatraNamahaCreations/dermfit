@@ -4,7 +4,7 @@ import { useActionState } from "react";
 import { useFormStatus } from "react-dom";
 import { submitBooking } from "@/app/contact/actions";
 import { initialBookingState } from "@/app/contact/booking-state";
-import { services } from "@/data/services";
+import { divisions } from "@/data/catalogue";
 
 const fieldBase =
   "mt-1.5 w-full rounded-xl border bg-surface px-4 py-3 text-sm text-brand-950 placeholder:text-muted/70 transition-colors focus:border-gold-500";
@@ -145,9 +145,9 @@ export default function BookingForm() {
             <option value="" disabled>
               Select an area
             </option>
-            {services.map((s) => (
-              <option key={s.slug} value={s.title}>
-                {s.title}
+            {divisions.map((d) => (
+              <option key={d.slug} value={d.title}>
+                {d.title}
               </option>
             ))}
             <option value="Something else">Something else / not sure</option>

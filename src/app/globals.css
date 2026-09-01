@@ -38,8 +38,10 @@
   --color-surface: #ffffff;
   --color-canvas: #f7f8fb;
 
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-fraunces), Georgia, "Times New Roman", serif;
+  --font-sans: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
+  /* Same family; the display role is carried by weight and tracking, not by a
+     second typeface. */
+  --font-display: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
 
   --radius-card: 1.25rem;
 }

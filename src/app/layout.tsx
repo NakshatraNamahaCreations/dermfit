@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Fraunces, Inter } from "next/font/google";
+import { Poppins } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import BackToTop from "@/components/BackToTop";
@@ -7,15 +7,12 @@ import WhatsAppButton from "@/components/WhatsAppButton";
 import { site } from "@/data/site";
 import "./globals.css";
 
-const inter = Inter({
+// One family across the site. Poppins carries both roles: regular for body,
+// the heavier weights for headings, which is simpler than pairing two faces.
+const poppins = Poppins({
   subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
-});
-
-const fraunces = Fraunces({
-  subsets: ["latin"],
-  variable: "--font-fraunces",
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-poppins",
   display: "swap",
 });
 
@@ -50,7 +47,7 @@ export default function RootLayout({
     // onto <html> before React hydrates; suppressHydrationWarning ignores that diff.
     <html
       lang="en"
-      className={`${inter.variable} ${fraunces.variable}`}
+      className={poppins.variable}
       suppressHydrationWarning
     >
       <body className="font-sans">

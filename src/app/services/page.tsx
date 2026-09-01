@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
-import { Section } from "@/components/Section";
 import PageHero from "@/components/PageHero";
-import ServiceFilter from "@/components/ServiceFilter";
 import CTA from "@/components/CTA";
 import TreatmentCatalogue from "@/components/TreatmentCatalogue";
 import DivisionRow from "@/components/DivisionRow";
@@ -18,11 +16,8 @@ export default function ServicesPage() {
       <PageHero
         eyebrow="Treatments"
         title="What we treat, and how"
-        lead="Every programme below has a defined protocol, an expected number of sessions and a way to measure whether it is working. Filter by area to find yours."
+        lead="Six divisions, and every treatment inside them."
       />
-      <Section className="pt-10">
-        <ServiceFilter />
-      </Section>
       <DivisionRow />
       <TreatmentCatalogue />
       <CTA />

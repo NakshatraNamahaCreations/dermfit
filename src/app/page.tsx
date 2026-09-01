@@ -1,35 +1,27 @@
-import BlogSection from "@/components/BlogSection";
 import ClinicalHero from "@/components/ClinicalHero";
 import ConcernGrid from "@/components/ConcernGrid";
-import CarePathway from "@/components/CarePathway";
-import WhyChooseUs from "@/components/WhyChooseUs";
 import DivisionRow from "@/components/DivisionRow";
+import CarePathway from "@/components/CarePathway";
 import PatientStories from "@/components/PatientStories";
-import NewsletterBand from "@/components/NewsletterBand";
-import FaqSection from "@/components/FaqSection";
+import CTA from "@/components/CTA";
 
 export default function Home() {
   return (
     <>
-      {/* Concern -> examination -> diagnosis -> plan -> treatment -> follow-up
-          -> outcome. The order of the page follows the order of care. */}
+      {/* Concern -> what we treat -> how care runs -> proof -> book.
+          Deliberately short: the journal and the signup band live on their own
+          pages rather than lengthening the home page. */}
       <ClinicalHero />
 
       <ConcernGrid limit={4} />
 
-      <CarePathway />
-
-      <WhyChooseUs />
-
       <DivisionRow />
+
+      <CarePathway />
 
       <PatientStories />
 
-      <FaqSection />
-
-      <BlogSection />
-
-      <NewsletterBand />
+      <CTA />
     </>
   );
 }

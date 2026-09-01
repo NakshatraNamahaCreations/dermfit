@@ -11,7 +11,7 @@ export default function DivisionRow({
   // The scroll sequence further down already says "Six divisions, one clinic",
   // so this leads differently rather than repeating it.
   label = "What we look after",
-  lead = "Medical, aesthetic and regenerative care under one roof — and a dermatologist, not a price list, deciding which of it you actually need.",
+  lead = "Medical, aesthetic and regenerative care under one roof.",
 }: { label?: string; lead?: string } = {}) {
   return (
     <section className="relative overflow-hidden bg-gradient-to-b from-gold-50 to-canvas py-20 sm:py-24">

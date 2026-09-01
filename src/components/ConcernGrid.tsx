@@ -19,9 +19,8 @@ export default function ConcernGrid({ limit }: { limit?: number } = {}) {
             <h2 className="mt-3 font-display text-4xl font-semibold leading-tight tracking-tight text-brand-950 sm:text-5xl">
               What have you <span className="text-gold-gradient">noticed?</span>
             </h2>
-            <p className="mt-5 text-base leading-relaxed text-muted">
-              You do not need to know the name of the condition, or which treatment you
-              want. Bring the observation — working out the rest is the consultation.
+            <p className="mt-4 text-base leading-relaxed text-muted">
+              You do not need the name of the condition. That is the consultation.
             </p>
           </div>
           {limit && (

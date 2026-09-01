@@ -47,9 +47,8 @@ export default function ClinicalHero() {
           </h1>
 
           <p className="mt-6 max-w-xl text-base leading-relaxed text-brand-100 sm:text-lg">
-            Dermfit is a doctor-led dermatology practice. Nothing is treated until it has
-            been examined and named — and you are told plainly what will improve, what
-            will not, and what it costs before you commit to anything.
+            A doctor-led dermatology practice in Mysuru. Nothing is treated until it
+            has been examined and named.
           </p>
 
           <div className="mt-9 flex flex-col gap-3 sm:flex-row">
@@ -105,7 +104,6 @@ export default function ClinicalHero() {
           {[
             { v: "MBBS, MD", l: "Dermatology" },
             { v: String(treatmentCount), l: "Treatments" },
-            { v: "6", l: "Divisions" },
             { v: "Written", l: "Plans, every time" },
           ].map((s) => (
             <p key={s.l} className="flex items-baseline gap-2 text-sm">
