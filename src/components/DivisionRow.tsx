@@ -51,11 +51,11 @@ export default function DivisionRow({
                     </span>
                   </span>
 
-                  <h3 className="mt-4 text-[0.72rem] font-bold uppercase tracking-[0.14em] text-brand-950 sm:text-xs">
+                  <h3 className="mt-4 text-[0.78rem] font-bold uppercase tracking-[0.14em] text-brand-950 sm:text-[0.82rem]">
                     {d.title}
                   </h3>
 
-                  <p className="mx-auto mt-2 max-w-[15rem] text-[0.7rem] leading-relaxed text-muted">
+                  <p className="mx-auto mt-2.5 max-w-[16rem] text-[0.8rem] leading-relaxed text-muted sm:text-[0.85rem]">
                     {d.highlights.join(" · ")}
                   </p>
                 </Link>
