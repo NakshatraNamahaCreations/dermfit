@@ -4,15 +4,13 @@ import { results, resultsAreIllustrative } from "@/data/results";
 import Reveal from "./Reveal";
 
 /**
- * Before / after results band — three columns, as on the reference.
+ * Before / after results band — two before/after columns, plus your case panel.
  *
  * The frame is 3:2 and each half is exactly 3:4, which is the ratio the source
  * files are cut to, so neither picture is cropped by the layout. The earlier
  * single wide frame cropped a portrait to 3:2 and took the tops off the faces.
  *
- * Two comparisons and a closing card. There are only two honest pairs to show,
- * and padding the row with a third by re-cropping one of them would be showing
- * the same case twice — so the third column carries the invitation instead.
+ * Two real comparisons, plus the "your case" panel in the third slot.
  *
  * These are illustrative images, not patient records, and the band says so in
  * text. See data/results.ts for what has to be true before that changes.
@@ -41,7 +39,7 @@ export default function ResultsBand() {
       <div className="mt-14 bg-canvas py-14 sm:py-20">
         <div className="container-page">
           <div className="grid gap-7 md:grid-cols-2 lg:grid-cols-3">
-            {results.map((r, i) => (
+            {results.slice(0, 2).map((r, i) => (
               <Reveal key={r.id} delay={i * 120} className="h-full">
                 <article className="group relative h-full">
                   {/* Navy offset blocks, as on the reference */}
@@ -113,75 +111,60 @@ export default function ResultsBand() {
               </Reveal>
             ))}
 
-            {/* Third column: the invitation, rather than a third case we do not
-                honestly have. */}
-            <Reveal delay={results.length * 120} className="h-full">
+            {/* Your Case Panel */}
+            <Reveal delay={240} className="h-full">
               <article className="group relative h-full">
                 <span
                   aria-hidden="true"
-                  className="absolute -left-2 -top-2 h-16 w-16 rounded-tl-xl bg-gold-500 transition-transform duration-500 group-hover:-translate-x-1 group-hover:-translate-y-1"
+                  className="absolute -left-2 -top-2 h-16 w-16 rounded-tl-xl bg-brand-950 transition-transform duration-500 group-hover:-translate-x-1 group-hover:-translate-y-1"
                 />
                 <span
                   aria-hidden="true"
-                  className="absolute -bottom-2 -right-2 h-16 w-16 rounded-br-xl bg-gold-500 transition-transform duration-500 group-hover:translate-x-1 group-hover:translate-y-1"
+                  className="absolute -bottom-2 -right-2 h-16 w-16 rounded-br-xl bg-brand-950 transition-transform duration-500 group-hover:translate-x-1 group-hover:translate-y-1"
                 />
 
-                <div className="relative flex h-full flex-col justify-between overflow-hidden rounded-xl bg-brand-950 p-8 text-white shadow-lg shadow-brand-950/10 transition-shadow duration-500 group-hover:shadow-2xl">
-                  <span
-                    aria-hidden="true"
-                    className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full bg-gold-500/10 blur-2xl"
-                  />
-
-                  <div className="relative">
-                    <p className="text-[0.7rem] font-semibold uppercase tracking-[0.16em] text-gold-200">
-                      Your case
-                    </p>
-                    <h3 className="mt-3 font-display text-2xl font-semibold leading-tight">
-                      What changes for you depends on the cause
-                    </h3>
-                    <p className="mt-4 text-sm leading-relaxed text-white/70">
-                      Two people with the same complaint rarely have the same diagnosis.
-                      Yours is worked out first — with imaging, scoring or bloods — and you
-                      leave with a written plan and its costs before anything is booked.
-                    </p>
-
-                    <ul className="mt-6 space-y-2.5 text-sm text-white/85">
-                      {["Examination and diagnosis", "A written plan you keep", "Progress measured, not claimed"].map(
-                        (t) => (
-                          <li key={t} className="flex items-start gap-2.5">
-                            <svg
-                              width="16"
-                              height="16"
-                              viewBox="0 0 20 20"
-                              fill="none"
-                              aria-hidden="true"
-                              className="mt-1 shrink-0 text-gold-400"
-                            >
-                              <path
-                                d="m4 10.5 4 4 8-9"
-                                stroke="currentColor"
-                                strokeWidth="1.8"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                              />
-                            </svg>
-                            {t}
-                          </li>
-                        ),
-                      )}
-                    </ul>
+                <div className="relative flex h-full flex-col overflow-hidden rounded-xl bg-brand-950 shadow-lg shadow-brand-950/5 transition-shadow duration-500 group-hover:shadow-2xl group-hover:shadow-brand-950/10 p-6">
+                  <p className="text-[0.7rem] font-semibold uppercase tracking-[0.16em] text-gold-400">
+                    Your Case
+                  </p>
+                  <h3 className="mt-3 font-display text-xl font-semibold leading-snug text-white">
+                    What changes for you depends on the cause
+                  </h3>
+                  <p className="mt-4 text-sm leading-relaxed text-white/80">
+                    Two people with the same complaint rarely have the same diagnosis. Yours is worked out first — with imaging, scoring or bloods — and you leave with a written plan and its costs before anything is booked.
+                  </p>
+                  
+                  <div className="mt-6 space-y-3">
+                    <div className="flex items-start gap-3">
+                      <svg className="mt-0.5 h-4 w-4 flex-shrink-0 text-gold-400" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                      </svg>
+                      <span className="text-sm text-white">Examination and diagnosis</span>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <svg className="mt-0.5 h-4 w-4 flex-shrink-0 text-gold-400" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                      </svg>
+                      <span className="text-sm text-white">A written plan you keep</span>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <svg className="mt-0.5 h-4 w-4 flex-shrink-0 text-gold-400" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                      </svg>
+                      <span className="text-sm text-white">Progress measured, not claimed</span>
+                    </div>
                   </div>
 
-                  <div className="relative mt-8 flex flex-col gap-3">
-                    <Link href="/contact" className="btn btn-gold w-full justify-center">
+                  <div className="mt-8 flex flex-col gap-3">
+                    <Link
+                      href="/contact"
+                      className="block w-full rounded-lg bg-gold-500 py-3 text-center text-sm font-semibold text-brand-950 transition-colors hover:bg-gold-400"
+                    >
                       Book a consultation
                     </Link>
-                    <Link
-                      href="/concerns"
-                      className="btn btn-ghost-light w-full justify-center"
-                    >
+                    <button className="w-full rounded-lg border border-white/30 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/10">
                       Start from your concern
-                    </Link>
+                    </button>
                   </div>
                 </div>
               </article>

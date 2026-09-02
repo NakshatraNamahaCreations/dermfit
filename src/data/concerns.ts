@@ -17,6 +17,13 @@ export type Concern = {
   workup: string;
   /** Division this usually belongs to. */
   division: string;
+  /** Optional before/after pair, 3:4 each. Both or neither — a card with only
+   *  one of them would be a claim with nothing to compare it against.
+   *  ILLUSTRATIVE, not patient records: the grid says so beneath the cards. */
+  before?: string;
+  after?: string;
+  beforeAlt?: string;
+  afterAlt?: string;
 };
 
 export const concerns: Concern[] = [
@@ -27,6 +34,11 @@ export const concerns: Concern[] = [
     workup:
       "Lamp assessment to establish whether the pigment sits in the epidermis, the dermis or both — which decides what can realistically be done.",
     division: "Clinical Dermatology",
+    before: "/result-pigmentation-before.jpg",
+    after: "/result-pigmentation-after.jpg",
+    beforeAlt:
+      "A cheek in three-quarter view with dark patches and an uneven tone across it.",
+    afterAlt: "The same cheek at the same angle, with an even tone and the patches faded.",
   },
   {
     slug: "acne",
@@ -35,6 +47,11 @@ export const concerns: Concern[] = [
     workup:
       "Grading of active lesions, and a look at the pattern and timing before anything is prescribed.",
     division: "Clinical Dermatology",
+    before: "/result-skin-before.jpg",
+    after: "/result-skin-after.jpg",
+    beforeAlt:
+      "A cheek in three-quarter view with active acne, redness and uneven texture.",
+    afterAlt: "The same cheek at the same angle, clear and calm.",
   },
   {
     slug: "acne-marks",
@@ -43,6 +60,11 @@ export const concerns: Concern[] = [
     workup:
       "Distinguishing post-inflammatory pigmentation from true scarring, and scar type — they need different treatment and have different odds.",
     division: "Aesthetic Dermatology",
+    before: "/result-marks-before.jpg",
+    after: "/result-marks-after.jpg",
+    beforeAlt:
+      "A cheek in three-quarter view with acne marks, dark spots and uneven texture.",
+    afterAlt: "The same cheek at the same angle, with the marks faded and the texture even.",
   },
   {
     slug: "hair-fall",
@@ -51,6 +73,11 @@ export const concerns: Concern[] = [
     workup:
       "Trichoscopy plus blood work, because shedding, pattern loss and deficiency look alike and are treated differently.",
     division: "Trichology & Hair Restoration",
+    before: "/result-hair-before.jpg",
+    after: "/result-hair-after.jpg",
+    beforeAlt:
+      "A parting seen from above, wide with scalp visible through thinning hair.",
+    afterAlt: "The same parting from the same angle, narrower with denser hair either side.",
   },
   {
     slug: "sensitive-skin",

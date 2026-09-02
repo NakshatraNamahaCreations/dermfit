@@ -27,34 +27,39 @@ export type ResultCase = {
   href: string;
 };
 
+/**
+ * Two cases here, not four: with the closing panel they fill the row exactly.
+ * Every pair is on the concern cards as well, so nothing is lost by trimming.
+ */
+
 /** Off only when every pair below is a consented patient record. */
 export const resultsAreIllustrative = true;
 
 export const results: ResultCase[] = [
   {
-    id: "hair",
-    concern: "Hair fall & thinning",
-    headline: "Density at the crown",
-    before: "/result-hair-before.jpg",
-    after: "/result-hair-after.jpg",
+    id: "pigmentation",
+    concern: "Pigmentation & melasma",
+    headline: "Dark patches and uneven tone",
+    before: "/result-pigmentation-before.jpg",
+    after: "/result-pigmentation-after.jpg",
     beforeAlt:
-      "The crown of a head seen from above, with scalp visible through thinned hair.",
-    afterAlt: "The same crown from the same angle, with the scalp covered by denser hair.",
+      "A cheek in three-quarter view with dark patches and an uneven tone across it.",
+    afterAlt: "The same cheek at the same angle, with an even tone and the patches faded.",
     summary:
-      "Scalp showing through at the vertex, against fuller cover from the same angle. What is achievable depends on the cause and the stage — trichoscopy and bloods establish both before anything is offered.",
-    href: "/concerns#hair-fall",
+      "Patches and mottled tone across the cheek, against an even tone from the same angle. Whether the pigment sits in the epidermis, the dermis or both is what decides how far it will move — a lamp assessment settles that first.",
+    href: "/concerns#pigmentation",
   },
   {
     id: "acne",
     concern: "Acne & acne marks",
-    headline: "Active acne and the marks it leaves",
+    headline: "Breakouts that keep coming back",
     before: "/result-skin-before.jpg",
     after: "/result-skin-after.jpg",
     beforeAlt:
-      "A face turned to three-quarters, with active acne and post-inflammatory marks across the cheek and jaw.",
-    afterAlt: "The same face at the same angle, with clear skin and an even tone.",
+      "A cheek in three-quarter view with active acne, redness and uneven texture.",
+    afterAlt: "The same cheek at the same angle, clear and calm.",
     summary:
-      "Active lesions and post-inflammatory pigmentation, against clear skin at the same angle. Marks and scars behave differently — which of yours will respond is established at examination.",
+      "Active lesions, redness and uneven texture, against calm skin from the same angle. Grading the acne and reading its pattern and timing comes before anything is prescribed.",
     href: "/concerns#acne",
   },
 ];

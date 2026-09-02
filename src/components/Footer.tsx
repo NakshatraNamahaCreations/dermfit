@@ -159,12 +159,7 @@ export default function Footer() {
 
       <div className="relative border-t border-white/10">
         <div className="container-page py-6 text-xs text-brand-300">
-          <p className="leading-relaxed">
-            Information on this site is educational and is not a substitute for a medical
-            consultation.
-          </p>
-
-          <div className="mt-4 flex flex-col gap-2 border-t border-white/10 pt-4 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
             <p>
               © {new Date().getFullYear()} {site.name} {site.kind}. All rights reserved.
             </p>
