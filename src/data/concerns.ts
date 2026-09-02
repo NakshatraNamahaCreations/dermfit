@@ -19,7 +19,14 @@ export type Concern = {
   division: string;
   /** Optional before/after pair, 3:4 each. Both or neither — a card with only
    *  one of them would be a claim with nothing to compare it against.
-   *  ILLUSTRATIVE, not patient records: the grid says so beneath the cards. */
+   *
+   *  Named concern-* so they cannot collide with the results band's result-*
+   *  files. Replacing one: give the new file a NEW name rather than overwriting.
+   *  Next serves these through /_next/image keyed on the path, so reusing a
+   *  filename leaves every visitor who has been to the site looking at the old
+   *  picture out of their browser cache.
+   *
+   *  ILLUSTRATIVE, not patient records. */
   before?: string;
   after?: string;
   beforeAlt?: string;
@@ -34,8 +41,8 @@ export const concerns: Concern[] = [
     workup:
       "Lamp assessment to establish whether the pigment sits in the epidermis, the dermis or both — which decides what can realistically be done.",
     division: "Clinical Dermatology",
-    before: "/result-pigmentation-before.jpg",
-    after: "/result-pigmentation-after.jpg",
+    before: "/concern-pigmentation-before.jpg",
+    after: "/concern-pigmentation-after.jpg",
     beforeAlt:
       "A face in three-quarter view with dark patches and pigmentation across the cheek.",
     afterAlt: "The same face at the same angle, with the patches faded and the tone even.",
@@ -47,8 +54,8 @@ export const concerns: Concern[] = [
     workup:
       "Grading of active lesions, and a look at the pattern and timing before anything is prescribed.",
     division: "Clinical Dermatology",
-    before: "/result-skin-before.jpg",
-    after: "/result-skin-after.jpg",
+    before: "/concern-acne-before.jpg",
+    after: "/concern-acne-after.jpg",
     beforeAlt:
       "A face in three-quarter view with active acne and redness across the cheek and jaw.",
     afterAlt: "The same face at the same angle, clear and calm.",
@@ -60,8 +67,8 @@ export const concerns: Concern[] = [
     workup:
       "Distinguishing post-inflammatory pigmentation from true scarring, and scar type — they need different treatment and have different odds.",
     division: "Aesthetic Dermatology",
-    before: "/result-marks-before.jpg",
-    after: "/result-marks-after.jpg",
+    before: "/concern-marks-before.jpg",
+    after: "/concern-marks-after.jpg",
     beforeAlt:
       "A cheek in three-quarter view with acne marks, dark spots and uneven texture.",
     afterAlt: "The same cheek at the same angle, with the marks faded and the texture even.",
@@ -73,8 +80,8 @@ export const concerns: Concern[] = [
     workup:
       "Trichoscopy plus blood work, because shedding, pattern loss and deficiency look alike and are treated differently.",
     division: "Trichology & Hair Restoration",
-    before: "/result-hair-before.jpg",
-    after: "/result-hair-after.jpg",
+    before: "/concern-hairfall-before.jpg",
+    after: "/concern-hairfall-after.jpg",
     beforeAlt:
       "A parting seen from above, wide with scalp visible through thinning hair.",
     afterAlt: "The same parting from the same angle, narrower with denser hair either side.",
