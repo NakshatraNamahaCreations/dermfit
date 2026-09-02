@@ -45,3 +45,8 @@ next-env.d.ts
 
 # stray tailwind debug logs
 tailwindcss-*.log
+
+# Raw source frames dropped in public/ while working. The cropped, optimised
+# versions are committed; these originals are large and would be served.
+public/ChatGPT Image*.png
+public/sri-hospitals-team.jpg
