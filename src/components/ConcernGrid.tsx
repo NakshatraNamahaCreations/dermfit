@@ -12,10 +12,10 @@ import Reveal from "./Reveal";
  * neither. A card needs both halves or neither — one on its own is a claim with
  * nothing to compare it against.
  *
- * The pairs are ILLUSTRATIVE, not patient records, and the grid says so beneath
- * the cards. Real patient comparisons need written consent, matched lighting
- * and angle, and no implied guarantee of outcome under the Drugs and Magic
- * Remedies Act and the ASCI code.
+ * The pairs are ILLUSTRATIVE, not patient records. The line saying so under the
+ * grid was removed on request; the results band still carries one. Real patient
+ * comparisons need written consent, matched lighting and angle, and no implied
+ * guarantee of outcome under the Drugs and Magic Remedies Act and the ASCI code.
  */
 export default function ConcernGrid({ limit }: { limit?: number } = {}) {
   const shown = limit ? concerns.slice(0, limit) : concerns;
@@ -110,13 +110,6 @@ export default function ConcernGrid({ limit }: { limit?: number } = {}) {
             </Reveal>
           ))}
         </ul>
-
-        {shown.some((c) => c.before) && (
-          <p className="mt-8 text-center text-xs leading-relaxed text-muted">
-            Illustrative images, not patient records. Outcomes differ with the cause, the
-            severity and the individual, and are never guaranteed.
-          </p>
-        )}
       </div>
     </section>
   );

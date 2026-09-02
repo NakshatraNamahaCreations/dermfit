@@ -50,8 +50,8 @@ export const concerns: Concern[] = [
     before: "/result-skin-before.jpg",
     after: "/result-skin-after.jpg",
     beforeAlt:
-      "A cheek in three-quarter view with active acne, redness and uneven texture.",
-    afterAlt: "The same cheek at the same angle, clear and calm.",
+      "A face in three-quarter view with active acne and redness across the cheek and jaw.",
+    afterAlt: "The same face at the same angle, clear and calm.",
   },
   {
     slug: "acne-marks",
