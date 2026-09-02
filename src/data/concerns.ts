@@ -37,8 +37,8 @@ export const concerns: Concern[] = [
     before: "/result-pigmentation-before.jpg",
     after: "/result-pigmentation-after.jpg",
     beforeAlt:
-      "A cheek in three-quarter view with dark patches and an uneven tone across it.",
-    afterAlt: "The same cheek at the same angle, with an even tone and the patches faded.",
+      "A face in three-quarter view with dark patches and pigmentation across the cheek.",
+    afterAlt: "The same face at the same angle, with the patches faded and the tone even.",
   },
   {
     slug: "acne",
