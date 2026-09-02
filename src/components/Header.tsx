@@ -30,21 +30,20 @@ export default function Header() {
       }`}
     >
       <div
-        className="container-page flex h-28 items-center justify-between gap-6 lg:h-36"
+        className="container-page flex h-32 items-center justify-between gap-6 lg:h-40"
       >
         <Link
           href="/"
           className="flex items-center gap-3"
           aria-label={`${site.name} ${site.byline} — home`}
         >
-          {/* The lockup carries four lines of small type, so the wordmark beside
-              it does the work at this size. */}
-          {/* The lockup carries four lines of small type; below roughly 128px
-              the bottom two stop resolving, which is what made it look soft. */}
+          {/* The lockup carries four lines of small type under DERMFIT, and
+              they need both size and contrast to hold: hence 144px here and the
+              deepened logo-header.png rather than the over-photography copy. */}
           <Logo
-            height={512}
-            sizes="(min-width: 1024px) 108px, 84px"
-            className="h-24 w-auto lg:h-32"
+            height={576}
+            sizes="(min-width: 1024px) 122px, 95px"
+            className="h-28 w-auto lg:h-36"
           />
         </Link>
 

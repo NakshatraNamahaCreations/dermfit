@@ -40,3 +40,24 @@ canvas.paste(img, (pad, pad))
 
 canvas.save("public/logo-transparent.png", optimize=True)
 print("public/logo-transparent.png", canvas.size)
+
+# A second file for the white header bar.
+#
+# The lockup is a gold gradient whose highlights run almost to white, so on a
+# white bar the hairline strokes and the three lines of small type under
+# DERMFIT wash out. Deepen the light end on a curve that leaves the dark gold
+# untouched, then a touch more saturation so it reads as gold rather than
+# grey-brown. Hue is not moved.
+from PIL import ImageEnhance  # noqa: E402
+
+arr = np.asarray(canvas).astype(float)
+rgb_h, alpha_h = arr[..., :3], arr[..., 3:]
+lum = rgb_h.mean(2, keepdims=True) / 255.0
+deepened = np.clip(rgb_h * (1.0 - 0.42 * (lum ** 1.6)), 0, 255)
+
+header = Image.fromarray(
+    np.concatenate([deepened, alpha_h], 2).astype(np.uint8), "RGBA"
+)
+header = ImageEnhance.Color(header).enhance(1.15)
+header.save("public/logo-header.png", optimize=True)
+print("public/logo-header.png", header.size)
