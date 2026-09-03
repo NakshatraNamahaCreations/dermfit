@@ -157,7 +157,7 @@ export default function BannerSlider() {
               {slide.strapline}
             </p>
 
-            <h1 className="mt-4 font-display text-[2.1rem] font-semibold uppercase leading-[1.05] tracking-tight text-brand-950 sm:text-5xl lg:text-[3.9rem]">
+            <h2 className="mt-4 font-display text-[2.1rem] font-semibold uppercase leading-[1.05] tracking-tight text-brand-950 sm:text-5xl lg:text-[3.9rem]">
               <Word text={slide.headline[0]} from={200} />{" "}
               {/* The gradient goes on the letters, the entrance on their
                   wrappers: filter and background-clip: text on one element is
@@ -167,7 +167,7 @@ export default function BannerSlider() {
                 from={200 + slide.headline[0].length * 45 + 90}
                 className="text-gold-shimmer"
               />
-            </h1>
+            </h2>
 
             <span
               aria-hidden="true"

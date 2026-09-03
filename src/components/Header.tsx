@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { nav, site } from "@/data/site";
 import Logo from "./Logo";
 
@@ -23,14 +23,6 @@ import Logo from "./Logo";
 export default function Header() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   const isActive = (href: string) =>
     href === "/" ? pathname === "/" : pathname.startsWith(href);
@@ -47,23 +39,11 @@ export default function Header() {
     }`;
 
   return (
-    <header
-      className={`sticky top-0 z-50 bg-white transition-shadow ${
-        scrolled ? "shadow-lg shadow-brand-950/10" : ""
-      }`}
-    >
+    <header className="sticky top-0 z-50 bg-white">
       {/* Main bar: nav | logo | nav */}
       <div className="container-page flex h-28 items-center justify-between gap-6 lg:h-36 lg:grid lg:grid-cols-[1fr_auto_1fr]">
-        {/* Left column. The phone sits at the outer edge to counterweight the
-            booking button opposite, so the logo stays optically centred rather
-            than being pushed left by a button with nothing to answer it. */}
-        <div className="hidden items-center justify-between gap-8 lg:flex">
-          <a
-            href={site.phoneHref}
-            className="whitespace-nowrap text-[0.8rem] font-medium tracking-[0.06em] text-brand-900 transition-colors hover:text-gold-700"
-          >
-            {site.phone}
-          </a>
+        {/* Left column: nav */}
+        <div className="hidden items-center justify-end gap-8 lg:flex">
           <nav className="flex items-center gap-8" aria-label="Main">
             {left.map((item) => (
               <Link

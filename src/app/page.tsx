@@ -1,34 +1,41 @@
+import MeetTheDoctor from "@/components/MeetTheDoctor";
+import WhyChooseUs from "@/components/WhyChooseUs";
+import DivisionRow from "@/components/DivisionRow";
 import BannerSlider from "@/components/BannerSlider";
 import AboutIntro from "@/components/AboutIntro";
-import MeetTheDoctor from "@/components/MeetTheDoctor";
 import ConcernGrid from "@/components/ConcernGrid";
-import DivisionRow from "@/components/DivisionRow";
-import PatientStories from "@/components/PatientStories";
 import ResultsBand from "@/components/ResultsBand";
+import PatientStories from "@/components/PatientStories";
 import BookingSection from "@/components/BookingSection";
 
 export default function Home() {
   return (
     <>
-      {/* Who treats you -> who we are -> concern -> what we treat -> proof ->
-          book. The doctor opens the page, ahead of the clinic: this is a
-          practice built round one dermatologist, and a visitor deciding whether
-          to trust it is deciding about him. The form closes the page rather
-          than a panel pointing at /contact, so nobody goes looking for it. */}
-      <BannerSlider />
-
+      {/* 1. Doctor Hero Section */}
       <MeetTheDoctor />
 
-      <AboutIntro />
+      {/* 2. Why Choose Us / Clinical Pillars */}
+      <WhyChooseUs />
 
-      <ConcernGrid limit={4} />
-
+      {/* 3. Clinical Services / Specialized Divisions */}
       <DivisionRow />
 
+      {/* 4. Before / After Visual Banner Slider */}
+      <BannerSlider />
+
+      {/* 5. About the Clinic Introduction */}
+      <AboutIntro />
+
+      {/* 6. Concerns Treated */}
+      <ConcernGrid limit={4} />
+
+      {/* 7. Clinical Results & Proof */}
       <ResultsBand />
 
+      {/* 8. Verified Patient Testimonials */}
       <PatientStories />
 
+      {/* 9. Direct Appointment Booking */}
       <BookingSection />
     </>
   );
