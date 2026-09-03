@@ -6,6 +6,8 @@ import { Section } from "@/components/Section";
 import CTA from "@/components/CTA";
 import { formatPostDate, getPost, posts } from "@/data/posts";
 import { site } from "@/data/site";
+import JsonLd from "@/components/JsonLd";
+import { articleSchema, breadcrumbSchema, pageMetadata } from "@/lib/seo";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -17,11 +19,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const post = getPost(slug);
   if (!post) return { title: "Article not found" };
-  return {
+  return pageMetadata({
     title: post.title,
     description: post.excerpt,
-    openGraph: { title: post.title, description: post.excerpt, type: "article" },
-  };
+    path: `/blog/${post.slug}`,
+    type: "article",
+    image: post.image,
+    publishedTime: post.date,
+  });
 }
 
 export default async function PostPage({ params }: Props) {
@@ -33,6 +38,13 @@ export default async function PostPage({ params }: Props) {
 
   return (
     <>
+      <JsonLd data={articleSchema(post)} />
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: "Journal", path: "/blog" },
+          { name: post.title, path: `/blog/${post.slug}` },
+        ])}
+      />
       <article>
         <header className="border-b border-line bg-surface">
           <div className="container-page py-14 sm:py-20">

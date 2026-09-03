@@ -4,17 +4,21 @@ import Link from "next/link";
 import PageHero from "@/components/PageHero";
 import { Section } from "@/components/Section";
 import CTA from "@/components/CTA";
+import JsonLd from "@/components/JsonLd";
+import { breadcrumbSchema, pageMetadata } from "@/lib/seo";
 import { formatPostDate, posts } from "@/data/posts";
 
-export const metadata: Metadata = {
-  title: "Journal",
+export const metadata: Metadata = pageMetadata({
+  title: "Skin & Hair Journal",
   description:
-    "Notes from the Dermfit clinic on skin, hair and aesthetic treatment — what works, what does not, and what to ignore.",
-};
+    "Notes from the Dermfit clinic in Mysuru on skin, hair and aesthetic treatment — why melasma returns, what a hair fall diagnosis tells you, and what a written treatment plan should contain.",
+  path: "/blog",
+});
 
 export default function BlogPage() {
   return (
     <>
+      <JsonLd data={breadcrumbSchema([{ name: "Journal", path: "/blog" }])} />
       <PageHero
         eyebrow="From the journal"
         title="Notes from the clinic"

@@ -29,8 +29,8 @@ export default function FaqSection() {
               Still not sure?
             </p>
             <p className="mt-2 text-sm leading-relaxed text-brand-200">
-              Tell us the concern and we will match you to the right consultant — no
-              obligation to book.
+              Tell us the concern and Dr Hegde will have your history before you
+              arrive — no obligation to book.
             </p>
             <div className="mt-5 flex flex-col gap-2.5 sm:flex-row">
               <Link href="/contact" className="btn btn-gold">

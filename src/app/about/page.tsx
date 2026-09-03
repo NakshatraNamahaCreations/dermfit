@@ -4,16 +4,19 @@ import Link from "next/link";
 import { Section, SectionHeading } from "@/components/Section";
 import PageHero from "@/components/PageHero";
 import CTA from "@/components/CTA";
+import JsonLd from "@/components/JsonLd";
+import { breadcrumbSchema, pageMetadata, physicianSchema } from "@/lib/seo";
 import Reveal from "@/components/Reveal";
 import { differentiators, doctors, stats } from "@/data/content";
 import { divisions } from "@/data/catalogue";
 import { site } from "@/data/site";
 
-export const metadata: Metadata = {
-  title: "About",
+export const metadata: Metadata = pageMetadata({
+  title: "Dr Sourab Hegde, Dermatologist",
   description:
-    "Dermfit is a doctor-led dermatology practice in Mysuru. Every consultation and procedure is carried out by Dr Sourab Hegde, MBBS, MD (Dermatology).",
-};
+    "Dermfit is a doctor-led dermatology practice in Yadavgiri, Mysuru. Dr Sourab Hegde, MBBS, MD (Dermatology), examines, plans and performs every treatment himself — nothing delegated to a technician.",
+  path: "/about",
+});
 
 /**
  * About the clinic.
@@ -38,6 +41,13 @@ export default function AboutPage() {
 
   return (
     <>
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          ...physicianSchema,
+        }}
+      />
+      <JsonLd data={breadcrumbSchema([{ name: "About", path: "/about" }])} />
       <PageHero
         eyebrow="About the clinic"
         title="One dermatologist, start to finish"

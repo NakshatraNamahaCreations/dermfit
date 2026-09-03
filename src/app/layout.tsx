@@ -1,10 +1,11 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Poppins } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import BackToTop from "@/components/BackToTop";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import { site } from "@/data/site";
+import { absoluteUrl, indexingAllowed } from "@/lib/seo";
 import "./globals.css";
 
 // One family across the site. Poppins carries both roles: regular for body,
@@ -16,27 +17,77 @@ const poppins = Poppins({
   display: "swap",
 });
 
+/**
+ * Site-wide defaults. Per-page tags are built with `pageMetadata` in
+ * src/lib/seo.ts, which fills the canonical, Open Graph and Twitter tags from
+ * one description so no page can end up pointing at another.
+ *
+ * The title template puts the location in every tab and every search result:
+ * "Skin, Hair & Laser Treatments · Dermfit Mysuru". Local intent is most of
+ * what a clinic is searched with — "dermatologist near me", "skin doctor in
+ * Mysuru" — and the title is the strongest place to answer it. It is kept
+ * short deliberately: Google truncates a title around 60 characters, and a
+ * keyword that falls off the end may as well not be there.
+ */
 export const metadata: Metadata = {
-  metadataBase: new URL("https://dermfit.example.com"),
+  metadataBase: new URL(site.url),
   title: {
-    default: `${site.name} ${site.byline} — ${site.tagline}`,
-    template: `%s · ${site.name}`,
+    default: `Dermatologist in ${site.city} | ${site.name} ${site.kind} — Dr Sourab Hegde`,
+    template: `%s · ${site.name} ${site.city}`,
   },
   description: site.description,
-  // The site still carries placeholder clinical content — invented colleagues,
-  // testimonials and unreviewed articles published under a real doctor's name.
-  // Search engines are kept out until that is replaced. Set
-  // NEXT_PUBLIC_ALLOW_INDEXING=true in the Netlify environment to go live.
-  robots:
-    process.env.NEXT_PUBLIC_ALLOW_INDEXING === "true"
-      ? undefined
-      : { index: false, follow: false },
+  applicationName: site.name,
+  authors: [{ name: `${site.name} ${site.kind}` }],
+  creator: `${site.name} ${site.kind}`,
+  publisher: `${site.name} ${site.kind}`,
+  category: "Health",
+  alternates: { canonical: absoluteUrl("/") },
+  // The site still carries placeholder clinical content — a profile and
+  // journal articles published under a real doctor's name that he has not
+  // read, invented opening hours and an invented email. Search engines are
+  // kept out until that is replaced. Set NEXT_PUBLIC_ALLOW_INDEXING=true in
+  // the Vercel environment to go live; /robots.txt follows the same switch.
+  robots: indexingAllowed
+    ? {
+        index: true,
+        follow: true,
+        googleBot: {
+          index: true,
+          follow: true,
+          "max-image-preview": "large",
+          "max-snippet": -1,
+          "max-video-preview": -1,
+        },
+      }
+    : { index: false, follow: false },
   openGraph: {
-    title: `${site.name} ${site.byline} — ${site.tagline}`,
+    title: `Dermatologist in ${site.city} | ${site.name} — Dr Sourab Hegde`,
     description: site.description,
+    url: site.url,
+    siteName: site.name,
+    locale: "en_IN",
     type: "website",
-    images: [{ url: "/logo.png", width: 4689, height: 4689 }],
+    images: [
+      {
+        url: "/og-default.png",
+        width: 1200,
+        height: 630,
+        alt: `${site.name} — dermatology clinic in ${site.city}, by Dr Sourab Hegde`,
+      },
+    ],
   },
+  twitter: {
+    card: "summary_large_image",
+    title: `Dermatologist in ${site.city} | ${site.name}`,
+    description: site.description,
+    images: ["/og-default.png"],
+  },
+  formatDetection: { telephone: true, address: true, email: true },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#01122d",
+  colorScheme: "light",
 };
 
 export default function RootLayout({

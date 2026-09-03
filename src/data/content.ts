@@ -86,7 +86,7 @@ export const testimonials = [
 export const faqs = [
   {
     q: "Do I need a referral to book a consultation?",
-    a: "No. You can book directly through the form on this site or by calling the clinic. We will ask about your concern in advance so the right consultant sees you.",
+    a: "No. You can book directly through the form on this site or by calling the clinic. We will ask about your concern in advance so Dr Hegde has your history before you sit down.",
   },
   {
     q: "How long is a first consultation?",

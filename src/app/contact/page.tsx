@@ -4,15 +4,27 @@ import PageHero from "@/components/PageHero";
 import BookingForm from "@/components/BookingForm";
 import FAQ from "@/components/FAQ";
 import { site } from "@/data/site";
+import { faqs } from "@/data/content";
+import JsonLd from "@/components/JsonLd";
+import { breadcrumbSchema, clinicSchema, faqSchema, pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Book a consultation",
-  description: `Book a consultation at ${site.name}, ${site.address.line2}. Call ${site.phone} or send an appointment request.`,
-};
+export const metadata: Metadata = pageMetadata({
+  title: "Book a Dermatologist Appointment",
+  description: `Book a consultation with Dr Sourab Hegde at Dermfit, ${site.address.line2}, Yadavgiri, Mysuru. Call ${site.phone} or send an appointment request online.`,
+  path: "/contact",
+});
 
 export default function ContactPage() {
   return (
     <>
+      {/* The clinic's address, phone and hours again on the page a patient
+          lands on from a map result, and the FAQ marked up so Google can show
+          the questions under it. */}
+      <JsonLd
+        data={{ "@context": "https://schema.org", ...clinicSchema }}
+      />
+      <JsonLd data={faqSchema(faqs)} />
+      <JsonLd data={breadcrumbSchema([{ name: "Contact", path: "/contact" }])} />
       <PageHero
         eyebrow="Contact"
         title="Book a consultation"

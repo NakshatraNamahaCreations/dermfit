@@ -144,8 +144,8 @@ export default function TreatmentCatalogue() {
                 Book a consultation
               </Link>
               <p className="text-xs leading-relaxed text-brand-300 sm:ml-2">
-                Not sure which applies to you? Tell us the concern and we will match you
-                to the right consultant.
+                Not sure which applies to you? Tell us the concern and Dr Hegde
+                will work it out at the first visit.
               </p>
             </div>
           </div>
