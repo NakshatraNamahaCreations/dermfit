@@ -1,7 +1,6 @@
 import MeetTheDoctor from "@/components/MeetTheDoctor";
 import WhyChooseUs from "@/components/WhyChooseUs";
 import DivisionRow from "@/components/DivisionRow";
-import BannerSlider from "@/components/BannerSlider";
 import AboutIntro from "@/components/AboutIntro";
 import ConcernGrid from "@/components/ConcernGrid";
 import ResultsBand from "@/components/ResultsBand";
@@ -20,22 +19,19 @@ export default function Home() {
       {/* 3. Clinical Services / Specialized Divisions */}
       <DivisionRow />
 
-      {/* 4. Before / After Visual Banner Slider */}
-      <BannerSlider />
-
-      {/* 5. About the Clinic Introduction */}
+      {/* 4. About the Clinic Introduction */}
       <AboutIntro />
 
-      {/* 6. Concerns Treated */}
+      {/* 5. Concerns Treated */}
       <ConcernGrid limit={4} />
 
-      {/* 7. Clinical Results & Proof */}
+      {/* 6. Clinical Results & Proof */}
       <ResultsBand />
 
-      {/* 8. Verified Patient Testimonials */}
+      {/* 7. Verified Patient Testimonials */}
       <PatientStories />
 
-      {/* 9. Direct Appointment Booking */}
+      {/* 8. Direct Appointment Booking */}
       <BookingSection />
     </>
   );
