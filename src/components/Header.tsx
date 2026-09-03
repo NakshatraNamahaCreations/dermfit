@@ -6,6 +6,20 @@ import { useEffect, useState } from "react";
 import { nav, site } from "@/data/site";
 import Logo from "./Logo";
 
+/**
+ * Header with the logo centred and the navigation split either side of it.
+ *
+ * The lockup is the clinic's strongest asset and it is symmetrical, so it holds
+ * the middle better than it held a corner. Six links split 3/3 around it, and
+ * nothing else: the booking pill and the utility strip that carried the phone
+ * numbers, WhatsApp and hours were both removed on request. Those details are
+ * still on every page — the footer, the floating WhatsApp button, the booking
+ * band at the foot of the home page and /contact — and the bar is quieter for
+ * losing them.
+ *
+ * No hairline under the bar: it sits over a white banner, so a rule only drew a
+ * line across the join. Once the page moves, a soft shadow separates them.
+ */
 export default function Header() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
@@ -18,10 +32,19 @@ export default function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Solid on every page: the bar is its own block, separate from the banner.
-  // No hairline under it — the bar and the banner beneath are both white, so a
-  // rule only drew a line across the join. Once the page moves under the bar a
-  // soft shadow does the separating instead.
+  const isActive = (href: string) =>
+    href === "/" ? pathname === "/" : pathname.startsWith(href);
+
+  const half = Math.ceil(nav.length / 2);
+  const left = nav.slice(0, half);
+  const right = nav.slice(half);
+
+  const linkClass = (href: string) =>
+    `relative py-2 text-[0.8rem] font-medium uppercase tracking-[0.12em] transition-colors after:absolute after:inset-x-0 after:-bottom-0.5 after:h-px after:origin-center after:scale-x-0 after:bg-gold-500 after:transition-transform hover:after:scale-x-100 ${
+      isActive(href)
+        ? "text-brand-950 after:scale-x-100"
+        : "text-muted hover:text-brand-950"
+    }`;
 
   return (
     <header
@@ -29,80 +52,99 @@ export default function Header() {
         scrolled ? "shadow-lg shadow-brand-950/10" : ""
       }`}
     >
-      <div
-        className="container-page flex h-32 items-center justify-between gap-6 lg:h-40"
-      >
-        <Link
-          href="/"
-          className="flex items-center gap-3"
-          aria-label={`${site.name} ${site.byline} — home`}
-        >
-          {/* The lockup carries four lines of small type under DERMFIT, and
-              they need both size and contrast to hold: hence 144px here and the
-              deepened logo-header.png rather than the over-photography copy. */}
-          <Logo
-            height={576}
-            sizes="(min-width: 1024px) 122px, 95px"
-            className="h-28 w-auto lg:h-36"
-          />
-        </Link>
-
-        <nav className="hidden items-center gap-1 md:flex" aria-label="Main">
-          {nav.map((item) => {
-            const active =
-              item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                aria-current={active ? "page" : undefined}
-                className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
-                  active
-                    ? "bg-brand-50 text-brand-900"
-                    : "text-muted hover:bg-brand-50 hover:text-brand-900"
-                }`}
-              >
-                {item.label}
-              </Link>
-            );
-          })}
+      {/* Main bar: nav | logo | nav */}
+      <div className="container-page flex h-28 items-center justify-between gap-6 lg:h-36 lg:grid lg:grid-cols-[1fr_auto_1fr]">
+        <nav className="hidden items-center justify-end gap-8 lg:flex" aria-label="Main">
+          {left.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              aria-current={isActive(item.href) ? "page" : undefined}
+              className={linkClass(item.href)}
+            >
+              {item.label}
+            </Link>
+          ))}
         </nav>
 
-        <div className="hidden items-center gap-4 md:flex">
-          <a
-            href={site.phoneHref}
-            className="text-sm font-medium text-brand-900 transition-colors hover:text-gold-700"
-          >
-            {site.phone}
-          </a>
-          <Link
-            href="/contact"
-            className="rounded-full bg-gradient-to-br from-gold-300 to-gold-600 px-5 py-2.5 text-sm font-semibold text-brand-950 transition-opacity hover:opacity-90"
-          >
-            Book a consult
-          </Link>
-        </div>
-
+        {/* Mobile: menu button on the left of the centred logo */}
         <button
           type="button"
           onClick={() => setOpen((v) => !v)}
           aria-expanded={open}
           aria-controls="mobile-nav"
-          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-line text-brand-900 md:hidden"
+          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-line text-brand-900 lg:hidden"
         >
           <span className="sr-only">{open ? "Close menu" : "Open menu"}</span>
           <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
             {open ? (
-              <path d="M4 4l10 10M14 4L4 14" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+              <path
+                d="M4 4l10 10M14 4L4 14"
+                stroke="currentColor"
+                strokeWidth="1.6"
+                strokeLinecap="round"
+              />
             ) : (
-              <path d="M2 5h14M2 9h14M2 13h14" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+              <path
+                d="M2 5h14M2 9h14M2 13h14"
+                stroke="currentColor"
+                strokeWidth="1.6"
+                strokeLinecap="round"
+              />
             )}
           </svg>
         </button>
+
+        <Link
+          href="/"
+          aria-label={`${site.name} ${site.byline} — home`}
+          className="mx-auto shrink-0 lg:px-10"
+        >
+          {/* The lockup carries four lines of small type under DERMFIT, and they
+              need both size and contrast to hold: hence 144px here and the
+              deepened logo-header.png rather than the over-photography copy. */}
+          <Logo
+            height={576}
+            sizes="(min-width: 1024px) 122px, 95px"
+            className="h-24 w-auto transition-transform duration-500 hover:scale-[1.03] lg:h-36"
+          />
+        </Link>
+
+        <div className="flex items-center justify-start gap-8 lg:contents">
+          <nav className="hidden items-center gap-8 lg:flex" aria-label="Main, continued">
+            {right.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                aria-current={isActive(item.href) ? "page" : undefined}
+                className={linkClass(item.href)}
+              >
+                {item.label}
+              </Link>
+            ))}
+          </nav>
+
+          {/* Mobile counterweight to the menu button, so the logo sits true */}
+          <a
+            href={site.phoneHref}
+            aria-label={`Call ${site.phone}`}
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-line text-brand-900 transition-colors hover:border-gold-400 hover:text-gold-700 lg:hidden"
+          >
+            <svg width="17" height="17" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <path
+                d="M6.6 3.5 8 6.4 6.5 7.9c.8 1.7 2 2.9 3.6 3.6l1.5-1.5 2.9 1.4v2.4c0 .7-.6 1.3-1.3 1.2A11.4 11.4 0 0 1 3 5.4c-.1-.7.5-1.3 1.2-1.3h2.4z"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </a>
+        </div>
       </div>
 
       {open && (
-        <div id="mobile-nav" className="border-t border-line bg-white md:hidden">
+        <div id="mobile-nav" className="border-t border-line bg-white lg:hidden">
           <div className="container-page flex flex-col gap-1 py-4">
             {nav.map((item) => (
               <Link
