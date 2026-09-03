@@ -11,11 +11,11 @@ import Logo from "./Logo";
  *
  * The lockup is the clinic's strongest asset and it is symmetrical, so it holds
  * the middle better than it held a corner. Six links split 3/3 around it, and
- * nothing else: the booking pill and the utility strip that carried the phone
- * numbers, WhatsApp and hours were both removed on request. Those details are
- * still on every page — the footer, the floating WhatsApp button, the booking
- * band at the foot of the home page and /contact — and the bar is quieter for
- * losing them.
+ * with the booking button at the right edge and the phone at the left, which is
+ * what keeps the logo optically centred: a button on one side and nothing on
+ * the other would drag the middle across. The utility strip that used to carry
+ * WhatsApp and the hours is gone; those live in the footer, the floating
+ * WhatsApp button and /contact.
  *
  * No hairline under the bar: it sits over a white banner, so a rule only drew a
  * line across the join. Once the page moves, a soft shadow separates them.
@@ -54,18 +54,29 @@ export default function Header() {
     >
       {/* Main bar: nav | logo | nav */}
       <div className="container-page flex h-28 items-center justify-between gap-6 lg:h-36 lg:grid lg:grid-cols-[1fr_auto_1fr]">
-        <nav className="hidden items-center justify-end gap-8 lg:flex" aria-label="Main">
-          {left.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              aria-current={isActive(item.href) ? "page" : undefined}
-              className={linkClass(item.href)}
-            >
-              {item.label}
-            </Link>
-          ))}
-        </nav>
+        {/* Left column. The phone sits at the outer edge to counterweight the
+            booking button opposite, so the logo stays optically centred rather
+            than being pushed left by a button with nothing to answer it. */}
+        <div className="hidden items-center justify-between gap-8 lg:flex">
+          <a
+            href={site.phoneHref}
+            className="whitespace-nowrap text-[0.8rem] font-medium tracking-[0.06em] text-brand-900 transition-colors hover:text-gold-700"
+          >
+            {site.phone}
+          </a>
+          <nav className="flex items-center gap-8" aria-label="Main">
+            {left.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                aria-current={isActive(item.href) ? "page" : undefined}
+                className={linkClass(item.href)}
+              >
+                {item.label}
+              </Link>
+            ))}
+          </nav>
+        </div>
 
         {/* Mobile: menu button on the left of the centred logo */}
         <button
@@ -110,7 +121,7 @@ export default function Header() {
           />
         </Link>
 
-        <div className="flex items-center justify-start gap-8 lg:contents">
+        <div className="flex items-center justify-start gap-8 lg:justify-between">
           <nav className="hidden items-center gap-8 lg:flex" aria-label="Main, continued">
             {right.map((item) => (
               <Link
@@ -123,6 +134,13 @@ export default function Header() {
               </Link>
             ))}
           </nav>
+
+          <Link
+            href="/contact"
+            className="hidden whitespace-nowrap rounded-full bg-gradient-to-br from-gold-300 to-gold-600 px-6 py-2.5 text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-brand-950 shadow-sm transition-all hover:shadow-md hover:shadow-gold-600/25 lg:inline-flex"
+          >
+            Book appointment
+          </Link>
 
           {/* Mobile counterweight to the menu button, so the logo sits true */}
           <a
