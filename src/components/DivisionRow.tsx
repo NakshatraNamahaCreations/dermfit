@@ -1,5 +1,5 @@
-import Image from "next/image";
 import Link from "next/link";
+import DivisionIcon from "./DivisionIcon";
 import { divisions } from "@/data/catalogue";
 import Reveal from "./Reveal";
 
@@ -34,17 +34,18 @@ export default function DivisionRow({
             <li key={d.slug} className="contents lg:flex lg:flex-1 lg:items-start">
               <Reveal delay={i * 80} className="lg:flex-1">
                 <Link href="/services#catalogue" className="group block px-2 text-center">
-                  {/* Disc */}
+                  {/* Disc.
+
+                      Icons rather than photographs. The stock frames behind
+                      these were towels, lilies and cream lighting — a spa, not
+                      a dermatology clinic, which is the impression the whole
+                      site has been moved away from. A drawn instrument reads as
+                      medical and, unlike a stock model, is not pretending to be
+                      this clinic. The files are still in public/ if real
+                      photography of the rooms replaces them. */}
                   <span className="relative mx-auto block h-24 w-24 sm:h-28 sm:w-28">
-                    <span className="block h-full w-full overflow-hidden rounded-full ring-1 ring-brand-950/10 transition-all group-hover:ring-2 group-hover:ring-gold-400">
-                      <Image
-                        src={d.image}
-                        alt=""
-                        width={900}
-                        height={1200}
-                        sizes="112px"
-                        className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
-                      />
+                    <span className="flex h-full w-full items-center justify-center rounded-full bg-surface text-brand-900 ring-1 ring-brand-950/10 transition-all group-hover:ring-2 group-hover:ring-gold-400 group-hover:text-gold-700">
+                      <DivisionIcon name={d.icon} className="h-10 w-10 sm:h-11 sm:w-11" />
                     </span>
                     <span className="absolute -left-1 -top-1 flex h-7 w-7 items-center justify-center rounded-full bg-brand-950 text-[0.65rem] font-semibold text-gold-300 ring-2 ring-gold-50">
                       {d.number}
