@@ -10,15 +10,16 @@ import BookingSection from "@/components/BookingSection";
 export default function Home() {
   return (
     <>
-      {/* Who we are -> who treats you -> concern -> what we treat -> proof ->
-          book. Doctor-led order on purpose: the person doing the treating comes
-          before the treatments. The form closes the page rather than a panel
-          pointing at /contact, so nobody has to go looking for it. */}
+      {/* Who treats you -> who we are -> concern -> what we treat -> proof ->
+          book. The doctor opens the page, ahead of the clinic: this is a
+          practice built round one dermatologist, and a visitor deciding whether
+          to trust it is deciding about him. The form closes the page rather
+          than a panel pointing at /contact, so nobody goes looking for it. */}
       <BannerSlider />
 
-      <AboutIntro />
-
       <MeetTheDoctor />
+
+      <AboutIntro />
 
       <ConcernGrid limit={4} />
 
