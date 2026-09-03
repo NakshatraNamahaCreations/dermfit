@@ -1,3 +1,5 @@
+import { divisions, treatmentCount } from "./catalogue";
+
 export type Doctor = {
   name: string;
   initials: string;
@@ -22,28 +24,6 @@ export const doctors: Doctor[] = [
     // photograph of Dr Hegde. Replace with his own before launch.
     photo: "/doctor-hegde.jpg",
   },
-  {
-    name: "Dr. Kabir Menon",
-    initials: "KM",
-    role: "Consultant Trichologist",
-    credentials: "MBBS, DDVL, Fellowship in Trichology",
-    bio: "Leads the hair restoration programme. Special interest in female pattern hair loss and PRP protocol standardisation.",
-    // PLACEHOLDER PORTRAIT — a generated likeness, not this consultant. Cropped
-    // to drop another clinic's wall logo out of the left of the frame.
-    photo: "/doctor-2.jpg",
-  },
-  {
-    name: "Dr. Simran Kaur",
-    initials: "SK",
-    role: "Aesthetic Dermatologist",
-    credentials: "MBBS, MD (Dermatology)",
-    bio: "Focused on injectables and non-surgical skin tightening, with an emphasis on conservative, anatomy-led planning.",
-    // PLACEHOLDER PORTRAIT — a generated likeness, not this consultant. Cropped
-    // past another clinic's wall logo, and the framed "board certified" notice
-    // behind her put out of focus: that is a credential claim, and the name in
-    // front of it is one we invented.
-    photo: "/doctor-3.jpg",
-  },
 ];
 
 export const differentiators = [
@@ -65,13 +45,23 @@ export const differentiators = [
   },
 ];
 
+/**
+ * Figures for the About page.
+ *
+ * Every one of these is either a qualification the clinic supplied or a number
+ * counted from the catalogue in this repo, so none of them can drift or
+ * overstate. The set that used to live here — "12+ years", "18k consultations",
+ * "4.9 average rating" — was invented, and under the ASCI code those are
+ * exactly the claims a clinic is held to prove.
+ *
+ * Real figures Dr Hegde is willing to stand behind can replace these.
+ */
 export const stats = [
-  { value: "12+", label: "Years in practice" },
-  { value: "18k", label: "Consultations" },
-  { value: "6", label: "Laser platforms" },
-  { value: "4.9", label: "Average rating" },
+  { value: "MBBS", label: "Medical degree" },
+  { value: "MD", label: "Dermatology" },
+  { value: String(divisions.length), label: "Clinical divisions" },
+  { value: `${treatmentCount}+`, label: "Treatments offered" },
 ];
-
 export const testimonials = [
   {
     quote:
