@@ -3,7 +3,7 @@ import JsonLd from "@/components/JsonLd";
 import { organisationGraph, pageMetadata } from "@/lib/seo";
 import WelcomeIntro from "@/components/WelcomeIntro";
 import MeetTheDoctor from "@/components/MeetTheDoctor";
-import DivisionRow from "@/components/DivisionRow";
+import ServicesGrid from "@/components/ServicesGrid";
 import AboutIntro from "@/components/AboutIntro";
 import MissionVision from "@/components/MissionVision";
 import ConcernGrid from "@/components/ConcernGrid";
@@ -39,8 +39,8 @@ export default function Home() {
       {/* 2. The doctor behind it */}
       <MeetTheDoctor />
 
-      {/* 3. Clinical Services / Specialized Divisions */}
-      <DivisionRow />
+      {/* 3. Our services */}
+      <ServicesGrid />
 
       {/* 4. About the Clinic Introduction */}
       <AboutIntro />

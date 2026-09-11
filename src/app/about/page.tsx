@@ -31,6 +31,9 @@ export const metadata: Metadata = pageMetadata({
  *
  * It also listed three consultants, two of whom did not exist. Dermfit is a
  * single-doctor practice, so the team section is now Dr Hegde's own.
+ *
+ * The doctor block carries no heading of its own, at the clinic's request —
+ * the "The doctor" eyebrow labels it and the profile text follows straight on.
  */
 
 /** What he practises, drawn from the real catalogue rather than asserted. */
@@ -91,10 +94,6 @@ export default function AboutPage() {
 
           <Reveal from="right" delay={120}>
             <p className="eyebrow">The doctor</p>
-            <h2 className="mt-3 font-display text-3xl font-semibold leading-tight tracking-tight text-brand-950 sm:text-4xl">
-              You see the same{" "}
-              <span className="text-gold-gradient">consultant</span> every time
-            </h2>
 
             <div className="mt-5 space-y-4 text-base leading-relaxed text-muted">
               <p>
