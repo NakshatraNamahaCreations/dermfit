@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import JsonLd from "@/components/JsonLd";
 import { organisationGraph, pageMetadata } from "@/lib/seo";
+import WelcomeIntro from "@/components/WelcomeIntro";
 import MeetTheDoctor from "@/components/MeetTheDoctor";
 import DivisionRow from "@/components/DivisionRow";
 import AboutIntro from "@/components/AboutIntro";
@@ -19,7 +20,7 @@ export const metadata: Metadata = {
   ...pageMetadata({
     title: "Dermatologist in Mysuru",
     description:
-      "Dermfit is a doctor-led dermatology clinic in Yadavgiri, Mysuru. Dr Sourab Hegde (MBBS, MD) treats pigmentation, melasma, acne, acne marks and hair fall — diagnosis first, written plans, costs up front.",
+      "DermFit is a dermatologist-led skin, hair and aesthetic clinic in Yadavgiri, Mysuru, led by Dr Sourab S. Hegde (MBBS, MD Dermatology). Acne, pigmentation, acne scars, hair loss, ageing skin, eczema and psoriasis — personalised, evidence-based care.",
     path: "/",
   }),
   // Absolute, so the home page is not "Dermatologist in Mysuru · Dermfit
@@ -32,28 +33,31 @@ export default function Home() {
     <>
       <JsonLd data={organisationGraph} />
 
-      {/* 1. Doctor Hero Section */}
+      {/* 1. The clinic's own introduction */}
+      <WelcomeIntro />
+
+      {/* 2. The doctor behind it */}
       <MeetTheDoctor />
 
-      {/* 2. Clinical Services / Specialized Divisions */}
+      {/* 3. Clinical Services / Specialized Divisions */}
       <DivisionRow />
 
-      {/* 3. About the Clinic Introduction */}
+      {/* 4. About the Clinic Introduction */}
       <AboutIntro />
 
-      {/* 4. Mission, Vision & Goals */}
+      {/* 5. Mission, Vision & Goals */}
       <MissionVision />
 
-      {/* 5. Concerns Treated */}
+      {/* 6. Concerns Treated */}
       <ConcernGrid limit={4} />
 
-      {/* 6. Clinical Results & Proof */}
+      {/* 7. Clinical Results & Proof */}
       <ResultsBand />
 
-      {/* 7. Verified Patient Testimonials */}
+      {/* 8. Verified Patient Testimonials */}
       <PatientStories />
 
-      {/* 8. Direct Appointment Booking */}
+      {/* 9. Direct Appointment Booking */}
       <BookingSection />
     </>
   );

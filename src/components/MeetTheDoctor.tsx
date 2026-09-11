@@ -26,7 +26,7 @@ export default function MeetTheDoctor() {
 
   return (
     <section
-      className="relative overflow-hidden bg-gradient-to-b from-white via-[#FAF8F5] to-[#EFEAE0] py-8 sm:py-10 lg:py-14"
+      className="relative overflow-hidden bg-gradient-to-b from-white via-[#FAF8F5] to-[#EFEAE0] py-16 sm:py-20 lg:py-24"
       aria-labelledby="doctor-heading"
     >
 
@@ -44,10 +44,10 @@ export default function MeetTheDoctor() {
         className="pointer-events-none absolute left-1/2 top-1/4 -translate-x-1/2 h-56 w-[32rem] rounded-full bg-white/40 blur-3xl"
       />
 
-      {/* Wider than `container-page` (76rem) on purpose. This is the opening
-          section now, so it should read as the full width of the screen rather
-          than as one more centred block: the portrait gets bigger, the profile
-          gets a longer measure, and the four stat cards stop crowding. */}
+      {/* Wider than `container-page` (76rem) on purpose: the portrait gets
+          bigger, the profile gets a longer measure, and the four stat cards
+          stop crowding. Matches the welcome section above it, so the two read
+          as one opening rather than as two blocks of different widths. */}
       <div className="relative z-10 mx-auto w-full max-w-[95rem] px-5 lg:px-10 xl:px-14">
         <div className="grid items-center gap-8 lg:grid-cols-[0.78fr_1.22fr] lg:gap-14 xl:gap-20">
           {/* Left Column: Doctor Portrait Presentation */}
@@ -91,7 +91,6 @@ export default function MeetTheDoctor() {
                       src={doctor.photo}
                       alt={doctor.name}
                       fill
-                      priority
                       sizes="(min-width: 1280px) 30vw, (min-width: 1024px) 34vw, (min-width: 640px) 24rem, 90vw"
                       className="object-cover object-top transition-transform duration-700 hover:scale-[1.02]"
                     />
@@ -159,14 +158,15 @@ export default function MeetTheDoctor() {
             </div>
 
             {/* Headline */}
-            <h1
+            {/* h2, not h1: the welcome section above owns the page's only h1. */}
+            <h2
               id="doctor-heading"
               className="mt-2 font-display text-2xl font-bold leading-[1.12] tracking-tight text-brand-950 sm:text-3xl lg:text-[2.8rem] xl:text-[3.1rem]"
             >
               Treated by a{" "}
               <span className="text-gold-shimmer font-bold">dermatologist</span>,
               <br className="hidden sm:block" /> every single visit.
-            </h1>
+            </h2>
 
             {/* Credentials Badges Ribbon */}
             <div className="mt-2.5 flex flex-wrap items-center gap-1.5">
