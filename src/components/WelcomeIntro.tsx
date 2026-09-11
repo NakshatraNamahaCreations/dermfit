@@ -13,12 +13,11 @@ import Image from "next/image";
  * word to it. They are the division photographs already in public/, unused
  * since the division row moved to icons.
  *
- * PLACEHOLDER IMAGERY. These are stock clinical photographs, not Dermfit's
- * rooms, Dermfit's equipment or Dermfit's patients, and the people in them are
- * not on Indian skin, which is most of this practice's caseload. They hold the
- * layout until the clinic supplies its own. Replace them under NEW FILENAMES:
- * /_next/image caches on the source path, so reusing a name leaves every
- * returning visitor on the old picture.
+ * IMAGERY. The aesthetic frame is the clinic's own supplied photograph. The
+ * other three are still stock, and the people in them are not on Indian skin —
+ * which is most of this practice's caseload — so they remain placeholders.
+ * Replace them under NEW FILENAMES: /_next/image caches on the source path, so
+ * reusing a name leaves every returning visitor on the old picture.
  *
  * Set in the logo's own two colours: navy sampled from the lockup's background
  * (#01122D), gold sampled across the mark's gradient.
@@ -50,8 +49,10 @@ const photos = [
     ratio: "aspect-square",
   },
   {
-    src: "/division-aesthetic.jpg",
-    alt: "A gloved dermatologist performing a procedure on a patient's face.",
+    // Supplied by the clinic, 11/09. New filename, not a replacement of the
+    // old one: /_next/image caches on the source path.
+    src: "/banner-aesthetic-indian.jpg",
+    alt: "A gloved dermatologist giving a facial injection to a patient resting on the treatment couch.",
     ratio: "aspect-square",
   },
   {

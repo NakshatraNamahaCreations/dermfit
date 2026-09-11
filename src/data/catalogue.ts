@@ -66,7 +66,7 @@ export const divisions: Division[] = [
       "Anti-ageing",
       "Scar Treatment",
     ],
-    image: "/division-aesthetic.jpg",
+    image: "/division-aesthetic-indian.jpg",
     treatments: [
       "Chemical Peels",
       "Microneedling",
