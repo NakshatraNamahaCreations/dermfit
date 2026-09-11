@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import JsonLd from "@/components/JsonLd";
 import { organisationGraph, pageMetadata } from "@/lib/seo";
 import MeetTheDoctor from "@/components/MeetTheDoctor";
-import WhyChooseUs from "@/components/WhyChooseUs";
 import DivisionRow from "@/components/DivisionRow";
 import AboutIntro from "@/components/AboutIntro";
 import MissionVision from "@/components/MissionVision";
@@ -36,28 +35,25 @@ export default function Home() {
       {/* 1. Doctor Hero Section */}
       <MeetTheDoctor />
 
-      {/* 2. Why Choose Us / Clinical Pillars */}
-      <WhyChooseUs />
-
-      {/* 3. Clinical Services / Specialized Divisions */}
+      {/* 2. Clinical Services / Specialized Divisions */}
       <DivisionRow />
 
-      {/* 4. About the Clinic Introduction */}
+      {/* 3. About the Clinic Introduction */}
       <AboutIntro />
 
-      {/* 5. Mission, Vision & Goals */}
+      {/* 4. Mission, Vision & Goals */}
       <MissionVision />
 
-      {/* 6. Concerns Treated */}
+      {/* 5. Concerns Treated */}
       <ConcernGrid limit={4} />
 
-      {/* 7. Clinical Results & Proof */}
+      {/* 6. Clinical Results & Proof */}
       <ResultsBand />
 
-      {/* 8. Verified Patient Testimonials */}
+      {/* 7. Verified Patient Testimonials */}
       <PatientStories />
 
-      {/* 9. Direct Appointment Booking */}
+      {/* 8. Direct Appointment Booking */}
       <BookingSection />
     </>
   );
