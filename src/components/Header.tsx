@@ -2,12 +2,23 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { nav, site } from "@/data/site";
 import Logo from "./Logo";
 
 /**
  * Header with the logo centred and the navigation split either side of it.
+ *
+ * ON THE HOME PAGE IT IS PART OF THE BANNER. The opening section is navy, and a
+ * white bar above it drew a hard line across the top of the page — two blocks,
+ * not one. So on "/" the bar carries the banner's own navy and its type goes
+ * light: the header and the banner read as a single field of colour, with the
+ * gold lockup sitting in it. The logo swaps to the untouched gold copy there,
+ * since the deepened one exists to survive a white bar and dies on navy.
+ *
+ * Once the page scrolls past the banner the bar goes white and the type goes
+ * dark again, because below the banner it is over white sections. Every other
+ * page has a light hero, so the bar is white on all of them from the start.
  *
  * The lockup is the clinic's strongest asset and it is symmetrical, so it holds
  * the middle better than it held a corner. Six links split 3/3 around it, and
@@ -23,6 +34,24 @@ import Logo from "./Logo";
 export default function Header() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  /** Only the home page opens on the navy banner. */
+  const overBanner = pathname === "/";
+
+  useEffect(() => {
+    if (!overBanner) return;
+    // Swap once the bar has cleared the banner's first screen. Deliberately
+    // not the banner's full height: the swap should happen while the navy is
+    // still behind it, not a moment after white has appeared under the bar.
+    const onScroll = () => setScrolled(window.scrollY > 120);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [overBanner]);
+
+  /** True while the bar is sitting on the banner's navy. */
+  const onNavy = overBanner && !scrolled;
 
   const isActive = (href: string) =>
     href === "/" ? pathname === "/" : pathname.startsWith(href);
@@ -32,14 +61,22 @@ export default function Header() {
   const right = nav.slice(half);
 
   const linkClass = (href: string) =>
-    `relative py-2 text-[0.8rem] font-medium uppercase tracking-[0.12em] transition-colors after:absolute after:inset-x-0 after:-bottom-0.5 after:h-px after:origin-center after:scale-x-0 after:bg-gold-500 after:transition-transform hover:after:scale-x-100 ${
-      isActive(href)
-        ? "text-brand-950 after:scale-x-100"
-        : "text-muted hover:text-brand-950"
+    `relative py-2 text-[0.8rem] font-medium uppercase tracking-[0.12em] transition-colors after:absolute after:inset-x-0 after:-bottom-0.5 after:h-px after:origin-center after:scale-x-0 after:bg-gold-400 after:transition-transform hover:after:scale-x-100 ${
+      onNavy
+        ? isActive(href)
+          ? "text-white after:scale-x-100"
+          : "text-brand-100 hover:text-white"
+        : isActive(href)
+          ? "text-brand-950 after:scale-x-100"
+          : "text-muted hover:text-brand-950"
     }`;
 
   return (
-    <header className="sticky top-0 z-50 bg-white">
+    <header
+      className={`sticky top-0 z-50 transition-colors duration-300 ${
+        onNavy ? "bg-brand-950" : "bg-white shadow-sm shadow-brand-950/5"
+      }`}
+    >
       {/* Main bar: nav | logo | nav */}
       <div className="container-page flex h-28 items-center justify-between gap-6 lg:h-36 lg:grid lg:grid-cols-[1fr_auto_1fr]">
         {/* Left column: nav */}
@@ -64,7 +101,11 @@ export default function Header() {
           onClick={() => setOpen((v) => !v)}
           aria-expanded={open}
           aria-controls="mobile-nav"
-          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-line text-brand-900 lg:hidden"
+          className={`inline-flex h-10 w-10 items-center justify-center rounded-full border transition-colors lg:hidden ${
+            onNavy
+              ? "border-white/25 text-white"
+              : "border-line text-brand-900"
+          }`}
         >
           <span className="sr-only">{open ? "Close menu" : "Open menu"}</span>
           <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
@@ -95,6 +136,7 @@ export default function Header() {
               need both size and contrast to hold: hence 144px here and the
               deepened logo-header.png rather than the over-photography copy. */}
           <Logo
+            onDark={onNavy}
             height={576}
             sizes="(min-width: 1024px) 122px, 95px"
             className="h-24 w-auto transition-transform duration-500 hover:scale-[1.03] lg:h-36"
@@ -126,7 +168,11 @@ export default function Header() {
           <a
             href={site.phoneHref}
             aria-label={`Call ${site.phone}`}
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-line text-brand-900 transition-colors hover:border-gold-400 hover:text-gold-700 lg:hidden"
+            className={`inline-flex h-10 w-10 items-center justify-center rounded-full border transition-colors hover:border-gold-400 lg:hidden ${
+              onNavy
+                ? "border-white/25 text-white hover:text-gold-300"
+                : "border-line text-brand-900 hover:text-gold-700"
+            }`}
           >
             <svg width="17" height="17" viewBox="0 0 20 20" fill="none" aria-hidden="true">
               <path

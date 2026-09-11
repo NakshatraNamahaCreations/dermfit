@@ -5,7 +5,6 @@ import WelcomeIntro from "@/components/WelcomeIntro";
 import MeetTheDoctor from "@/components/MeetTheDoctor";
 import ServicesGrid from "@/components/ServicesGrid";
 import AboutIntro from "@/components/AboutIntro";
-import MissionVision from "@/components/MissionVision";
 import ConcernGrid from "@/components/ConcernGrid";
 import ResultsBand from "@/components/ResultsBand";
 import PatientStories from "@/components/PatientStories";
@@ -45,19 +44,16 @@ export default function Home() {
       {/* 4. About the Clinic Introduction */}
       <AboutIntro />
 
-      {/* 5. Mission, Vision & Goals */}
-      <MissionVision />
-
-      {/* 6. Concerns Treated */}
+      {/* 5. Concerns Treated */}
       <ConcernGrid limit={4} />
 
-      {/* 7. Clinical Results & Proof */}
+      {/* 6. Clinical Results & Proof */}
       <ResultsBand />
 
-      {/* 8. Verified Patient Testimonials */}
+      {/* 7. Verified Patient Testimonials */}
       <PatientStories />
 
-      {/* 9. Direct Appointment Booking */}
+      {/* 8. Direct Appointment Booking */}
       <BookingSection />
     </>
   );

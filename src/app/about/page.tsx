@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Section, SectionHeading } from "@/components/Section";
 import PageHero from "@/components/PageHero";
 import CTA from "@/components/CTA";
+import MissionVision from "@/components/MissionVision";
 import JsonLd from "@/components/JsonLd";
 import { breadcrumbSchema, pageMetadata, physicianSchema } from "@/lib/seo";
 import Reveal from "@/components/Reveal";
@@ -149,6 +150,11 @@ export default function AboutPage() {
           </Reveal>
         </div>
       </Section>
+
+      {/* Vision and mission, in the clinic's own words. Moved here from the
+          home page at their request: this is the separate About page they
+          asked for it on. */}
+      <MissionVision />
 
       {/* How the practice works. Method, not promises. */}
       <Section className="bg-surface">

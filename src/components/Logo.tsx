@@ -23,15 +23,22 @@ export default function Logo({
   height = 128,
   sizes = "128px",
   decorative = false,
+  onDark = false,
 }: {
   className?: string;
   height?: number;
   sizes?: string;
   decorative?: boolean;
+  /**
+   * Set when the logo sits on the navy. The deepened header copy exists to
+   * survive a white bar; on navy that same deepening is what kills it, so the
+   * untouched gold is the one that reads there.
+   */
+  onDark?: boolean;
 }) {
   return (
     <Image
-      src="/logo-header.png"
+      src={onDark ? "/logo-transparent.png" : "/logo-header.png"}
       alt={decorative ? "" : `${site.name} ${site.byline} - ${site.kind}`}
       width={Math.round((height * W) / H)}
       height={height}
