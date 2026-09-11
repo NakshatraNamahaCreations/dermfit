@@ -98,7 +98,7 @@ function Photo({
 export default function WelcomeIntro() {
   return (
     <section
-      className="relative isolate overflow-hidden bg-brand-950 py-16 sm:py-20 lg:py-24"
+      className="relative isolate overflow-hidden bg-brand-950 pb-16 pt-10 sm:pb-20 sm:pt-12 lg:pb-24 lg:pt-14"
       aria-labelledby="welcome-heading"
     >
       {/* Gold light off the lockup's gradient, blurred back into the navy. */}
@@ -124,19 +124,26 @@ export default function WelcomeIntro() {
       <span aria-hidden="true" className="rule-gold absolute inset-x-0 bottom-0 opacity-60" />
 
       <div className="relative z-10 mx-auto w-full max-w-[95rem] px-5 lg:px-10 xl:px-14">
-        <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16 xl:gap-20">
+        <div className="grid items-start gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16 xl:gap-20">
           {/* The introduction */}
           <div>
             <h1
               id="welcome-heading"
-              className="animate-banner-in font-display text-[2rem] font-semibold leading-[1.15] tracking-tight text-white sm:text-[2.6rem] lg:text-[3.1rem]"
+              className="animate-banner-in font-display text-[2.15rem] font-semibold leading-[1.1] tracking-tight text-white sm:text-[2.9rem] lg:text-[3.5rem]"
             >
               Welcome to <span className="text-gold-shimmer">DermFit Clinic</span>
             </h1>
 
-            <span aria-hidden="true" className="rule-gold mt-6 block w-40" />
+            <span
+              aria-hidden="true"
+              className="rule-gold animate-banner-in mt-6 block w-40"
+              style={{ animationDelay: "160ms" }}
+            />
 
-            <div className="mt-6 space-y-5 text-[0.98rem] leading-relaxed text-brand-100 lg:text-base">
+            <div
+              className="animate-banner-in mt-6 space-y-5 text-[0.98rem] leading-relaxed text-brand-100 lg:text-[1.02rem]"
+              style={{ animationDelay: "240ms" }}
+            >
               {paragraphs.map((p) => (
                 <p key={p.slice(0, 32)}>{p}</p>
               ))}
@@ -144,12 +151,18 @@ export default function WelcomeIntro() {
 
             {/* The philosophy line, given its own weight. It is the sentence
                 the rest of the site has to live up to. */}
-            <p className="mt-8 border-l-2 border-gold-400 pl-5 font-display text-lg font-medium leading-snug text-white sm:text-xl">
+            <p
+              className="animate-banner-in mt-8 rounded-r-xl border-l-2 border-gold-400 bg-gradient-to-r from-gold-400/12 to-transparent py-4 pl-5 pr-4 font-display text-lg font-medium leading-snug text-white sm:text-xl"
+              style={{ animationDelay: "340ms" }}
+            >
               Our philosophy is simple — healthy skin comes first,{" "}
               <span className="text-gold-300">aesthetics come second.</span>
             </p>
 
-            <p className="mt-8 text-[0.98rem] leading-relaxed text-brand-100 lg:text-base">
+            <p
+              className="animate-banner-in mt-8 text-[0.98rem] leading-relaxed text-brand-100 lg:text-[1.02rem]"
+              style={{ animationDelay: "420ms" }}
+            >
               Every patient is different, which is why we believe in
               understanding your concerns, assessing your skin or hair
               carefully, and creating a treatment plan that is tailored to your
@@ -163,12 +176,12 @@ export default function WelcomeIntro() {
           {/* The photographs. Offset columns so the block reads as a composition
               rather than as a grid of four tiles. */}
           <div className="mx-auto grid w-full max-w-lg grid-cols-2 gap-4 lg:max-w-none lg:gap-5">
-            <div className="space-y-4 lg:space-y-5">
+            <div className="space-y-4 lg:mt-10 lg:space-y-5">
               {photos.slice(0, 2).map((p, i) => (
                 <Photo key={p.src} {...p} index={i} />
               ))}
             </div>
-            <div className="space-y-4 pt-8 sm:pt-12 lg:space-y-5">
+            <div className="space-y-4 pt-8 sm:pt-12 lg:pt-0 lg:space-y-5">
               {photos.slice(2).map((p, i) => (
                 <Photo key={p.src} {...p} index={i + 2} />
               ))}
