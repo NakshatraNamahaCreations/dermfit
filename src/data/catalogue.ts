@@ -35,7 +35,7 @@ export const divisions: Division[] = [
       "Infections",
       "Vitiligo",
     ],
-    image: "/division-clinical.jpg",
+    image: "/division-clinical-indian.jpg",
     treatments: [
       "Acne & Acne Scars",
       "Pigmentation & Melasma",

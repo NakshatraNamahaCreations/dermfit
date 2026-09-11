@@ -13,9 +13,10 @@ import Image from "next/image";
  * word to it. They are the division photographs already in public/, unused
  * since the division row moved to icons.
  *
- * IMAGERY. The aesthetic frame is the clinic's own supplied photograph. The
- * other three are still stock, and the people in them are not on Indian skin —
- * which is most of this practice's caseload — so they remain placeholders.
+ * IMAGERY. The clinical and aesthetic frames are the clinic's own supplied
+ * photographs. The trichology and laser frames are still stock, and the people
+ * in them are not on Indian skin — which is most of this practice's caseload —
+ * so those two remain placeholders.
  * Replace them under NEW FILENAMES: /_next/image caches on the source path, so
  * reusing a name leaves every returning visitor on the old picture.
  *
@@ -39,8 +40,10 @@ const paragraphs = [
  */
 const photos = [
   {
-    src: "/division-clinical.jpg",
-    alt: "A dermatologist examining a patient's face at the treatment couch.",
+    // Supplied by the clinic, 11/09. New filename, not a replacement of the
+    // old one: /_next/image caches on the source path.
+    src: "/banner-clinical-indian.jpg",
+    alt: "A clinician cleansing a patient's face at the treatment couch, with the trolley of products beside them.",
     ratio: "aspect-[3/4]",
   },
   {
