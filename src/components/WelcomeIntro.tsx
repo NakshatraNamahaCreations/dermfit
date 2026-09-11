@@ -1,19 +1,27 @@
+import Image from "next/image";
+
 /**
  * The opening banner: the clinic's introduction.
  *
- * THIS SECTION CONTAINS THE CLINIC'S SUPPLIED COPY AND NOTHING ELSE.
+ * THE TEXT IS THE CLINIC'S SUPPLIED COPY AND NOTHING ELSE — complete, in their
+ * order, not reworded. An earlier version added descriptive notes and a chip
+ * list that the clinic never wrote; on a doctor's opening screen an invented
+ * sentence is indistinguishable from the clinic's own voice, so there is none.
  *
- * An earlier version set the four disciplines as cards with a descriptive note
- * under each, and the conditions as chips with a link — none of which the
- * clinic wrote. Those notes were mine, and on a doctor's opening screen an
- * invented sentence is indistinguishable from the clinic's own voice. Every
- * word below is theirs, in their order, complete.
+ * The four photographs carry what the copy names — clinical dermatology,
+ * aesthetic dermatology, trichology and hair restoration — without adding a
+ * word to it. They are the division photographs already in public/, unused
+ * since the division row moved to icons.
  *
- * So the design does its work through type and colour alone: the navy sampled
- * from the logo's background (#01122D) and the gold sampled across the mark's
- * gradient, with the headline, the philosophy line and the closing statement
- * carrying the three levels of emphasis. No cards, no chips, no buttons —
- * anything of that sort would be content, and there is none to add.
+ * PLACEHOLDER IMAGERY. These are stock clinical photographs, not Dermfit's
+ * rooms, Dermfit's equipment or Dermfit's patients, and the people in them are
+ * not on Indian skin, which is most of this practice's caseload. They hold the
+ * layout until the clinic supplies its own. Replace them under NEW FILENAMES:
+ * /_next/image caches on the source path, so reusing a name leaves every
+ * returning visitor on the old picture.
+ *
+ * Set in the logo's own two colours: navy sampled from the lockup's background
+ * (#01122D), gold sampled across the mark's gradient.
  */
 
 const paragraphs = [
@@ -21,10 +29,71 @@ const paragraphs = [
   "Founded and led by Dr. Sourab S. Hegde, MBBS, MD Dermatology, DermFit brings together clinical dermatology, aesthetic dermatology, trichology and advanced hair restoration under one roof.",
 ];
 
+/**
+ * Alt text describes what is in each frame, for a screen reader — it is not
+ * a caption and none of it is rendered, so no text is being added to the page.
+ */
+const photos = [
+  {
+    src: "/division-clinical.jpg",
+    alt: "A dermatologist examining a patient's face at the treatment couch.",
+    ratio: "aspect-[3/4]",
+  },
+  {
+    src: "/division-hair.jpg",
+    alt: "A scalp being examined strand by strand during a trichology consultation.",
+    ratio: "aspect-square",
+  },
+  {
+    src: "/division-aesthetic.jpg",
+    alt: "A gloved dermatologist performing a procedure on a patient's face.",
+    ratio: "aspect-square",
+  },
+  {
+    src: "/division-laser.jpg",
+    alt: "A laser handpiece being used on a patient's face under eye protection.",
+    ratio: "aspect-[3/4]",
+  },
+];
+
+function Photo({
+  src,
+  alt,
+  ratio,
+  index,
+}: {
+  src: string;
+  alt: string;
+  ratio: string;
+  index: number;
+}) {
+  return (
+    <div
+      className={`group relative ${ratio} w-full overflow-hidden rounded-2xl ring-1 ring-white/15 transition-all duration-500 hover:ring-gold-400/50`}
+    >
+      <Image
+        src={src}
+        alt={alt}
+        fill
+        priority={index < 2}
+        sizes="(min-width: 1024px) 22vw, 45vw"
+        className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+      />
+      {/* Navy wash, so the photographs sit inside the section's colour rather
+          than punching four bright holes through it and pulling the eye off
+          the text. It lifts on hover. */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 bg-gradient-to-t from-brand-950/75 via-brand-950/25 to-brand-950/10 transition-opacity duration-500 group-hover:opacity-40"
+      />
+    </div>
+  );
+}
+
 export default function WelcomeIntro() {
   return (
     <section
-      className="relative isolate overflow-hidden bg-brand-950 py-20 sm:py-24 lg:py-28"
+      className="relative isolate overflow-hidden bg-brand-950 py-16 sm:py-20 lg:py-24"
       aria-labelledby="welcome-heading"
     >
       {/* Gold light off the lockup's gradient, blurred back into the navy. */}
@@ -47,50 +116,66 @@ export default function WelcomeIntro() {
         className="pointer-events-none absolute inset-0 opacity-[0.05] [background-image:linear-gradient(to_right,#fff_1px,transparent_1px),linear-gradient(to_bottom,#fff_1px,transparent_1px)] [background-size:60px_60px] [mask-image:radial-gradient(ellipse_at_50%_0%,black,transparent_70%)]"
       />
 
-      {/* Gold hairlines top and bottom, the same gradient as the mark. */}
       <span aria-hidden="true" className="rule-gold absolute inset-x-0 bottom-0 opacity-60" />
 
-      <div className="relative z-10 mx-auto w-full max-w-4xl px-5 text-center lg:px-8">
-        <h1
-          id="welcome-heading"
-          className="animate-banner-in font-display text-[2rem] font-semibold leading-[1.15] tracking-tight text-white sm:text-[2.75rem] lg:text-[3.25rem]"
-        >
-          Welcome to <span className="text-gold-shimmer">DermFit Clinic</span>
-        </h1>
+      <div className="relative z-10 mx-auto w-full max-w-[95rem] px-5 lg:px-10 xl:px-14">
+        <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16 xl:gap-20">
+          {/* The introduction */}
+          <div>
+            <h1
+              id="welcome-heading"
+              className="animate-banner-in font-display text-[2rem] font-semibold leading-[1.15] tracking-tight text-white sm:text-[2.6rem] lg:text-[3.1rem]"
+            >
+              Welcome to <span className="text-gold-shimmer">DermFit Clinic</span>
+            </h1>
 
-        <span
-          aria-hidden="true"
-          className="rule-gold mx-auto mt-8 block w-40"
-        />
+            <span aria-hidden="true" className="rule-gold mt-6 block w-40" />
 
-        <div className="mx-auto mt-8 max-w-3xl space-y-6 text-[1rem] leading-relaxed text-brand-100 sm:text-[1.05rem]">
-          {paragraphs.map((p) => (
-            <p key={p.slice(0, 32)}>{p}</p>
-          ))}
+            <div className="mt-6 space-y-5 text-[0.98rem] leading-relaxed text-brand-100 lg:text-base">
+              {paragraphs.map((p) => (
+                <p key={p.slice(0, 32)}>{p}</p>
+              ))}
+            </div>
+
+            {/* The philosophy line, given its own weight. It is the sentence
+                the rest of the site has to live up to. */}
+            <p className="mt-8 border-l-2 border-gold-400 pl-5 font-display text-lg font-medium leading-snug text-white sm:text-xl">
+              Our philosophy is simple — healthy skin comes first,{" "}
+              <span className="text-gold-300">aesthetics come second.</span>
+            </p>
+
+            <p className="mt-8 text-[0.98rem] leading-relaxed text-brand-100 lg:text-base">
+              Every patient is different, which is why we believe in
+              understanding your concerns, assessing your skin or hair
+              carefully, and creating a treatment plan that is tailored to your
+              individual needs. Whether you are dealing with acne, pigmentation,
+              acne scars, hair loss, ageing skin, dandruff or chronic skin
+              conditions such as eczema and psoriasis, our approach focuses on
+              achieving natural, sustainable results rather than quick fixes.
+            </p>
+          </div>
+
+          {/* The photographs. Offset columns so the block reads as a composition
+              rather than as a grid of four tiles. */}
+          <div className="mx-auto grid w-full max-w-lg grid-cols-2 gap-4 lg:max-w-none lg:gap-5">
+            <div className="space-y-4 lg:space-y-5">
+              {photos.slice(0, 2).map((p, i) => (
+                <Photo key={p.src} {...p} index={i} />
+              ))}
+            </div>
+            <div className="space-y-4 pt-8 sm:pt-12 lg:space-y-5">
+              {photos.slice(2).map((p, i) => (
+                <Photo key={p.src} {...p} index={i + 2} />
+              ))}
+            </div>
+          </div>
         </div>
 
-        {/* The philosophy line, given its own weight. It is the sentence the
-            rest of the site has to live up to. */}
-        <p className="mx-auto mt-10 max-w-2xl font-display text-xl font-medium leading-snug text-white sm:text-2xl">
-          Our philosophy is simple — healthy skin comes first,{" "}
-          <span className="text-gold-300">aesthetics come second.</span>
-        </p>
-
-        <p className="mx-auto mt-10 max-w-3xl text-[1rem] leading-relaxed text-brand-100 sm:text-[1.05rem]">
-          Every patient is different, which is why we believe in understanding
-          your concerns, assessing your skin or hair carefully, and creating a
-          treatment plan that is tailored to your individual needs. Whether you
-          are dealing with acne, pigmentation, acne scars, hair loss, ageing
-          skin, dandruff or chronic skin conditions such as eczema and
-          psoriasis, our approach focuses on achieving natural, sustainable
-          results rather than quick fixes.
-        </p>
-
         {/* The closing statement, set as the mark's own type: spaced caps in
-            gold, between two rules. */}
-        <div className="mt-12 flex items-center justify-center gap-5">
+            the gold gradient, between two rules. */}
+        <div className="mt-14 flex items-center justify-center gap-5">
           <span aria-hidden="true" className="rule-gold hidden w-16 flex-shrink-0 sm:block" />
-          <p className="font-display text-lg font-semibold uppercase leading-snug tracking-[0.14em] text-gold-gradient sm:text-xl sm:tracking-[0.18em]">
+          <p className="text-center font-display text-lg font-semibold uppercase leading-snug tracking-[0.14em] text-gold-gradient sm:text-xl sm:tracking-[0.18em]">
             Advanced Dermatology. Personalised Care.
           </p>
           <span aria-hidden="true" className="rule-gold hidden w-16 flex-shrink-0 sm:block" />
