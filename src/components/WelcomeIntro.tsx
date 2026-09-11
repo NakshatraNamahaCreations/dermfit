@@ -22,6 +22,11 @@ import Image from "next/image";
  *
  * Set in the logo's own two colours: navy sampled from the lockup's background
  * (#01122D), gold sampled across the mark's gradient.
+ *
+ * THE TOP STRIP MUST STAY FLAT NAVY. The header carries this same bg-brand-950
+ * on the home page so the bar and the banner read as one block, and anything
+ * that lightens the banner's top edge — a glow, the grid — puts a visible seam
+ * back at the join. Every decoration below is therefore held clear of the top.
  */
 
 const paragraphs = [
@@ -99,7 +104,7 @@ export default function WelcomeIntro() {
       {/* Gold light off the lockup's gradient, blurred back into the navy. */}
       <span
         aria-hidden="true"
-        className="pointer-events-none absolute -left-40 -top-40 h-[30rem] w-[30rem] rounded-full bg-gold-500/20 blur-3xl"
+        className="pointer-events-none absolute -left-40 top-16 h-[30rem] w-[30rem] rounded-full bg-gold-500/20 blur-3xl"
       />
       <span
         aria-hidden="true"
@@ -107,13 +112,13 @@ export default function WelcomeIntro() {
       />
       <span
         aria-hidden="true"
-        className="pointer-events-none absolute left-1/2 top-0 h-80 w-[42rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand-700/40 blur-3xl"
+        className="pointer-events-none absolute left-1/2 top-1/2 h-80 w-[42rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand-700/30 blur-3xl"
       />
 
       {/* Faint grid so the navy has a surface rather than being flat ink. */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 opacity-[0.05] [background-image:linear-gradient(to_right,#fff_1px,transparent_1px),linear-gradient(to_bottom,#fff_1px,transparent_1px)] [background-size:60px_60px] [mask-image:radial-gradient(ellipse_at_50%_0%,black,transparent_70%)]"
+        className="pointer-events-none absolute inset-0 opacity-[0.05] [background-image:linear-gradient(to_right,#fff_1px,transparent_1px),linear-gradient(to_bottom,#fff_1px,transparent_1px)] [background-size:60px_60px] [mask-image:radial-gradient(ellipse_at_50%_55%,black,transparent_72%)]"
       />
 
       <span aria-hidden="true" className="rule-gold absolute inset-x-0 bottom-0 opacity-60" />
