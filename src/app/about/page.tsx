@@ -96,30 +96,35 @@ export default function AboutPage() {
           <Reveal from="right" delay={120}>
             <p className="eyebrow">The doctor</p>
 
+            {/* The clinic's own biography, supplied 16/09. It replaces three
+                placeholder paragraphs I had written about how the practice is
+                arranged — true enough, but not his words and not his history. */}
             <div className="mt-5 space-y-4 text-base leading-relaxed text-muted">
               <p>
-                Dermfit was founded by{" "}
                 <strong className="font-semibold text-brand-950">
-                  Dr Sourab Hegde
-                </strong>
-                , MBBS, MD (Dermatology), and it is his practice: clinical
-                dermatology, trichology and aesthetic dermatology, all under one
-                consultant rather than split across a rota you are assigned to on
-                the day.
+                  Dr. Sourab S Hegde
+                </strong>{" "}
+                is the Director and Chief Dermatologist at Dermfit clinic,
+                Mysuru. A graduate of SDM Medical College, Dharwad (MBBS) and
+                Sri Siddhartha Medical College, Tumkur (MD Dermatology), Dr.
+                Sourab brings over five years of clinical and aesthetic
+                dermatology experience. He holds an Advanced Aesthetics
+                Fellowship certified by 5CC Europe and a fellowship in hair
+                transplantation (FISHR), and is trained nationally and
+                internationally in aesthetic dermatology, lasers, and hair
+                restoration.
               </p>
               <p>
-                That is the whole point of the arrangement. Skin conditions are
-                followed over months, and continuity is diagnostic — the doctor
-                who saw your face in March is the one who can tell what has
-                changed by June. Nothing is handed to a technician, and nothing
-                is re-explained to a stranger at the second visit.
+                From clinical dermatology and hair concerns to advanced
+                aesthetic treatments, his focus is on comprehensive, holistic
+                care with natural and meaningful results.
               </p>
-              <p>
-                A large part of the caseload is pigmentation, melasma, acne and
-                the marks it leaves on Indian skin — conditions that behave
-                differently on melanin-rich skin than the literature written
-                elsewhere describes, and that are treated here with parameters
-                set for it.
+              <p className="border-l-2 border-gold-400 pl-5 text-brand-900">
+                Because when you feel comfortable with your care, you can feel
+                confident in your skin.
+              </p>
+              <p className="text-[0.8rem] font-semibold uppercase tracking-[0.12em] text-gold-gradient">
+                DermFit Clinic — Expertise with empathy. Care with comfort.
               </p>
             </div>
 

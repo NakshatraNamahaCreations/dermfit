@@ -1,5 +1,3 @@
-import { divisions, treatmentCount } from "./catalogue";
-
 export type Doctor = {
   name: string;
   initials: string;
@@ -46,21 +44,20 @@ export const differentiators = [
 ];
 
 /**
- * Figures for the About page.
+ * Figures for the About page, all from the clinic's own biography of
+ * Dr Hegde (supplied 16/09).
  *
- * Every one of these is either a qualification the clinic supplied or a number
- * counted from the catalogue in this repo, so none of them can drift or
- * overstate. The set that used to live here — "12+ years", "18k consultations",
- * "4.9 average rating" — was invented, and under the ASCI code those are
- * exactly the claims a clinic is held to prove.
- *
- * Real figures Dr Hegde is willing to stand behind can replace these.
+ * The set that used to live here — "12+ years", "18k consultations", "4.9
+ * average rating" — was invented, and under the ASCI code those are exactly
+ * the claims a clinic is held to prove. The set before that counted divisions
+ * and treatments, which was true but said nothing about the doctor. "5+" is
+ * the clinic's own figure, not a rounding of one.
  */
 export const stats = [
-  { value: "MBBS", label: "Medical degree" },
+  { value: "5+", label: "Years in practice" },
   { value: "MD", label: "Dermatology" },
-  { value: String(divisions.length), label: "Clinical divisions" },
-  { value: `${treatmentCount}+`, label: "Treatments offered" },
+  { value: "5CC", label: "Europe fellowship" },
+  { value: "FISHR", label: "Hair transplantation" },
 ];
 export const testimonials = [
   {
