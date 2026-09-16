@@ -7,8 +7,13 @@ export const site = {
    *
    * Set NEXT_PUBLIC_SITE_URL in the Vercel project when the clinic's own
    * domain is live; the Vercel address is the fallback, not the target.
+   *
+   * The old dermfit.vercel.app deployment is gone (it answers 402), so the
+   * fallback is the live dermfit-theta.vercel.app. Leaving the dead host here
+   * would have pointed every canonical, every sitemap entry and every Open
+   * Graph image at a URL that no longer resolves.
    */
-  url: (process.env.NEXT_PUBLIC_SITE_URL ?? "https://dermfit.vercel.app").replace(
+  url: (process.env.NEXT_PUBLIC_SITE_URL ?? "https://dermfit-theta.vercel.app").replace(
     /\/$/,
     "",
   ),
