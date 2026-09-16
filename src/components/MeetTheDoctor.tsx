@@ -1,27 +1,44 @@
 import Image from "next/image";
 import Link from "next/link";
-import { divisions, treatmentCount } from "@/data/catalogue";
 import { doctors } from "@/data/content";
 import { site } from "@/data/site";
 import Reveal from "./Reveal";
 
-/** Qualifications as supplied by the clinic */
+/**
+ * "Meet your doctor".
+ *
+ * THE PROFILE IS THE CLINIC'S, SUPPLIED 16/09 — the first real biography on
+ * this site. It replaces placeholder copy I had written, and it lets several
+ * invented details go with it:
+ *
+ *   - "Board Certified · MD" on the portrait. Board certification is an
+ *     American construct; nobody is board certified in India, and the clinic
+ *     never claimed it. The badge now carries his actual fellowship.
+ *   - "Founder & Chief Consultant Dermatologist" — his title is Director and
+ *     Chief Dermatologist.
+ *   - Two of the four highlight boxes counted divisions and treatments because
+ *     there was nothing real to put in them. There is now.
+ *
+ * Every qualification below is from the clinic's own text. Nothing here is
+ * inferred, and no figure is rounded up.
+ */
 const credentials = [
   "MBBS",
   "MD (Dermatology)",
-  "Consultant Dermatologist",
-  "Trichology",
-  "Aesthetic Dermatology",
+  "Advanced Aesthetics Fellowship — 5CC Europe",
+  "FISHR (Hair Transplantation)",
 ];
 
 export default function MeetTheDoctor() {
   const doctor = doctors[0];
 
+  // All four from the clinic's own biography. "5+" is their figure, not a
+  // rounding of one.
   const highlights = [
-    { value: "MD", label: "Dermatology", note: "Postgraduate apex degree" },
-    { value: "MBBS", label: "Medical Degree", note: "Registered practitioner" },
-    { value: String(divisions.length), label: "Divisions", note: "Skin, hair & aesthetics" },
-    { value: `${treatmentCount}+`, label: "Treatments", note: "Diagnosis-led protocols" },
+    { value: "5+", label: "Years", note: "Clinical & aesthetic practice" },
+    { value: "MD", label: "Dermatology", note: "Sri Siddhartha, Tumkur" },
+    { value: "5CC", label: "Europe", note: "Advanced Aesthetics Fellowship" },
+    { value: "FISHR", label: "Fellowship", note: "Hair transplantation" },
   ];
 
   return (
@@ -80,7 +97,7 @@ export default function MeetTheDoctor() {
                     <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
                   </span>
                   <span className="text-[0.64rem] font-semibold uppercase tracking-wider text-brand-950">
-                    Board Certified · MD
+                    MBBS · MD Dermatology
                   </span>
                 </div>
 
@@ -127,7 +144,7 @@ export default function MeetTheDoctor() {
                       </span>
                     </div>
                     <p className="text-[0.7rem] font-medium text-gold-300">
-                      Founder & Chief Consultant Dermatologist
+                      Director & Chief Dermatologist
                     </p>
                   </div>
 
@@ -139,9 +156,9 @@ export default function MeetTheDoctor() {
                 <div className="mt-2 flex flex-wrap items-center gap-2 border-t border-white/10 pt-1.5 text-[0.68rem] text-brand-100">
                   <span className="font-semibold text-gold-300">MBBS, MD</span>
                   <span className="text-white/40">·</span>
-                  <span>Trichology</span>
+                  <span>5CC Europe</span>
                   <span className="text-white/40">·</span>
-                  <span>Aesthetics</span>
+                  <span>FISHR</span>
                 </div>
               </div>
             </div>
@@ -153,7 +170,7 @@ export default function MeetTheDoctor() {
             <div className="inline-flex items-center gap-2 rounded-full border border-gold-400/50 bg-white/90 px-3 py-1 shadow-xs backdrop-blur-sm">
               <span className="h-1.5 w-1.5 rounded-full bg-gold-500 animate-pulse" />
               <span className="text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-gold-800">
-                Meet Your Doctor & Founder
+                Meet Your Doctor
               </span>
             </div>
 
@@ -181,29 +198,41 @@ export default function MeetTheDoctor() {
               ))}
             </div>
 
-            {/* Bio Narrative */}
-            <div className="mt-3 max-w-3xl space-y-2 text-[0.9rem] leading-relaxed text-muted xl:text-[0.95rem]">
+            {/* Bio Narrative — the clinic's own text, supplied 16/09. */}
+            <div className="mt-3 max-w-3xl space-y-2.5 text-[0.9rem] leading-relaxed text-muted xl:text-[0.95rem]">
               <p>
-                <strong className="font-semibold text-brand-950">Dr Sourab Hegde</strong> is a consultant dermatologist and the founder of Dermfit, practising across clinical dermatology, trichology and aesthetic dermatology in Mysuru.
+                <strong className="font-semibold text-brand-950">
+                  Dr. Sourab S Hegde
+                </strong>{" "}
+                is the Director and Chief Dermatologist at Dermfit clinic,
+                Mysuru. A graduate of SDM Medical College, Dharwad (MBBS) and
+                Sri Siddhartha Medical College, Tumkur (MD Dermatology), Dr.
+                Sourab brings over{" "}
+                <strong className="font-semibold text-brand-950">
+                  5 years of clinical and aesthetic dermatology experience
+                </strong>
+                . He holds an Advanced Aesthetics Fellowship certified by 5CC
+                Europe and a fellowship in hair transplantation (FISHR), and is
+                trained nationally and internationally in aesthetic dermatology,
+                lasers, and hair restoration.
               </p>
               <p>
-                His practice is strictly <strong className="font-semibold text-brand-950">diagnosis-led</strong>: the cause is established before any treatment is offered, with clear timelines and transparent costs before anything is booked. A major focus is Indian skin conditions — pigmentation, melasma, and acne marks.
+                From clinical dermatology and hair concerns to advanced
+                aesthetic treatments, his focus is on comprehensive, holistic
+                care with natural and meaningful results.
               </p>
             </div>
 
-            {/* Dermatologist Commitment Callout Box */}
-            <div className="mt-3 rounded-xl border-l-4 border-gold-500 bg-white/90 p-2.5 sm:p-3 shadow-xs ring-1 ring-line/80 backdrop-blur-xs">
-              <div className="flex items-start gap-2.5">
-                <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-gold-100 text-gold-700 mt-0.5">
-                  <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
-                  </svg>
-                </span>
-                <p className="text-xs sm:text-[0.82rem] font-medium italic leading-snug text-brand-950">
-                  “Every consultation and procedure is performed by a qualified dermatologist.
-                  Injectables and laser work are never delegated to a technician.”
-                </p>
-              </div>
+            {/* The clinic's own closing lines. Replaces a quotation I had
+                written and attributed to nobody. */}
+            <div className="mt-3.5 rounded-xl border-l-4 border-gold-500 bg-white/90 p-3 shadow-xs ring-1 ring-line/80 backdrop-blur-xs sm:p-3.5">
+              <p className="text-[0.82rem] font-medium leading-snug text-brand-950 sm:text-[0.88rem]">
+                Because when you feel comfortable with your care, you can feel
+                confident in your skin.
+              </p>
+              <p className="mt-2 text-[0.72rem] font-semibold uppercase tracking-[0.12em] text-gold-gradient sm:text-[0.76rem]">
+                DermFit Clinic — Expertise with empathy. Care with comfort.
+              </p>
             </div>
 
             {/* 4 Stats Cards Grid */}

@@ -112,12 +112,29 @@ export const physicianSchema: Json = {
   jobTitle: doctor.role,
   description: doctor.bio,
   medicalSpecialty: "Dermatology",
-  // Qualifications the clinic supplied. Nothing inferred.
-  hasCredential: ["MBBS", "MD (Dermatology)"].map((c) => ({
+  // Qualifications the clinic supplied, in their own wording. Nothing inferred.
+  hasCredential: [
+    { category: "degree", name: "MBBS" },
+    { category: "degree", name: "MD (Dermatology)" },
+    { category: "fellowship", name: "Advanced Aesthetics Fellowship, 5CC Europe" },
+    { category: "fellowship", name: "Fellowship in Hair Transplantation (FISHR)" },
+  ].map((c) => ({
     "@type": "EducationalOccupationalCredential",
-    credentialCategory: "degree",
-    name: c,
+    credentialCategory: c.category,
+    name: c.name,
   })),
+  // The two colleges named in his biography.
+  alumniOf: [
+    { "@type": "CollegeOrUniversity", name: "SDM Medical College, Dharwad" },
+    { "@type": "CollegeOrUniversity", name: "Sri Siddhartha Medical College, Tumkur" },
+  ],
+  knowsAbout: [
+    "Clinical dermatology",
+    "Aesthetic dermatology",
+    "Trichology",
+    "Hair restoration",
+    "Dermatological lasers",
+  ],
   worksFor: { "@id": ids.clinic },
   address: postalAddress,
   telephone: site.phone,

@@ -13,9 +13,9 @@ import { divisions } from "@/data/catalogue";
 import { site } from "@/data/site";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Dr Sourab Hegde, Dermatologist",
+  title: "Dr. Sourab S Hegde, Dermatologist",
   description:
-    "Dermfit is a doctor-led dermatology practice in Yadavgiri, Mysuru. Dr Sourab Hegde, MBBS, MD (Dermatology), examines, plans and performs every treatment himself — nothing delegated to a technician.",
+    "Dr. Sourab S Hegde, MBBS, MD (Dermatology), is Director and Chief Dermatologist at Dermfit, Yadavgiri, Mysuru — with an Advanced Aesthetics Fellowship (5CC Europe) and a fellowship in hair transplantation (FISHR).",
   path: "/about",
 });
 

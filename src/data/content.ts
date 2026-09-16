@@ -14,12 +14,12 @@ export type Doctor = {
 
 export const doctors: Doctor[] = [
   {
-    name: "Dr. Sourab Hegde",
+    name: "Dr. Sourab S Hegde",
     initials: "SH",
-    role: "Consultant Dermatologist · Founder",
-    credentials: "MBBS, MD (Dermatology)",
-    // PLACEHOLDER BIO — replace with Dr Hegde's actual credentials and background.
-    bio: "Founder of Dermfit, practising across clinical dermatology, trichology and aesthetics with a focus on diagnosis-led treatment planning.",
+    role: "Director & Chief Dermatologist",
+    credentials: "MBBS, MD (Dermatology), 5CC Europe, FISHR",
+    // The clinic's own biography, supplied 16/09.
+    bio: "Dr. Sourab S Hegde is the Director and Chief Dermatologist at Dermfit clinic, Mysuru. A graduate of SDM Medical College, Dharwad (MBBS) and Sri Siddhartha Medical College, Tumkur (MD Dermatology), he brings over 5 years of clinical and aesthetic dermatology experience, holds an Advanced Aesthetics Fellowship certified by 5CC Europe and a fellowship in hair transplantation (FISHR), and is trained nationally and internationally in aesthetic dermatology, lasers and hair restoration.",
     // PLACEHOLDER PORTRAIT — a generated likeness supplied by the clinic, not a
     // photograph of Dr Hegde. Replace with his own before launch.
     photo: "/doctor-hegde.jpg",
