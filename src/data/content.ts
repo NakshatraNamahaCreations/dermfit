@@ -18,9 +18,12 @@ export const doctors: Doctor[] = [
     credentials: "MBBS, MD (Dermatology), 5CC Europe, FISHR",
     // The clinic's own biography, supplied 16/09.
     bio: "Dr. Sourab S Hegde is the Director and Chief Dermatologist at Dermfit clinic, Mysuru. A graduate of SDM Medical College, Dharwad (MBBS) and Sri Siddhartha Medical College, Tumkur (MD Dermatology), he brings over 5 years of clinical and aesthetic dermatology experience, holds an Advanced Aesthetics Fellowship certified by 5CC Europe and a fellowship in hair transplantation (FISHR), and is trained nationally and internationally in aesthetic dermatology, lasers and hair restoration.",
-    // PLACEHOLDER PORTRAIT — a generated likeness supplied by the clinic, not a
-    // photograph of Dr Hegde. Replace with his own before launch.
-    photo: "/doctor-hegde.jpg",
+    // His own photograph, supplied by the clinic 16/09 — it replaces the
+    // generated likeness that stood here. Cut to 4:5 from the top so the face,
+    // the embroidered name and the hand on the chair all stay in frame. A new
+    // filename rather than an overwrite of doctor-hegde.jpg: /_next/image
+    // caches on the source path.
+    photo: "/dr-sourab-hegde.jpg",
   },
 ];
 

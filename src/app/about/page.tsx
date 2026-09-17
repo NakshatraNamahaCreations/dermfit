@@ -37,6 +37,13 @@ export const metadata: Metadata = pageMetadata({
  * the "The doctor" eyebrow labels it and the profile text follows straight on.
  */
 
+/**
+ * His formal portrait, supplied by the clinic 16/09. The About page uses the
+ * suited photograph and the home page the one in his clinic coat, so the two
+ * pages do not show the same picture of him twice.
+ */
+const aboutPortrait = "/dr-sourab-hegde-suit.jpg";
+
 /** What he practises, drawn from the real catalogue rather than asserted. */
 const practiceAreas = divisions.map((d) => d.title);
 
@@ -69,15 +76,13 @@ export default function AboutPage() {
               />
               <div className="relative rounded-[1.6rem] bg-white p-2 shadow-2xl shadow-brand-950/10 ring-1 ring-gold-300/50">
                 <div className="relative aspect-[4/4.4] overflow-hidden rounded-[1.25rem] bg-brand-950">
-                  {doctor.photo && (
-                    <Image
-                      src={doctor.photo}
-                      alt={doctor.name}
-                      fill
-                      sizes="(min-width: 1024px) 30vw, (min-width: 640px) 22rem, 90vw"
-                      className="object-cover object-top"
-                    />
-                  )}
+                  <Image
+                    src={aboutPortrait}
+                    alt={`${doctor.name}, Director and Chief Dermatologist at Dermfit`}
+                    fill
+                    sizes="(min-width: 1024px) 30vw, (min-width: 640px) 22rem, 90vw"
+                    className="object-cover object-top"
+                  />
                 </div>
               </div>
 

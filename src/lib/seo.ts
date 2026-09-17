@@ -135,6 +135,9 @@ export const physicianSchema: Json = {
     "Hair restoration",
     "Dermatological lasers",
   ],
+  // Safe to publish now that it is his own photograph. A generated likeness
+  // in `image` would have told Google that face was this doctor.
+  ...(doctor.photo ? { image: absoluteUrl(doctor.photo) } : {}),
   worksFor: { "@id": ids.clinic },
   address: postalAddress,
   telephone: site.phone,

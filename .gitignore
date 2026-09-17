@@ -50,3 +50,4 @@ tailwindcss-*.log
 # versions are committed; these originals are large and would be served.
 public/ChatGPT Image*.png
 public/sri-hospitals-team.jpg
+public/WhatsApp Image*
