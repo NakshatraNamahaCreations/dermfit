@@ -9,11 +9,10 @@ import Reveal from "./Reveal";
  *
  * Text left, team image right, as on the reference site.
  *
- * The team photograph was supplied by the clinic (public/about-team.jpg). It is
- * a stand-in showing a clinical team rather than Dermfit's own, so it carries no
- * caption naming anyone — replace it with a photograph of the actual team when
- * there is one. Its filename suggests another hospital's site, so the clinic
- * should confirm they hold the rights before launch.
+ * The photograph is Dr Hegde in clinic scrubs, supplied by the clinic 16/09 and
+ * cut to this frame's 9:7. It replaces about-team.jpg, a stand-in team shot
+ * whose filename pointed at another hospital's site — three doctors who were
+ * not Dermfit's, beside a card naming Dermfit's one.
  *
  * The two figures are counted from the real catalogue rather than asserted, so
  * they cannot drift out of date or overstate anything.
@@ -101,11 +100,11 @@ export default function AboutIntro() {
             <div className="mx-auto max-w-md lg:mx-0 lg:max-w-none">
               <div className="relative aspect-[9/7] overflow-hidden rounded-[1.75rem] ring-1 ring-line">
                 <Image
-                  src="/about-team.jpg"
-                  alt="Doctors in white coats outside the clinic"
+                  src="/dr-sourab-hegde-scrubs.jpg"
+                  alt="Dr. Sourab S Hegde in clinic scrubs, arms folded, with his name and MD Dermatology embroidered on the chest."
                   fill
                   sizes="(min-width: 1024px) 42vw, (min-width: 640px) 28rem, 100vw"
-                  className="object-cover object-center"
+                  className="object-cover object-top"
                 />
                 {/* Grounds the navy card against the pale lower edge */}
                 <div
